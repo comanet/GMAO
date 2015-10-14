@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AB3EE354-5727-4C4C-8168-124D0046D96A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>GMAO</RootNamespace>
+    <AssemblyName>G.M.A.O</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>G.M.A.O.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>G.M.A.O.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Formularios\FrmAcercade.Designer.vb">
+      <DependentUpon>FrmAcercade.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmAcercade.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmActividades.Designer.vb">
+      <DependentUpon>FrmActividades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmActividades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmAlmacen.Designer.vb">
+      <DependentUpon>FrmAlmacen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmAlmacen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmCatEqui.Designer.vb">
+      <DependentUpon>FrmCatEqui.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmCatEqui.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmEquipos.Designer.vb">
+      <DependentUpon>FrmEquipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmEquipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmEntrada.designer.vb">
+      <DependentUpon>FrmEntrada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmEntrada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmEspecialidades.Designer.vb">
+      <DependentUpon>FrmEspecialidades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmEspecialidades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmFrecuencias.Designer.vb">
+      <DependentUpon>FrmFrecuencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmFrecuencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmMantePlan.Designer.vb">
+      <DependentUpon>FrmMantePlan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmMantePlan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmPersonal.Designer.vb">
+      <DependentUpon>FrmPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmPersonal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmPrincipal.designer.vb">
+      <DependentUpon>FrmPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmRepuestos.Designer.vb">
+      <DependentUpon>FrmRepuestos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmRepuestos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmSeccion.Designer.vb">
+      <DependentUpon>FrmSeccion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmSeccion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmUser.Designer.vb">
+      <DependentUpon>FrmUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTest.Designer.vb">
+      <DependentUpon>FrmTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GMSQLDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMSQLDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\clActividades.vb" />
+    <Compile Include="Modulos\clEspecialidades.vb" />
+    <Compile Include="Modulos\clFrecuencias.vb" />
+    <Compile Include="Modulos\clMantePlan.vb" />
+    <Compile Include="Modulos\clRepuesto.vb" />
+    <Compile Include="Modulos\clEquipos.vb" />
+    <Compile Include="Modulos\clAlmacen.vb" />
+    <Compile Include="Modulos\clUser.vb" />
+    <Compile Include="Modulos\clPersonal.vb" />
+    <Compile Include="Modulos\clCatequi.vb" />
+    <Compile Include="Modulos\clSecciones.vb" />
+    <Compile Include="Modulos\conexion.vb" />
+    <Compile Include="Modulos\Funciones.vb" />
+    <Compile Include="Modulos\m_datos.vb" />
+    <Compile Include="Modulos\variables.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\FrmAcercade.resx">
+      <DependentUpon>FrmAcercade.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmActividades.resx">
+      <DependentUpon>FrmActividades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmAlmacen.resx">
+      <DependentUpon>FrmAlmacen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmCatEqui.resx">
+      <DependentUpon>FrmCatEqui.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmEquipos.resx">
+      <DependentUpon>FrmEquipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmEntrada.resx">
+      <DependentUpon>FrmEntrada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmEspecialidades.resx">
+      <DependentUpon>FrmEspecialidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmFrecuencias.resx">
+      <DependentUpon>FrmFrecuencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmMantePlan.resx">
+      <DependentUpon>FrmMantePlan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmPersonal.resx">
+      <DependentUpon>FrmPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmRepuestos.resx">
+      <DependentUpon>FrmRepuestos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmSeccion.resx">
+      <DependentUpon>FrmSeccion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmUser.resx">
+      <DependentUpon>FrmUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTest.resx">
+      <DependentUpon>FrmTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GMSQLDataSet.xsc">
+      <DependentUpon>GMSQLDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GMSQLDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GMSQLDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GMSQLDataSet.xss">
+      <DependentUpon>GMSQLDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="res\DOC\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
