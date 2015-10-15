@@ -11,6 +11,7 @@
     Public FFrecuencias As FrmFrecuencias = Nothing
     Public FEspecialidades As FrmEspecialidades = Nothing
     Public FMantePlan As FrmMantePlan = Nothing
+    Public FActividades As FrmActividades = Nothing
 
     Public Sub Main()
         Application.EnableVisualStyles()

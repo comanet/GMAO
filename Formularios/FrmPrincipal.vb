@@ -293,4 +293,14 @@ Public Class FrmPrincipal
         End If
 
     End Sub
+
+    Private Sub TareasDeMantenimientoPreventivoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TareasDeMantenimientoPreventivoToolStripMenuItem.Click
+
+        If (FActividades Is Nothing) Then
+            FActividades = New FrmActividades()
+            FActividades.MdiParent = Me
+            FActividades.Show()
+        End If
+
+    End Sub
 End Class

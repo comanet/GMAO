@@ -120,7 +120,7 @@ Public Class clEquipos
 
     Public Function consultaAux(ByVal sql As String, ByVal tabla As String) As DataTable
 
-        ' Dim sql As String
+        'Dim sql As String
         'sql = "select * from " & tabla
 
         da = New SqlDataAdapter(sql, cnn)

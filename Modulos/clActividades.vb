@@ -8,7 +8,7 @@ Public Class clActividades
     Public bsActividades As New BindingSource
     Private comando As SqlCommand
 
-    Public Sub ConsultaFrecuencias(ByVal sql As String)
+    Public Sub ConsultaActividades(ByVal sql As String)
 
         cnn.Open()
         daActividades = New SqlDataAdapter(sql, cnn)
@@ -77,12 +77,12 @@ Public Class clActividades
 
     End Function
 
-    Public Function InsertaActividad(ByVal query As String) As Boolean
+    Public Function InsertaActividades(ByVal query As String) As Boolean
 
         cnn.Open()
         comando = New SqlCommand(query, cnn)
 
-       Dim i As Integer
+        Dim i As Integer
 
         i = comando.ExecuteNonQuery
         cnn.Close()
