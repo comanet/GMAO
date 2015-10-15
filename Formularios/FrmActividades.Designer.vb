@@ -26,7 +26,7 @@ Partial Class FrmActividades
         Dim IdAtividadLabel As System.Windows.Forms.Label
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmActividades))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -40,27 +40,29 @@ Partial Class FrmActividades
         Me.FRECUENCIALabel = New System.Windows.Forms.Label()
         Me.cbTMant = New System.Windows.Forms.ComboBox()
         Me.TIPMANTLabel = New System.Windows.Forms.Label()
+        Me.txt_DESCRIPCION = New System.Windows.Forms.TextBox()
         Me.cbEspe = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txt_NOMBRE = New System.Windows.Forms.TextBox()
-        Me.txt_DESCRIPCION = New System.Windows.Forms.TextBox()
         Me.txt_ID = New System.Windows.Forms.TextBox()
-        Me.dgvSecc = New System.Windows.Forms.DataGridView()
+        Me.dgvActividades = New System.Windows.Forms.DataGridView()
         Me.btSalir = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ESPECIALIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         DESRIPCIONLabel = New System.Windows.Forms.Label()
         IdAtividadLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvActividades, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DESRIPCIONLabel
         '
         DESRIPCIONLabel.AutoSize = True
         DESRIPCIONLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DESRIPCIONLabel.Location = New System.Drawing.Point(12, 58)
+        DESRIPCIONLabel.Location = New System.Drawing.Point(6, 133)
         DESRIPCIONLabel.Name = "DESRIPCIONLabel"
         DESRIPCIONLabel.Size = New System.Drawing.Size(92, 15)
         DESRIPCIONLabel.TabIndex = 26
@@ -70,21 +72,22 @@ Partial Class FrmActividades
         '
         IdAtividadLabel.AutoSize = True
         IdAtividadLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        IdAtividadLabel.Location = New System.Drawing.Point(12, 29)
+        IdAtividadLabel.Location = New System.Drawing.Point(6, 27)
         IdAtividadLabel.Name = "IdAtividadLabel"
-        IdAtividadLabel.Size = New System.Drawing.Size(82, 15)
+        IdAtividadLabel.Size = New System.Drawing.Size(54, 15)
         IdAtividadLabel.TabIndex = 23
-        IdAtividadLabel.Text = "IDACTIVIDAD:"
+        IdAtividadLabel.Text = "CODIGO"
         '
         'NOMBRELabel
         '
         NOMBRELabel.AutoSize = True
         NOMBRELabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        NOMBRELabel.Location = New System.Drawing.Point(225, 29)
+        NOMBRELabel.Location = New System.Drawing.Point(6, 61)
         NOMBRELabel.Name = "NOMBRELabel"
         NOMBRELabel.Size = New System.Drawing.Size(64, 15)
         NOMBRELabel.TabIndex = 28
         NOMBRELabel.Text = "NOMBRE:"
+        AddHandler NOMBRELabel.Click, AddressOf Me.NOMBRELabel_Click
         '
         'ToolStrip1
         '
@@ -171,23 +174,21 @@ Partial Class FrmActividades
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
         Me.GroupBox1.Controls.Add(Me.cbFrec)
         Me.GroupBox1.Controls.Add(Me.FRECUENCIALabel)
         Me.GroupBox1.Controls.Add(Me.cbTMant)
         Me.GroupBox1.Controls.Add(Me.TIPMANTLabel)
+        Me.GroupBox1.Controls.Add(Me.txt_DESCRIPCION)
         Me.GroupBox1.Controls.Add(Me.cbEspe)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.txt_NOMBRE)
         Me.GroupBox1.Controls.Add(NOMBRELabel)
-        Me.GroupBox1.Controls.Add(Me.txt_DESCRIPCION)
         Me.GroupBox1.Controls.Add(DESRIPCIONLabel)
         Me.GroupBox1.Controls.Add(Me.txt_ID)
         Me.GroupBox1.Controls.Add(IdAtividadLabel)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Location = New System.Drawing.Point(0, 57)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(797, 170)
+        Me.GroupBox1.Size = New System.Drawing.Size(785, 204)
         Me.GroupBox1.TabIndex = 14
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Identifiacion de Tareas"
@@ -197,16 +198,16 @@ Partial Class FrmActividades
         Me.cbFrec.Enabled = False
         Me.cbFrec.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbFrec.FormattingEnabled = True
-        Me.cbFrec.Location = New System.Drawing.Point(517, 126)
+        Me.cbFrec.Location = New System.Drawing.Point(104, 93)
         Me.cbFrec.Name = "cbFrec"
-        Me.cbFrec.Size = New System.Drawing.Size(268, 28)
-        Me.cbFrec.TabIndex = 34
+        Me.cbFrec.Size = New System.Drawing.Size(181, 28)
+        Me.cbFrec.TabIndex = 2
         '
         'FRECUENCIALabel
         '
         Me.FRECUENCIALabel.AutoSize = True
         Me.FRECUENCIALabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FRECUENCIALabel.Location = New System.Drawing.Point(378, 129)
+        Me.FRECUENCIALabel.Location = New System.Drawing.Point(6, 99)
         Me.FRECUENCIALabel.Name = "FRECUENCIALabel"
         Me.FRECUENCIALabel.Size = New System.Drawing.Size(86, 15)
         Me.FRECUENCIALabel.TabIndex = 35
@@ -217,36 +218,47 @@ Partial Class FrmActividades
         Me.cbTMant.Enabled = False
         Me.cbTMant.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbTMant.FormattingEnabled = True
-        Me.cbTMant.Location = New System.Drawing.Point(517, 92)
+        Me.cbTMant.Location = New System.Drawing.Point(348, 93)
         Me.cbTMant.Name = "cbTMant"
-        Me.cbTMant.Size = New System.Drawing.Size(268, 28)
-        Me.cbTMant.TabIndex = 32
+        Me.cbTMant.Size = New System.Drawing.Size(164, 28)
+        Me.cbTMant.TabIndex = 3
         '
         'TIPMANTLabel
         '
         Me.TIPMANTLabel.AutoSize = True
         Me.TIPMANTLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIPMANTLabel.Location = New System.Drawing.Point(378, 95)
+        Me.TIPMANTLabel.Location = New System.Drawing.Point(305, 99)
         Me.TIPMANTLabel.Name = "TIPMANTLabel"
-        Me.TIPMANTLabel.Size = New System.Drawing.Size(141, 15)
+        Me.TIPMANTLabel.Size = New System.Drawing.Size(37, 15)
         Me.TIPMANTLabel.TabIndex = 33
-        Me.TIPMANTLabel.Text = "TIPO MANTENIMIENTO:"
+        Me.TIPMANTLabel.Text = "TIPO:"
+        '
+        'txt_DESCRIPCION
+        '
+        Me.txt_DESCRIPCION.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_DESCRIPCION.Location = New System.Drawing.Point(104, 127)
+        Me.txt_DESCRIPCION.MaxLength = 255
+        Me.txt_DESCRIPCION.Multiline = True
+        Me.txt_DESCRIPCION.Name = "txt_DESCRIPCION"
+        Me.txt_DESCRIPCION.ReadOnly = True
+        Me.txt_DESCRIPCION.Size = New System.Drawing.Size(665, 57)
+        Me.txt_DESCRIPCION.TabIndex = 5
         '
         'cbEspe
         '
         Me.cbEspe.Enabled = False
         Me.cbEspe.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbEspe.FormattingEnabled = True
-        Me.cbEspe.Location = New System.Drawing.Point(517, 58)
+        Me.cbEspe.Location = New System.Drawing.Point(619, 93)
         Me.cbEspe.Name = "cbEspe"
-        Me.cbEspe.Size = New System.Drawing.Size(126, 28)
-        Me.cbEspe.TabIndex = 30
+        Me.cbEspe.Size = New System.Drawing.Size(150, 28)
+        Me.cbEspe.TabIndex = 4
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(378, 61)
+        Me.Label4.Location = New System.Drawing.Point(518, 99)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(95, 15)
         Me.Label4.TabIndex = 31
@@ -255,23 +267,12 @@ Partial Class FrmActividades
         'txt_NOMBRE
         '
         Me.txt_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_NOMBRE.Location = New System.Drawing.Point(288, 21)
+        Me.txt_NOMBRE.Location = New System.Drawing.Point(107, 55)
         Me.txt_NOMBRE.MaxLength = 50
         Me.txt_NOMBRE.Name = "txt_NOMBRE"
         Me.txt_NOMBRE.ReadOnly = True
-        Me.txt_NOMBRE.Size = New System.Drawing.Size(497, 26)
-        Me.txt_NOMBRE.TabIndex = 29
-        '
-        'txt_DESCRIPCION
-        '
-        Me.txt_DESCRIPCION.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_DESCRIPCION.Location = New System.Drawing.Point(107, 58)
-        Me.txt_DESCRIPCION.MaxLength = 255
-        Me.txt_DESCRIPCION.Multiline = True
-        Me.txt_DESCRIPCION.Name = "txt_DESCRIPCION"
-        Me.txt_DESCRIPCION.ReadOnly = True
-        Me.txt_DESCRIPCION.Size = New System.Drawing.Size(265, 96)
-        Me.txt_DESCRIPCION.TabIndex = 27
+        Me.txt_NOMBRE.Size = New System.Drawing.Size(662, 26)
+        Me.txt_NOMBRE.TabIndex = 1
         '
         'txt_ID
         '
@@ -280,26 +281,27 @@ Partial Class FrmActividades
         Me.txt_ID.MaxLength = 8
         Me.txt_ID.Name = "txt_ID"
         Me.txt_ID.ReadOnly = True
-        Me.txt_ID.Size = New System.Drawing.Size(100, 26)
-        Me.txt_ID.TabIndex = 24
+        Me.txt_ID.Size = New System.Drawing.Size(123, 26)
+        Me.txt_ID.TabIndex = 0
         '
-        'dgvSecc
+        'dgvActividades
         '
-        Me.dgvSecc.AllowUserToAddRows = False
-        Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Beige
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.dgvActividades.AllowUserToAddRows = False
+        Me.dgvActividades.AllowUserToDeleteRows = False
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige
+        Me.dgvActividades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvActividades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
-        Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvSecc.Location = New System.Drawing.Point(0, 233)
-        Me.dgvSecc.Name = "dgvSecc"
-        Me.dgvSecc.ReadOnly = True
-        Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSecc.Size = New System.Drawing.Size(797, 198)
-        Me.dgvSecc.TabIndex = 24
+        Me.dgvActividades.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvActividades.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NOMBRE, Me.ESPECIALIDAD, Me.DESCRIPCION})
+        Me.dgvActividades.Location = New System.Drawing.Point(0, 267)
+        Me.dgvActividades.Name = "dgvActividades"
+        Me.dgvActividades.ReadOnly = True
+        Me.dgvActividades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvActividades.Size = New System.Drawing.Size(785, 180)
+        Me.dgvActividades.TabIndex = 24
         '
         'btSalir
         '
@@ -308,41 +310,59 @@ Partial Class FrmActividades
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(694, 437)
+        Me.btSalir.Location = New System.Drawing.Point(694, 466)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
-        Me.btSalir.TabIndex = 25
+        Me.btSalir.TabIndex = 7
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
         '
-        'ComboBox1
+        'NOMBRE
         '
-        Me.ComboBox1.Enabled = False
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(649, 58)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(136, 28)
-        Me.ComboBox1.TabIndex = 37
+        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NOMBRE.DataPropertyName = "NOMBRE"
+        Me.NOMBRE.HeaderText = "NOMBRE"
+        Me.NOMBRE.Name = "NOMBRE"
+        Me.NOMBRE.ReadOnly = True
+        Me.NOMBRE.Width = 79
+        '
+        'ESPECIALIDAD
+        '
+        Me.ESPECIALIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ESPECIALIDAD.DataPropertyName = "IDESPECIALIDAD"
+        Me.ESPECIALIDAD.HeaderText = "ESPECIALIDAD"
+        Me.ESPECIALIDAD.Name = "ESPECIALIDAD"
+        Me.ESPECIALIDAD.ReadOnly = True
+        Me.ESPECIALIDAD.Width = 109
+        '
+        'DESCRIPCION
+        '
+        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
+        Me.DESCRIPCION.HeaderText = "DESCRIPCION"
+        Me.DESCRIPCION.Name = "DESCRIPCION"
+        Me.DESCRIPCION.ReadOnly = True
+        Me.DESCRIPCION.Width = 105
         '
         'FrmActividades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(797, 480)
+        Me.ClientSize = New System.Drawing.Size(797, 514)
         Me.Controls.Add(Me.btSalir)
-        Me.Controls.Add(Me.dgvSecc)
+        Me.Controls.Add(Me.dgvActividades)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
         Me.Name = "FrmActividades"
-        Me.Text = "Tareas programadas"
+        Me.Text = "Actividades "
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvActividades, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -365,7 +385,9 @@ Partial Class FrmActividades
     Friend WithEvents FRECUENCIALabel As System.Windows.Forms.Label
     Friend WithEvents cbTMant As System.Windows.Forms.ComboBox
     Friend WithEvents TIPMANTLabel As System.Windows.Forms.Label
-    Friend WithEvents dgvSecc As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvActividades As System.Windows.Forms.DataGridView
     Friend WithEvents btSalir As System.Windows.Forms.Button
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ESPECIALIDAD As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

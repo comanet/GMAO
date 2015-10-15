@@ -22,17 +22,15 @@
     End Sub
 
     Private Sub FrmMantePlan_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-
         FMantePlan = Nothing
-
     End Sub
 
     Private Sub FrmMantePlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ClasMantePlan.ConsultaMantePlan("SELECT * FROM MANTEPLAN ORDER BY IDPLAN ASC")
-        dgvSecc.DataSource = ClasMantePlan.bsMantePlan
-        dgvSecc.AutoGenerateColumns = True
-        'dgvSecc.AutoGenerateColumns = False
+        dgvmantep.DataSource = ClasMantePlan.bsMantePlan
+        ' dgvmantep.AutoGenerateColumns = False
+
         'dgvSecc.Columns("IDFRECUENCIA").Visible = False
         'dgvSecc.Columns("DESCRIPCION").Visible = False
         'dgvSecc.Columns("DIAS").Visible = False
@@ -51,7 +49,6 @@
     End Sub
 
     Private Sub Enlacebin()
-
         Me.txt_ID.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "IDPLAN")
         Me.txt_NOMBRE.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "NOMBRE")
         Me.txt_DESCRIPCION.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "DESCRIPCION")
@@ -64,7 +61,7 @@
         If Not ClasMantePlan.bsMantePlan Is Nothing Then
             ClasMantePlan.daMantePlan.Update(CType(ClasMantePlan.bsMantePlan.DataSource, DataTable))
             If bCargar Then
-                dgvSecc.Refresh()
+                dgvmantep.Refresh()
                 ClasMantePlan.dsMantePlan.Tables.Clear()
                 FrmMantePlan_Load(Me, New System.EventArgs)
             End If

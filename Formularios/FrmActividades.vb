@@ -27,20 +27,16 @@ Public Class FrmActividades
     End Sub
 
     Private Sub FrmActividades_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-
-        FEquipos = Nothing
-
+        FActividades = Nothing
     End Sub
 
     Private Sub Limpiabinding()
-
         Me.txt_ID.DataBindings.Clear()
         Me.txt_Nombre.DataBindings.Clear()
         Me.txt_DESCRIPCION.DataBindings.Clear()
         Me.cbEspe.DataBindings.Clear()
         Me.cbTMant.DataBindings.Clear()
         Me.cbFrec.DataBindings.Clear()
-
     End Sub
 
     Public Sub Actualizar(Optional ByVal bCargar As Boolean = True) ' Se utiliza para limpiar el datagridview y refrescar los datos modificados.
@@ -49,7 +45,7 @@ Public Class FrmActividades
         If Not ClasActividades.bsActividades Is Nothing Then
             ClasActividades.daActividades.Update(CType(ClasActividades.bsActividades.DataSource, DataTable))
             If bCargar Then
-                dgvSecc.Refresh()
+                dgvActividades.Refresh()
                 ClasActividades.dsActividades.Tables.Clear()
                 FrmActividades_Load(Me, New System.EventArgs)
             End If
@@ -100,8 +96,11 @@ Public Class FrmActividades
         CargaCombosActividades()
 
         ClasActividades.ConsultaActividades("SELECT * FROM ACTIVIDADES")
-        dgvSecc.DataSource = ClasActividades.bsActividades
-        dgvSecc.AutoGenerateColumns = True
+        dgvActividades.DataSource = ClasActividades.bsActividades
+        dgvActividades.AutoGenerateColumns = False
+        dgvActividades.Columns("IDACTIVIDAD").Visible = False
+        dgvActividades.Columns("idTipOt").Visible = False
+        'dgvActividades.Columns("id").Visible = False
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
@@ -109,9 +108,7 @@ Public Class FrmActividades
     End Sub
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
-
         Me.Close()
-
     End Sub
 
     Private Sub tsDel_Click(sender As Object, e As EventArgs) Handles tsDel.Click
@@ -248,12 +245,13 @@ Public Class FrmActividades
     Private Sub Button1_Click(sender As Object, e As EventArgs)
 
         Dim valor As String
-
         valor = cbEspe.SelectedValue.ToString
-
         If Not (valor Is Nothing) Then
             MessageBox.Show(valor)
         End If
+    End Sub
+
+    Private Sub NOMBRELabel_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

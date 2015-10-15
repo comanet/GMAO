@@ -57,9 +57,9 @@ Partial Class FrmSeccion
         Me.Panel1.Controls.Add(Me.lbID)
         Me.Panel1.Controls.Add(Me.txt_Des)
         Me.Panel1.Controls.Add(Me.txt_ID)
-        Me.Panel1.Location = New System.Drawing.Point(12, 46)
+        Me.Panel1.Location = New System.Drawing.Point(12, 51)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(521, 163)
+        Me.Panel1.Size = New System.Drawing.Size(521, 158)
         Me.Panel1.TabIndex = 0
         '
         'txt_Nom
