@@ -21,7 +21,6 @@ Public Class FrmPrincipal
 
     End Sub
 
-
     Private Sub mnutxtSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnutxtSalir.Click
 
         'Me.Close()
@@ -55,9 +54,6 @@ Public Class FrmPrincipal
         '    End If
 
         '    FReport.Show()
-
-
-
         ' End If
 
     End Sub
@@ -108,7 +104,6 @@ Public Class FrmPrincipal
         End If
 
     End Sub
-
 
     Private Sub TSBEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmEmp.Click
 

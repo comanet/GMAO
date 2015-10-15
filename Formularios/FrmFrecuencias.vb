@@ -32,6 +32,15 @@ Public Class FrmFrecuencias
     Private Sub FrmFrecuencias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ClasFrecuencias.ConsultaFrecuencias("SELECT * FROM FRECUENCIAS ORDER BY DIAS ASC")
+
+        dgvSecc.DataSource = ClasFrecuencias.bsFrecuencias
+        dgvSecc.AutoGenerateColumns = True
+        'dgvSecc.AutoGenerateColumns = False
+        'dgvSecc.Columns("IDFRECUENCIA").Visible = False
+        'dgvSecc.Columns("DESCRIPCION").Visible = False
+        'dgvSecc.Columns("DIAS").Visible = False
+
+        'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 
     End Sub
@@ -64,7 +73,7 @@ Public Class FrmFrecuencias
         If Not ClasFrecuencias.bsFrecuencias Is Nothing Then
             ClasFrecuencias.daFrecuencias.Update(CType(ClasFrecuencias.bsFrecuencias.DataSource, DataTable))
             If bCargar Then
-                ' dgvSecc.Refresh()
+                dgvSecc.Refresh()
                 ClasFrecuencias.dsFrecuencias.Tables.Clear()
                 FrmFrecuencias_Load(Me, New System.EventArgs)
             End If

@@ -9,6 +9,14 @@ Public Class FrmEspecialidades
     Private Sub FrmEspecialidades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ClasEspecialidades.ConsultaEspecialidades("SELECT * FROM ESPECIALIDADES")
+        dgvSecc.DataSource = ClasEspecialidades.bsEspecialidades
+        dgvSecc.AutoGenerateColumns = True
+        'dgvSecc.AutoGenerateColumns = False
+        'dgvSecc.Columns("IDFRECUENCIA").Visible = False
+        'dgvSecc.Columns("DESCRIPCION").Visible = False
+        'dgvSecc.Columns("DIAS").Visible = False
+
+        'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 
     End Sub
@@ -62,7 +70,7 @@ Public Class FrmEspecialidades
         If Not ClasEspecialidades.bsEspecialidades Is Nothing Then
             ClasEspecialidades.daEspecialidades.Update(CType(ClasEspecialidades.bsEspecialidades.DataSource, DataTable))
             If bCargar Then
-                ' dgvSecc.Refresh()
+                dgvSecc.Refresh()
                 ClasEspecialidades.dsEspecialidades.Tables.Clear()
                 FrmEspecialidades_Load(Me, New System.EventArgs)
             End If

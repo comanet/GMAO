@@ -26,6 +26,7 @@ Partial Class FrmFrecuencias
         Dim DESCFRECLabel As System.Windows.Forms.Label
         Dim DIASLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFrecuencias))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -39,11 +40,16 @@ Partial Class FrmFrecuencias
         Me.txt_DESCRIPCION = New System.Windows.Forms.TextBox()
         Me.txt_DIAS = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.dgvSecc = New System.Windows.Forms.DataGridView()
+        Me.IDFRECUENCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DIAS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         IDFRECUENCIALabel = New System.Windows.Forms.Label()
         DESCFRECLabel = New System.Windows.Forms.Label()
         DIASLabel = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'IDFRECUENCIALabel
@@ -163,7 +169,7 @@ Partial Class FrmFrecuencias
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(592, 215)
+        Me.btSalir.Location = New System.Drawing.Point(592, 352)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 12
@@ -216,12 +222,59 @@ Partial Class FrmFrecuencias
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Planes de Mantenimiento de Mantenimientos"
         '
+        'dgvSecc
+        '
+        Me.dgvSecc.AllowUserToAddRows = False
+        Me.dgvSecc.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDFRECUENCIA, Me.DESCRIPCION, Me.DIAS})
+        Me.dgvSecc.Location = New System.Drawing.Point(0, 213)
+        Me.dgvSecc.Name = "dgvSecc"
+        Me.dgvSecc.ReadOnly = True
+        Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvSecc.Size = New System.Drawing.Size(695, 133)
+        Me.dgvSecc.TabIndex = 22
+        '
+        'IDFRECUENCIA
+        '
+        Me.IDFRECUENCIA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IDFRECUENCIA.DataPropertyName = "IDFRECUENCIA"
+        Me.IDFRECUENCIA.HeaderText = "IDFRECUENCIA"
+        Me.IDFRECUENCIA.Name = "IDFRECUENCIA"
+        Me.IDFRECUENCIA.ReadOnly = True
+        Me.IDFRECUENCIA.Width = 111
+        '
+        'DESCRIPCION
+        '
+        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
+        Me.DESCRIPCION.HeaderText = "DESCRIPCION"
+        Me.DESCRIPCION.Name = "DESCRIPCION"
+        Me.DESCRIPCION.ReadOnly = True
+        Me.DESCRIPCION.Width = 105
+        '
+        'DIAS
+        '
+        Me.DIAS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DIAS.DataPropertyName = "DIAS"
+        Me.DIAS.HeaderText = "DIAS"
+        Me.DIAS.Name = "DIAS"
+        Me.DIAS.ReadOnly = True
+        Me.DIAS.Width = 57
+        '
         'FrmFrecuencias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(695, 263)
+        Me.ClientSize = New System.Drawing.Size(695, 400)
+        Me.Controls.Add(Me.dgvSecc)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -229,11 +282,12 @@ Partial Class FrmFrecuencias
         Me.MinimumSize = New System.Drawing.Size(711, 301)
         Me.Name = "FrmFrecuencias"
         Me.Text = "Frecuencia de Revisiones"
-        Me.ToolStrip1.ResumeLayout(false)
-        Me.ToolStrip1.PerformLayout
-        Me.GroupBox1.ResumeLayout(false)
-        Me.GroupBox1.PerformLayout
-        Me.ResumeLayout(false)
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
@@ -250,4 +304,8 @@ End Sub
     Friend WithEvents txt_DESCRIPCION As System.Windows.Forms.TextBox
     Friend WithEvents txt_DIAS As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents dgvSecc As System.Windows.Forms.DataGridView
+    Friend WithEvents IDFRECUENCIA As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DIAS As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

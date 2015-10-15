@@ -25,6 +25,7 @@ Partial Class FrmEspecialidades
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim IDESPECIALIDADLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEspecialidades))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -37,10 +38,14 @@ Partial Class FrmEspecialidades
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txt_NOMBRE = New System.Windows.Forms.TextBox()
         Me.txt_ID = New System.Windows.Forms.TextBox()
+        Me.dgvSecc = New System.Windows.Forms.DataGridView()
+        Me.IDESPECIALIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         NOMBRELabel = New System.Windows.Forms.Label()
         IDESPECIALIDADLabel = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'NOMBRELabel
@@ -151,7 +156,7 @@ Partial Class FrmEspecialidades
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(336, 175)
+        Me.btSalir.Location = New System.Drawing.Point(336, 372)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 14
@@ -192,12 +197,50 @@ Partial Class FrmEspecialidades
         Me.txt_ID.Size = New System.Drawing.Size(100, 26)
         Me.txt_ID.TabIndex = 24
         '
+        'dgvSecc
+        '
+        Me.dgvSecc.AllowUserToAddRows = False
+        Me.dgvSecc.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDESPECIALIDAD, Me.NOMBRE})
+        Me.dgvSecc.Location = New System.Drawing.Point(0, 168)
+        Me.dgvSecc.Name = "dgvSecc"
+        Me.dgvSecc.ReadOnly = True
+        Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvSecc.Size = New System.Drawing.Size(439, 198)
+        Me.dgvSecc.TabIndex = 23
+        '
+        'IDESPECIALIDAD
+        '
+        Me.IDESPECIALIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IDESPECIALIDAD.DataPropertyName = "IDESPECIALIDAD"
+        Me.IDESPECIALIDAD.HeaderText = "IDESPECIALIDAD"
+        Me.IDESPECIALIDAD.Name = "IDESPECIALIDAD"
+        Me.IDESPECIALIDAD.ReadOnly = True
+        Me.IDESPECIALIDAD.Width = 120
+        '
+        'NOMBRE
+        '
+        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NOMBRE.DataPropertyName = "NOMBRE"
+        Me.NOMBRE.HeaderText = "NOMBRE"
+        Me.NOMBRE.Name = "NOMBRE"
+        Me.NOMBRE.ReadOnly = True
+        Me.NOMBRE.Width = 79
+        '
         'FrmEspecialidades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(439, 223)
+        Me.ClientSize = New System.Drawing.Size(439, 420)
+        Me.Controls.Add(Me.dgvSecc)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -208,6 +251,7 @@ Partial Class FrmEspecialidades
         Me.ToolStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -224,4 +268,7 @@ Partial Class FrmEspecialidades
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents txt_NOMBRE As System.Windows.Forms.TextBox
     Friend WithEvents txt_ID As System.Windows.Forms.TextBox
+    Friend WithEvents dgvSecc As System.Windows.Forms.DataGridView
+    Friend WithEvents IDESPECIALIDAD As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

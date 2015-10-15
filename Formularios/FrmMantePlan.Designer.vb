@@ -26,6 +26,7 @@ Partial Class FrmMantePlan
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim IDMANTEPLANLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMantePlan))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -39,11 +40,16 @@ Partial Class FrmMantePlan
         Me.txt_NOMBRE = New System.Windows.Forms.TextBox()
         Me.txt_ID = New System.Windows.Forms.TextBox()
         Me.btSalir = New System.Windows.Forms.Button()
+        Me.dgvSecc = New System.Windows.Forms.DataGridView()
+        Me.IDPLAN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         DESCRIPCIONLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
         IDMANTEPLANLabel = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DESCRIPCIONLabel
@@ -211,19 +217,66 @@ Partial Class FrmMantePlan
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(376, 303)
+        Me.btSalir.Location = New System.Drawing.Point(376, 456)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 13
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
         '
+        'dgvSecc
+        '
+        Me.dgvSecc.AllowUserToAddRows = False
+        Me.dgvSecc.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDPLAN, Me.NOMBRE, Me.DESCRIPCION})
+        Me.dgvSecc.Location = New System.Drawing.Point(0, 303)
+        Me.dgvSecc.Name = "dgvSecc"
+        Me.dgvSecc.ReadOnly = True
+        Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvSecc.Size = New System.Drawing.Size(488, 147)
+        Me.dgvSecc.TabIndex = 24
+        '
+        'IDPLAN
+        '
+        Me.IDPLAN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IDPLAN.DataPropertyName = "IDPLAN"
+        Me.IDPLAN.HeaderText = "IDPLAN"
+        Me.IDPLAN.Name = "IDPLAN"
+        Me.IDPLAN.ReadOnly = True
+        Me.IDPLAN.Width = 71
+        '
+        'NOMBRE
+        '
+        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NOMBRE.DataPropertyName = "NOMBRE"
+        Me.NOMBRE.HeaderText = "NOMBRE"
+        Me.NOMBRE.Name = "NOMBRE"
+        Me.NOMBRE.ReadOnly = True
+        Me.NOMBRE.Width = 79
+        '
+        'DESCRIPCION
+        '
+        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
+        Me.DESCRIPCION.HeaderText = "DESCRIPCION"
+        Me.DESCRIPCION.Name = "DESCRIPCION"
+        Me.DESCRIPCION.ReadOnly = True
+        Me.DESCRIPCION.Width = 105
+        '
         'FrmMantePlan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(488, 351)
+        Me.ClientSize = New System.Drawing.Size(488, 504)
+        Me.Controls.Add(Me.dgvSecc)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -234,6 +287,7 @@ Partial Class FrmMantePlan
         Me.ToolStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -251,4 +305,8 @@ Partial Class FrmMantePlan
     Friend WithEvents txt_NOMBRE As System.Windows.Forms.TextBox
     Friend WithEvents txt_ID As System.Windows.Forms.TextBox
     Friend WithEvents btSalir As System.Windows.Forms.Button
+    Friend WithEvents dgvSecc As System.Windows.Forms.DataGridView
+    Friend WithEvents IDPLAN As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
