@@ -26,7 +26,7 @@ Partial Class FrmActividades
         Dim IdAtividadLabel As System.Windows.Forms.Label
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmActividades))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -47,6 +47,7 @@ Partial Class FrmActividades
         Me.txt_ID = New System.Windows.Forms.TextBox()
         Me.dgvSecc = New System.Windows.Forms.DataGridView()
         Me.btSalir = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         DESRIPCIONLabel = New System.Windows.Forms.Label()
         IdAtividadLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
@@ -170,6 +171,7 @@ Partial Class FrmActividades
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ComboBox1)
         Me.GroupBox1.Controls.Add(Me.cbFrec)
         Me.GroupBox1.Controls.Add(Me.FRECUENCIALabel)
         Me.GroupBox1.Controls.Add(Me.cbTMant)
@@ -237,7 +239,7 @@ Partial Class FrmActividades
         Me.cbEspe.FormattingEnabled = True
         Me.cbEspe.Location = New System.Drawing.Point(517, 58)
         Me.cbEspe.Name = "cbEspe"
-        Me.cbEspe.Size = New System.Drawing.Size(268, 28)
+        Me.cbEspe.Size = New System.Drawing.Size(126, 28)
         Me.cbEspe.TabIndex = 30
         '
         'Label4
@@ -285,8 +287,8 @@ Partial Class FrmActividades
         '
         Me.dgvSecc.AllowUserToAddRows = False
         Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -312,6 +314,16 @@ Partial Class FrmActividades
         Me.btSalir.TabIndex = 25
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.Enabled = False
+        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(649, 58)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(136, 28)
+        Me.ComboBox1.TabIndex = 37
         '
         'FrmActividades
         '
@@ -355,4 +367,5 @@ Partial Class FrmActividades
     Friend WithEvents TIPMANTLabel As System.Windows.Forms.Label
     Friend WithEvents dgvSecc As System.Windows.Forms.DataGridView
     Friend WithEvents btSalir As System.Windows.Forms.Button
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
 End Class

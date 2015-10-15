@@ -59,7 +59,7 @@ Public Class FrmActividades
 
     Private Sub Enlacebin()
 
-        Me.txt_ID.DataBindings.Add("text", ClasActividades.bsActividades, "IdActividad")
+        Me.txt_ID.DataBindings.Add("text", ClasActividades.bsActividades, "IDACTIVIDAD")
         Me.txt_NOMBRE.DataBindings.Add("text", ClasActividades.bsActividades, "NOMBRE")
         Me.txt_DESCRIPCION.DataBindings.Add("text", ClasActividades.bsActividades, "DESCRIPCION")
 
@@ -69,12 +69,40 @@ Public Class FrmActividades
 
     End Sub
 
+    Private Sub CargaCombosActividades()
+
+        Try
+            cbEspe.Items.Clear()
+            dtEspecialidades = ClasActividades.consultaAux("SELECT NOMBRE FROM ESPECIALIDADES", "tbl_ESPECIALIDADES")
+            For Each row As DataRow In dtEspecialidades.Rows
+                cbEspe.Items.Add(CStr(row("NOMBRE")))
+            Next
+
+            cbTMant.Items.Clear()
+            dtTiposMantenimiento = ClasActividades.consultaAux("SELECT Descripcion FROM TIPOTS", "tbl_TIPOTS")
+            For Each row As DataRow In dtTiposMantenimiento.Rows
+                cbTMant.Items.Add(CStr(row("Descripcion")))
+            Next
+
+            cbFrec.Items.Clear()
+            dtFrecuencias = ClasActividades.consultaAux("SELECT DESCRIPCION FROM FRECUENCIAS", "tbl_FRECUENCIAS")
+            For Each row As DataRow In dtFrecuencias.Rows
+                cbFrec.Items.Add(CStr(row("DESCRIPCION")))
+            Next
+        Catch
+            MessageBox.Show("Error al cargar los combos de Actividades")
+        End Try
+
+    End Sub
+
     Private Sub FrmActividades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        CargaCombosActividades()
 
         ClasActividades.ConsultaActividades("SELECT * FROM ACTIVIDADES")
         dgvSecc.DataSource = ClasActividades.bsActividades
         dgvSecc.AutoGenerateColumns = True
-        
+
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 
@@ -94,7 +122,7 @@ Public Class FrmActividades
             Try
                 valor = txt_ID.Text
                 Limpiabinding()
-                ClasActividades.Eliminar("ACTIVIDADES", "IdActividad = " & "'" & valor & "'")
+                ClasActividades.Eliminar("ACTIVIDADES", "IDACTIVIDAD = " & "'" & valor & "'")
                 Actualizar()
             Catch ex As Exception
                 MessageBox.Show("Error " & ex.Message)
@@ -119,8 +147,8 @@ Public Class FrmActividades
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
                     If ClasActividades.InsertaActividades("Insert Into ACTIVIDADES(NOMBRE,DESCRIPCION,IdTipOT,IDFRECUENCIA,IDESPECIALIDAD)" & _
-                                                   "values(" & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.cbEspe.Text &
-                                                   "'" & "," & "'" & Me.cbFrec.Text & "'" & "," & "'" & Me.cbTMant.Text & "'" & ")") = True Then
+                                                   "values(" & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.cbEspe.ValueMember.ToString &
+                                                   "'" & "," & "'" & Me.cbFrec.ValueMember.ToString & "'" & "," & "'" & Me.cbTMant.ValueMember.ToString & "'" & ")") = True Then
 
                         MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
@@ -139,18 +167,16 @@ Public Class FrmActividades
                 Me.cbTMant.Enabled = False
 
                 tsSave.Enabled = False
-                'tsDel.Enabled = False
                 tsEdit.Enabled = True
                 tsNew.Enabled = True
                 tsDel.Enabled = True
 
             End If
         ElseIf tipoOperacion = "M" Then
-            If ClasActividades.actualizar("ACTIVIDADES", "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION =" + "'" + txt_DESCRIPCION.Text + "'" + "," + "IdTipoOT= " + "'" + cbTMant.Text + "'" + "," + "IDFRECUENCIA= " + "'" + cbFrec.Text +
-                                       "'" + "," + "IDESPECIALIDAD = " + "'" + cbEspe.Text + "'", " IdActividad= " + "'" + txt_ID.Text + "'") Then
+            If ClasActividades.actualizar("ACTIVIDADES", "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION =" + "'" + txt_DESCRIPCION.Text + "'" + "," + "IdTipOT= " + "'" + cbTMant.Text + "'" + "," + "IDFRECUENCIA= " + "'" + cbFrec.Text +
+                                       "'" + "," + "IDESPECIALIDAD = " + "'" + cbEspe.Text + "'", " IDACTIVIDAD= " + "'" + txt_ID.Text + "'") Then
 
                 Actualizar()
-                'Me.txt_ID.ReadOnly = False
                 Me.txt_ID.ReadOnly = True
                 Me.txt_NOMBRE.ReadOnly = True
                 Me.txt_DESCRIPCION.ReadOnly = True
@@ -164,6 +190,69 @@ Public Class FrmActividades
                 tsSave.Enabled = False
                 MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
+        End If
+
+    End Sub
+
+    Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
+
+        'Añadir Nuevo Registro
+
+        Limpiabinding()
+        Me.txt_ID.Text = ""
+        Me.txt_NOMBRE.Text = ""
+        Me.txt_DESCRIPCION.Text = ""
+
+        Me.cbEspe.Text = ""
+        Me.cbTMant.Text = ""
+        Me.cbFrec.Text = ""
+
+        'Me.txt_ID.ReadOnly = False
+        Me.txt_NOMBRE.ReadOnly = False
+        Me.txt_DESCRIPCION.ReadOnly = False
+
+        Me.cbEspe.Enabled = True
+        Me.cbTMant.Enabled = True
+        Me.cbFrec.Enabled = True
+
+        CargaCombosActividades()
+
+        tsEdit.Enabled = False
+        tsDel.Enabled = False
+        tsSave.Enabled = True
+        tipoOperacion = "A"
+
+    End Sub
+
+    Private Sub tsEdit_Click(sender As Object, e As EventArgs) Handles tsEdit.Click
+
+        Limpiabinding()
+
+        'Me.txt_ID.ReadOnly = False
+        Me.txt_NOMBRE.ReadOnly = False
+        Me.txt_DESCRIPCION.ReadOnly = False
+
+        Me.cbEspe.Enabled = True
+        Me.cbTMant.Enabled = True
+        Me.cbFrec.Enabled = True
+
+        CargaCombosActividades()
+
+        tsSave.Enabled = True
+        tsNew.Enabled = False
+        tsDel.Enabled = False
+        tipoOperacion = "M"
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+
+        Dim valor As String
+
+        valor = cbEspe.SelectedValue.ToString
+
+        If Not (valor Is Nothing) Then
+            MessageBox.Show(valor)
         End If
 
     End Sub

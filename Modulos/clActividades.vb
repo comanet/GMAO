@@ -26,7 +26,7 @@ Public Class clActividades
 
         cnn.Open()
         Dim query As String
-        query = "SELECT COUNT(*) FROM ACTIVIDADES WHERE IdActividad =" & "'" & valor & "'"
+        query = "SELECT COUNT(*) FROM ACTIVIDADES WHERE IDACTIVIDAD =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
         cnn.Close()

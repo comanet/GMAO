@@ -84,8 +84,10 @@ Public Class FrmPrincipal
                 Mibinding = FFrecuencias.ClasFrecuencias.bsFrecuencias
             ElseIf ActiveControl.Name = "FrmMantePlan" Then
                 Mibinding = FMantePlan.ClasMantePlan.bsMantePlan
+            ElseIf ActiveControl.Name = "FrmActividades" Then
+                Mibinding = FActividades.ClasActividades.bsActividades
             ElseIf ActiveControl.Name = "frmPrintView" Or ActiveControl.Name = " " Then
-                MsgBox("aqui")
+                'MsgBox("aqui")
                 Mibinding = Nothing
             End If
 
