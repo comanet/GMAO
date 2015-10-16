@@ -46,6 +46,7 @@ Partial Class FrmPrincipal
         Me.MantenimentoPreventivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanesDeMantenimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TareasDeMantenimientoPreventivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GMAOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenesDeTrabajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MantenimientoOTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OTProgramadasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -215,10 +216,10 @@ Partial Class FrmPrincipal
         '
         'MantenimentoPreventivoToolStripMenuItem
         '
-        Me.MantenimentoPreventivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanesDeMantenimientoToolStripMenuItem, Me.TareasDeMantenimientoPreventivoToolStripMenuItem})
+        Me.MantenimentoPreventivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanesDeMantenimientoToolStripMenuItem, Me.TareasDeMantenimientoPreventivoToolStripMenuItem, Me.GMAOToolStripMenuItem})
         Me.MantenimentoPreventivoToolStripMenuItem.Name = "MantenimentoPreventivoToolStripMenuItem"
-        Me.MantenimentoPreventivoToolStripMenuItem.Size = New System.Drawing.Size(98, 20)
-        Me.MantenimentoPreventivoToolStripMenuItem.Text = "&Mantenimento"
+        Me.MantenimentoPreventivoToolStripMenuItem.Size = New System.Drawing.Size(87, 20)
+        Me.MantenimentoPreventivoToolStripMenuItem.Text = "Planificación"
         '
         'PlanesDeMantenimientoToolStripMenuItem
         '
@@ -231,6 +232,12 @@ Partial Class FrmPrincipal
         Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Name = "TareasDeMantenimientoPreventivoToolStripMenuItem"
         Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Text = "Tareas programadas"
+        '
+        'GMAOToolStripMenuItem
+        '
+        Me.GMAOToolStripMenuItem.Name = "GMAOToolStripMenuItem"
+        Me.GMAOToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.GMAOToolStripMenuItem.Text = "GMAO"
         '
         'OrdenesDeTrabajoToolStripMenuItem
         '
@@ -584,4 +591,5 @@ Partial Class FrmPrincipal
     Friend WithEvents VentanasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CascadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GMAOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

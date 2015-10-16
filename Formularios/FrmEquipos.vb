@@ -472,13 +472,24 @@ Public Class FrmEquipos
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
 
+        NombreEquipo = ""
         Me.Close()
 
     End Sub
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
 
+        ' Cargamos las variable globales NombreEquipo, Seccion y NSerie
         NombreEquipo = txt_Nombre.Text
+        If Not (cbseccion.Text = "") Then
+            Seccion = cbseccion.Text
+        End If
+        If Not (txt_Nserie.Text = "") Then
+            NSerie = txt_Nserie.Text
+        End If
+        If Not (txt_ID.Text = "") Then
+            IdEquipo = txt_ID.Text
+        End If
 
         If (FAddPlan Is Nothing) Then
             FAddPlan = New FrmAddPlan()

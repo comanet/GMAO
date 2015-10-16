@@ -13,8 +13,12 @@
     Public FMantePlan As FrmMantePlan = Nothing
     Public FActividades As FrmActividades = Nothing
     Public FAddPlan As FrmAddPlan = Nothing
+    Public FGMAO As FrmGMAO = Nothing
 
+    Public IdEquipo As String = ""
     Public NombreEquipo As String = ""
+    Public Seccion As String = ""
+    Public NSerie As String = ""
 
     Public Sub Main()
         Application.EnableVisualStyles()

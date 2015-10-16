@@ -305,4 +305,14 @@ Public Class FrmPrincipal
         End If
 
     End Sub
+
+    Private Sub GMAOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GMAOToolStripMenuItem.Click
+
+        If (FGMAO Is Nothing) Then
+            FGMAO = New FrmGMAO()
+            FGMAO.MdiParent = Me
+            FGMAO.Show()
+        End If
+
+    End Sub
 End Class
