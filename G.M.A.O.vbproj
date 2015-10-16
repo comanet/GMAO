@@ -85,6 +85,12 @@
     <Compile Include="Formularios\FrmActividades.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FrmAddPlan.Designer.vb">
+      <DependentUpon>FrmAddPlan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmAddPlan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\FrmAlmacen.Designer.vb">
       <DependentUpon>FrmAlmacen.vb</DependentUpon>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmActividades.resx">
       <DependentUpon>FrmActividades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmAddPlan.resx">
+      <DependentUpon>FrmAddPlan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmAlmacen.resx">
       <DependentUpon>FrmAlmacen.vb</DependentUpon>

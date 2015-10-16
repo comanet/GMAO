@@ -22,13 +22,9 @@ Partial Class FrmAlmacen
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAlmacen))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAlmacen))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.tsNew = New System.Windows.Forms.ToolStripButton()
-        Me.tsEdit = New System.Windows.Forms.ToolStripButton()
-        Me.tsDel = New System.Windows.Forms.ToolStripButton()
-        Me.tsSave = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.txt_Des = New System.Windows.Forms.TextBox()
         Me.lbNombre = New System.Windows.Forms.Label()
@@ -41,6 +37,10 @@ Partial Class FrmAlmacen
         Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btSalir = New System.Windows.Forms.Button()
+        Me.tsSave = New System.Windows.Forms.ToolStripButton()
+        Me.tsDel = New System.Windows.Forms.ToolStripButton()
+        Me.tsEdit = New System.Windows.Forms.ToolStripButton()
+        Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvAlma, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,53 +54,6 @@ Partial Class FrmAlmacen
         Me.ToolStrip1.Size = New System.Drawing.Size(532, 48)
         Me.ToolStrip1.TabIndex = 6
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'tsNew
-        '
-        Me.tsNew.AutoSize = False
-        Me.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsNew.Image = CType(resources.GetObject("tsNew.Image"), System.Drawing.Image)
-        Me.tsNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsNew.Name = "tsNew"
-        Me.tsNew.Size = New System.Drawing.Size(53, 45)
-        Me.tsNew.Text = "Nuevo"
-        Me.tsNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsNew.ToolTipText = "Nuevo"
-        '
-        'tsEdit
-        '
-        Me.tsEdit.AutoSize = False
-        Me.tsEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsEdit.Image = CType(resources.GetObject("tsEdit.Image"), System.Drawing.Image)
-        Me.tsEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsEdit.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsEdit.Name = "tsEdit"
-        Me.tsEdit.Size = New System.Drawing.Size(53, 45)
-        Me.tsEdit.Text = "Editar Registros"
-        '
-        'tsDel
-        '
-        Me.tsDel.AutoSize = False
-        Me.tsDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsDel.Image = CType(resources.GetObject("tsDel.Image"), System.Drawing.Image)
-        Me.tsDel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsDel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsDel.Name = "tsDel"
-        Me.tsDel.Size = New System.Drawing.Size(53, 45)
-        Me.tsDel.Text = "Eliminar"
-        '
-        'tsSave
-        '
-        Me.tsSave.AutoSize = False
-        Me.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsSave.Enabled = False
-        Me.tsSave.Image = CType(resources.GetObject("tsSave.Image"), System.Drawing.Image)
-        Me.tsSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(53, 45)
-        Me.tsSave.Text = "Aplicar"
         '
         'Panel1
         '
@@ -235,6 +188,53 @@ Partial Class FrmAlmacen
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
         '
+        'tsSave
+        '
+        Me.tsSave.AutoSize = False
+        Me.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsSave.Enabled = False
+        Me.tsSave.Image = CType(resources.GetObject("tsSave.Image"), System.Drawing.Image)
+        Me.tsSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsSave.Name = "tsSave"
+        Me.tsSave.Size = New System.Drawing.Size(53, 45)
+        Me.tsSave.Text = "Aplicar"
+        '
+        'tsDel
+        '
+        Me.tsDel.AutoSize = False
+        Me.tsDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsDel.Image = CType(resources.GetObject("tsDel.Image"), System.Drawing.Image)
+        Me.tsDel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsDel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsDel.Name = "tsDel"
+        Me.tsDel.Size = New System.Drawing.Size(53, 45)
+        Me.tsDel.Text = "Eliminar"
+        '
+        'tsEdit
+        '
+        Me.tsEdit.AutoSize = False
+        Me.tsEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsEdit.Image = CType(resources.GetObject("tsEdit.Image"), System.Drawing.Image)
+        Me.tsEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsEdit.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsEdit.Name = "tsEdit"
+        Me.tsEdit.Size = New System.Drawing.Size(53, 45)
+        Me.tsEdit.Text = "Editar Registros"
+        '
+        'tsNew
+        '
+        Me.tsNew.AutoSize = False
+        Me.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsNew.Image = CType(resources.GetObject("tsNew.Image"), System.Drawing.Image)
+        Me.tsNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsNew.Name = "tsNew"
+        Me.tsNew.Size = New System.Drawing.Size(53, 45)
+        Me.tsNew.Text = "Nuevo"
+        Me.tsNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsNew.ToolTipText = "Nuevo"
+        '
         'FrmAlmacen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -259,10 +259,6 @@ Partial Class FrmAlmacen
 
     End Sub
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
-    Friend WithEvents tsNew As System.Windows.Forms.ToolStripButton
-    Friend WithEvents tsEdit As System.Windows.Forms.ToolStripButton
-    Friend WithEvents tsDel As System.Windows.Forms.ToolStripButton
-    Friend WithEvents tsSave As System.Windows.Forms.ToolStripButton
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents txt_Des As System.Windows.Forms.TextBox
     Friend WithEvents lbNombre As System.Windows.Forms.Label
@@ -275,4 +271,8 @@ Partial Class FrmAlmacen
     Friend WithEvents ID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents tsNew As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsEdit As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsDel As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsSave As System.Windows.Forms.ToolStripButton
 End Class

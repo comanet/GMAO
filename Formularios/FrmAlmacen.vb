@@ -58,7 +58,7 @@
 
     End Sub
 
-    Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
+    Private Sub tsNew_Click(sender As Object, e As EventArgs)
 
         Limpiabinding()
         Me.txt_ID.Text = ""
@@ -76,7 +76,7 @@
 
     End Sub
 
-    Private Sub tsDel_Click(sender As Object, e As EventArgs) Handles tsDel.Click
+    Private Sub tsDel_Click(sender As Object, e As EventArgs)
 
         Dim valor As Integer
 
@@ -94,7 +94,7 @@
 
     End Sub
 
-    Private Sub tsEdit_Click(sender As Object, e As EventArgs) Handles tsEdit.Click
+    Private Sub tsEdit_Click(sender As Object, e As EventArgs)
         Limpiabinding()
         Me.txt_ID.ReadOnly = False
         Me.txt_Des.ReadOnly = False
@@ -121,7 +121,7 @@
 
     End Sub
 
-    Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
+    Private Sub tsSave_Click(sender As Object, e As EventArgs)
 
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then

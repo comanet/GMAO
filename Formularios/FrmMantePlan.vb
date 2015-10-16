@@ -151,7 +151,7 @@
             If ClasMantePlan.actualizar("MANTEPLAN", "IDPLAN = " + "'" + txt_ID.Text + "'" + "," + "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION = " + "'" + txt_DESCRIPCION.Text + "'", " IDPLAN= " + "'" + txt_ID.Text + "'") Then
 
                 Actualizar()
-                Me.txt_ID.ReadOnly = False
+                Me.txt_ID.ReadOnly = True
                 Me.txt_DESCRIPCION.ReadOnly = True
                 Me.txt_NOMBRE.ReadOnly = True
 

@@ -44,6 +44,7 @@ Partial Class FrmMantePlan
         Me.IDPLAN = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btEquipos = New System.Windows.Forms.Button()
         DESCRIPCIONLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
         IDMANTEPLANLabel = New System.Windows.Forms.Label()
@@ -239,7 +240,7 @@ Partial Class FrmMantePlan
         Me.dgvmantep.Name = "dgvmantep"
         Me.dgvmantep.ReadOnly = True
         Me.dgvmantep.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvmantep.Size = New System.Drawing.Size(621, 147)
+        Me.dgvmantep.Size = New System.Drawing.Size(633, 147)
         Me.dgvmantep.TabIndex = 24
         '
         'IDPLAN
@@ -268,12 +269,27 @@ Partial Class FrmMantePlan
         Me.DESCRIPCION.Name = "DESCRIPCION"
         Me.DESCRIPCION.ReadOnly = True
         '
+        'btEquipos
+        '
+        Me.btEquipos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btEquipos.BackColor = System.Drawing.Color.DimGray
+        Me.btEquipos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btEquipos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btEquipos.ForeColor = System.Drawing.Color.White
+        Me.btEquipos.Location = New System.Drawing.Point(433, 456)
+        Me.btEquipos.Name = "btEquipos"
+        Me.btEquipos.Size = New System.Drawing.Size(91, 36)
+        Me.btEquipos.TabIndex = 25
+        Me.btEquipos.Text = "&Relación de Equipos"
+        Me.btEquipos.UseVisualStyleBackColor = False
+        '
         'FrmMantePlan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(633, 504)
+        Me.Controls.Add(Me.btEquipos)
         Me.Controls.Add(Me.dgvmantep)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.GroupBox1)
@@ -308,4 +324,5 @@ Partial Class FrmMantePlan
     Friend WithEvents IDPLAN As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btEquipos As System.Windows.Forms.Button
 End Class

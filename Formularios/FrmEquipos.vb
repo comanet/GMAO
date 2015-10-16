@@ -71,6 +71,7 @@ Public Class FrmEquipos
 
     Private Sub FrmEquipos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        NombreEquipo = ""
         ClasEquipos.ConsultaEquipos("SELECT * FROM EQUIPOS")
         Enlacebin()
 
@@ -129,7 +130,7 @@ Public Class FrmEquipos
             CBtipoEquipo.Items.Add(CStr(row("NOMBRE")))
         Next
 
-        dtSeccion = ClasEquipos.consultaAux("SELECT NOMBRE FROM SECCIONES", "SECCIONES")
+        dtSeccion = ClasEquipos.consultaAux("SELECT NOMBRE FROM SECCIONES ORDER BY NOMBRE ASC", "SECCIONES")
         For Each row As DataRow In dtSeccion.Rows
             cbseccion.Items.Add(CStr(row("NOMBRE")))
         Next
@@ -472,6 +473,18 @@ Public Class FrmEquipos
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
 
         Me.Close()
+
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+
+        NombreEquipo = txt_Nombre.Text
+
+        If (FAddPlan Is Nothing) Then
+            FAddPlan = New FrmAddPlan()
+            'FAddPlan.MdiParent = Me
+            FAddPlan.ShowDialog(Me)
+        End If
 
     End Sub
 End Class

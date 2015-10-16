@@ -12,6 +12,9 @@
     Public FEspecialidades As FrmEspecialidades = Nothing
     Public FMantePlan As FrmMantePlan = Nothing
     Public FActividades As FrmActividades = Nothing
+    Public FAddPlan As FrmAddPlan = Nothing
+
+    Public NombreEquipo As String = ""
 
     Public Sub Main()
         Application.EnableVisualStyles()
