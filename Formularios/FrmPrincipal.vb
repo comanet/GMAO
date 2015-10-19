@@ -86,6 +86,8 @@ Public Class FrmPrincipal
                 Mibinding = FMantePlan.ClasMantePlan.bsMantePlan
             ElseIf ActiveControl.Name = "FrmActividades" Then
                 Mibinding = FActividades.ClasActividades.bsActividades
+            ElseIf ActiveControl.Name = "FrmGMAO" Then
+                Mibinding = FGMAO.ClasGMAO.bsGMAO
             ElseIf ActiveControl.Name = "frmPrintView" Or ActiveControl.Name = " " Then
                 'MsgBox("aqui")
                 Mibinding = Nothing

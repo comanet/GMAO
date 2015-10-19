@@ -69,6 +69,7 @@
         Me.cbEspe.Enabled = True
 
         Me.txt_ID.Text = ClasPersonal.UltimoRegistro("idPersonal", "PERSONAL")
+
         'habilitar datos en los cb.
         dtCategorias = ClasPersonal.consultaAux("SELECT IDCATEGORIA,DESCRIPCION FROM CAT_PERSONAL", "tbl_CATPERSONAL")
         cbCat.DataSource = dtCategorias
@@ -276,20 +277,20 @@
 
     End Sub
 
-    Private Sub txt_Hora_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_Hora.KeyPress
-    
-        If InStr(1, "0123456789," & Chr(8), e.KeyChar) = 0 Then
-            e.KeyChar = ""
-        End If
-
-    End Sub
-
-    Private Sub txt_HoraE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_HoraE.KeyPress
+    Private Sub txt_Hora_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_Hora.KeyPress, txt_HoraE.KeyPress
 
         If InStr(1, "0123456789," & Chr(8), e.KeyChar) = 0 Then
             e.KeyChar = ""
         End If
 
     End Sub
+
+    'Private Sub txt_HoraE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_HoraE.KeyPress
+
+    '    If InStr(1, "0123456789," & Chr(8), e.KeyChar) = 0 Then
+    '        e.KeyChar = ""
+    '    End If
+
+    'End Sub
 
 End Class
