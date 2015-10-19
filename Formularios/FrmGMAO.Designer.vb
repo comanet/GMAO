@@ -29,8 +29,9 @@ Partial Class FrmGMAO
         Dim Label2 As System.Windows.Forms.Label
         Dim Label3 As System.Windows.Forms.Label
         Dim Label4 As System.Windows.Forms.Label
+        Dim Label5 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmGMAO))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
@@ -41,13 +42,15 @@ Partial Class FrmGMAO
         Me.tsbtnFiltro = New System.Windows.Forms.ToolStripButton()
         Me.TsbtnPrint = New System.Windows.Forms.ToolStripButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txt_FIni = New System.Windows.Forms.TextBox()
-        Me.txt_IDEQUIPO = New System.Windows.Forms.TextBox()
-        Me.txt_IDACTIV = New System.Windows.Forms.TextBox()
+        Me.cbPlan = New System.Windows.Forms.ComboBox()
         Me.calFInicio = New System.Windows.Forms.MonthCalendar()
         Me.cbActiv = New System.Windows.Forms.ComboBox()
         Me.cbEquipo = New System.Windows.Forms.ComboBox()
         Me.txt_ID = New System.Windows.Forms.TextBox()
+        Me.txt_IDPM = New System.Windows.Forms.TextBox()
+        Me.txt_FIni = New System.Windows.Forms.TextBox()
+        Me.txt_IDEQUIPO = New System.Windows.Forms.TextBox()
+        Me.txt_IDACTIV = New System.Windows.Forms.TextBox()
         Me.dgvSecc = New System.Windows.Forms.DataGridView()
         EQUIPOLabel = New System.Windows.Forms.Label()
         IDPLANLabel = New System.Windows.Forms.Label()
@@ -56,6 +59,7 @@ Partial Class FrmGMAO
         Label2 = New System.Windows.Forms.Label()
         Label3 = New System.Windows.Forms.Label()
         Label4 = New System.Windows.Forms.Label()
+        Label5 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,29 +104,42 @@ Partial Class FrmGMAO
         'Label2
         '
         Label2.AutoSize = True
-        Label2.Location = New System.Drawing.Point(9, 171)
+        Label2.Location = New System.Drawing.Point(79, 309)
         Label2.Name = "Label2"
         Label2.Size = New System.Drawing.Size(38, 13)
         Label2.TabIndex = 30
         Label2.Text = "FInicio"
+        Label2.Visible = False
         '
         'Label3
         '
         Label3.AutoSize = True
-        Label3.Location = New System.Drawing.Point(171, 171)
+        Label3.Location = New System.Drawing.Point(241, 309)
         Label3.Name = "Label3"
         Label3.Size = New System.Drawing.Size(59, 13)
         Label3.TabIndex = 31
         Label3.Text = "IDEQUIPO"
+        Label3.Visible = False
         '
         'Label4
         '
         Label4.AutoSize = True
-        Label4.Location = New System.Drawing.Point(297, 171)
+        Label4.Location = New System.Drawing.Point(241, 331)
         Label4.Name = "Label4"
         Label4.Size = New System.Drawing.Size(49, 13)
         Label4.TabIndex = 32
         Label4.Text = "IDACTIV"
+        Label4.Visible = False
+        '
+        'Label5
+        '
+        Label5.AutoSize = True
+        Label5.Location = New System.Drawing.Point(79, 331)
+        Label5.Name = "Label5"
+        Label5.Size = New System.Drawing.Size(34, 13)
+        Label5.TabIndex = 35
+        Label5.Text = "IDPM"
+        Label5.Visible = False
         '
         'btSalir
         '
@@ -223,12 +240,7 @@ Partial Class FrmGMAO
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Label4)
-        Me.GroupBox1.Controls.Add(Label3)
-        Me.GroupBox1.Controls.Add(Label2)
-        Me.GroupBox1.Controls.Add(Me.txt_FIni)
-        Me.GroupBox1.Controls.Add(Me.txt_IDEQUIPO)
-        Me.GroupBox1.Controls.Add(Me.txt_IDACTIV)
+        Me.GroupBox1.Controls.Add(Me.cbPlan)
         Me.GroupBox1.Controls.Add(Me.calFInicio)
         Me.GroupBox1.Controls.Add(Label1)
         Me.GroupBox1.Controls.Add(Me.cbActiv)
@@ -246,26 +258,15 @@ Partial Class FrmGMAO
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Detalle Planes GMAO"
         '
-        'txt_FIni
+        'cbPlan
         '
-        Me.txt_FIni.Location = New System.Drawing.Point(82, 168)
-        Me.txt_FIni.Name = "txt_FIni"
-        Me.txt_FIni.Size = New System.Drawing.Size(83, 20)
-        Me.txt_FIni.TabIndex = 29
-        '
-        'txt_IDEQUIPO
-        '
-        Me.txt_IDEQUIPO.Location = New System.Drawing.Point(236, 168)
-        Me.txt_IDEQUIPO.Name = "txt_IDEQUIPO"
-        Me.txt_IDEQUIPO.Size = New System.Drawing.Size(42, 20)
-        Me.txt_IDEQUIPO.TabIndex = 28
-        '
-        'txt_IDACTIV
-        '
-        Me.txt_IDACTIV.Location = New System.Drawing.Point(352, 168)
-        Me.txt_IDACTIV.Name = "txt_IDACTIV"
-        Me.txt_IDACTIV.Size = New System.Drawing.Size(42, 20)
-        Me.txt_IDACTIV.TabIndex = 27
+        Me.cbPlan.Enabled = False
+        Me.cbPlan.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbPlan.FormattingEnabled = True
+        Me.cbPlan.Location = New System.Drawing.Point(80, 42)
+        Me.cbPlan.Name = "cbPlan"
+        Me.cbPlan.Size = New System.Drawing.Size(314, 28)
+        Me.cbPlan.TabIndex = 33
         '
         'calFInicio
         '
@@ -279,7 +280,7 @@ Partial Class FrmGMAO
         Me.cbActiv.Enabled = False
         Me.cbActiv.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbActiv.FormattingEnabled = True
-        Me.cbActiv.Location = New System.Drawing.Point(82, 134)
+        Me.cbActiv.Location = New System.Drawing.Point(82, 132)
         Me.cbActiv.Name = "cbActiv"
         Me.cbActiv.Size = New System.Drawing.Size(312, 28)
         Me.cbActiv.TabIndex = 23
@@ -289,7 +290,7 @@ Partial Class FrmGMAO
         Me.cbEquipo.Enabled = False
         Me.cbEquipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbEquipo.FormattingEnabled = True
-        Me.cbEquipo.Location = New System.Drawing.Point(80, 86)
+        Me.cbEquipo.Location = New System.Drawing.Point(80, 84)
         Me.cbEquipo.Name = "cbEquipo"
         Me.cbEquipo.Size = New System.Drawing.Size(314, 28)
         Me.cbEquipo.TabIndex = 2
@@ -304,12 +305,40 @@ Partial Class FrmGMAO
         Me.txt_ID.Size = New System.Drawing.Size(314, 26)
         Me.txt_ID.TabIndex = 1
         '
+        'txt_IDPM
+        '
+        Me.txt_IDPM.Location = New System.Drawing.Point(152, 328)
+        Me.txt_IDPM.Name = "txt_IDPM"
+        Me.txt_IDPM.Size = New System.Drawing.Size(42, 20)
+        Me.txt_IDPM.TabIndex = 34
+        '
+        'txt_FIni
+        '
+        Me.txt_FIni.Location = New System.Drawing.Point(152, 306)
+        Me.txt_FIni.Name = "txt_FIni"
+        Me.txt_FIni.Size = New System.Drawing.Size(83, 20)
+        Me.txt_FIni.TabIndex = 29
+        '
+        'txt_IDEQUIPO
+        '
+        Me.txt_IDEQUIPO.Location = New System.Drawing.Point(306, 306)
+        Me.txt_IDEQUIPO.Name = "txt_IDEQUIPO"
+        Me.txt_IDEQUIPO.Size = New System.Drawing.Size(42, 20)
+        Me.txt_IDEQUIPO.TabIndex = 28
+        '
+        'txt_IDACTIV
+        '
+        Me.txt_IDACTIV.Location = New System.Drawing.Point(306, 328)
+        Me.txt_IDACTIV.Name = "txt_IDACTIV"
+        Me.txt_IDACTIV.Size = New System.Drawing.Size(42, 20)
+        Me.txt_IDACTIV.TabIndex = 27
+        '
         'dgvSecc
         '
         Me.dgvSecc.AllowUserToAddRows = False
         Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -328,10 +357,18 @@ Partial Class FrmGMAO
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(701, 484)
+        Me.Controls.Add(Label5)
         Me.Controls.Add(Me.dgvSecc)
+        Me.Controls.Add(Me.txt_IDPM)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Controls.Add(Label4)
         Me.Controls.Add(Me.btSalir)
+        Me.Controls.Add(Label3)
+        Me.Controls.Add(Label2)
+        Me.Controls.Add(Me.txt_IDACTIV)
+        Me.Controls.Add(Me.txt_FIni)
+        Me.Controls.Add(Me.txt_IDEQUIPO)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FrmGMAO"
         Me.Text = "Planes GMAO"
@@ -362,4 +399,6 @@ Partial Class FrmGMAO
     Friend WithEvents txt_IDACTIV As System.Windows.Forms.TextBox
     Friend WithEvents txt_IDEQUIPO As System.Windows.Forms.TextBox
     Friend WithEvents txt_FIni As System.Windows.Forms.TextBox
+    Friend WithEvents cbPlan As System.Windows.Forms.ComboBox
+    Friend WithEvents txt_IDPM As System.Windows.Forms.TextBox
 End Class

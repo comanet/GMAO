@@ -143,31 +143,31 @@ Partial Class FrmPrincipal
         'MantenimientoDeFrecuenciasToolStripMenuItem
         '
         Me.MantenimientoDeFrecuenciasToolStripMenuItem.Name = "MantenimientoDeFrecuenciasToolStripMenuItem"
-        Me.MantenimientoDeFrecuenciasToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
-        Me.MantenimientoDeFrecuenciasToolStripMenuItem.Text = " Frecuencias"
+        Me.MantenimientoDeFrecuenciasToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.MantenimientoDeFrecuenciasToolStripMenuItem.Text = " Frecuencia de revisiones"
         '
         'MantenimientoDeToolStripMenuItem
         '
         Me.MantenimientoDeToolStripMenuItem.Name = "MantenimientoDeToolStripMenuItem"
-        Me.MantenimientoDeToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.MantenimientoDeToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.MantenimientoDeToolStripMenuItem.Text = " Estados"
         '
         'MantenimientoDeFabricantesToolStripMenuItem
         '
         Me.MantenimientoDeFabricantesToolStripMenuItem.Name = "MantenimientoDeFabricantesToolStripMenuItem"
-        Me.MantenimientoDeFabricantesToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
-        Me.MantenimientoDeFabricantesToolStripMenuItem.Text = " Fabricantes"
+        Me.MantenimientoDeFabricantesToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.MantenimientoDeFabricantesToolStripMenuItem.Text = "Proveedores"
         '
         'MantenimientoDeCategoriasToolStripMenuItem
         '
         Me.MantenimientoDeCategoriasToolStripMenuItem.Name = "MantenimientoDeCategoriasToolStripMenuItem"
-        Me.MantenimientoDeCategoriasToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.MantenimientoDeCategoriasToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.MantenimientoDeCategoriasToolStripMenuItem.Text = " Categorias"
         '
         'EspecialidadesToolStripMenuItem
         '
         Me.EspecialidadesToolStripMenuItem.Name = "EspecialidadesToolStripMenuItem"
-        Me.EspecialidadesToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.EspecialidadesToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.EspecialidadesToolStripMenuItem.Text = "Especialidades"
         '
         'mnutxtSalir
@@ -570,7 +570,6 @@ Partial Class FrmPrincipal
     Friend WithEvents MantenimientoUsuariosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TablasAuxiliaresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MantenimientoDeFrecuenciasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents MantenimientoDeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MantenimientoDeFabricantesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MantenimientoDeCategoriasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EspecialidadesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -592,4 +591,5 @@ Partial Class FrmPrincipal
     Friend WithEvents CascadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GMAOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MantenimientoDeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

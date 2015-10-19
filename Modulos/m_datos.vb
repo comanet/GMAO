@@ -94,12 +94,11 @@ Public Class m_datos
 
     Public Function consultar2(ByVal sql As String, ByVal tabla As String) As DataTable
 
-        ' Dim sql As String
-        'sql = "select * from " & tabla
-        da = New SqlDataAdapter(sql, cnn)
         Dim dts As New DataSet
-        da.Fill(dts, tabla)
         Dim dt As New DataTable
+
+        da = New SqlDataAdapter(sql, cnn)
+        da.Fill(dts, tabla)
         dt = dts.Tables(tabla)
         Return dt
 
@@ -108,11 +107,12 @@ Public Class m_datos
     Public Function consultar3(ByVal tabla As String) As DataTable ' original
 
         Dim sql As String
+        Dim dts As New DataSet
+        Dim dt As New DataTable
+
         sql = "select * from " & tabla
         da = New SqlDataAdapter(sql, cnn)
-        Dim dts As New DataSet
         da.Fill(dts, tabla)
-        Dim dt As New DataTable
         dt = dts.Tables(tabla)
         Return dt
 

@@ -29,11 +29,6 @@
 
         ClasMantePlan.ConsultaMantePlan("SELECT * FROM MANTEPLAN ORDER BY IDPLAN ASC")
         dgvmantep.DataSource = ClasMantePlan.bsMantePlan
-        ' dgvmantep.AutoGenerateColumns = False
-
-        'dgvSecc.Columns("IDFRECUENCIA").Visible = False
-        'dgvSecc.Columns("DESCRIPCION").Visible = False
-        'dgvSecc.Columns("DIAS").Visible = False
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
@@ -49,15 +44,24 @@
     End Sub
 
     Private Sub Enlacebin()
+
         Me.txt_ID.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "IDPLAN")
         Me.txt_NOMBRE.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "NOMBRE")
         Me.txt_DESCRIPCION.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "DESCRIPCION")
+
+        Me.txt_ID.Text = Trim(Me.txt_ID.Text)
+        Me.txt_NOMBRE.Text = Trim(Me.txt_NOMBRE.Text)
+        Me.txt_DESCRIPCION.Text = Trim(Me.txt_DESCRIPCION.Text)
 
     End Sub
 
     Public Sub Actualizar(Optional ByVal bCargar As Boolean = True) ' Se utiliza para limpiar el datagridview y refrescar los datos modificados.
 
-        '*** Actualizar y guardar cambios   
+        '*** Actualizar y guardar cambios
+        Me.txt_ID.Text = Trim(Me.txt_ID.Text)
+        Me.txt_NOMBRE.Text = Trim(Me.txt_NOMBRE.Text)
+        Me.txt_DESCRIPCION.Text = Trim(Me.txt_DESCRIPCION.Text)
+
         If Not ClasMantePlan.bsMantePlan Is Nothing Then
             ClasMantePlan.daMantePlan.Update(CType(ClasMantePlan.bsMantePlan.DataSource, DataTable))
             If bCargar Then

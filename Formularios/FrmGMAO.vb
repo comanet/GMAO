@@ -6,38 +6,83 @@ Public Class FrmGMAO
     Dim dtGMAO As DataTable
     Dim dtEquipos As DataTable
     Dim dtActividades As DataTable
+    Dim dtPlanes As DataTable
     Dim tipoOperacion As String
+
+    Public Sub CargaCombos()
+
+        ' Carga los combos con los datos de cada lista
+
+        cbEquipo.Enabled = True
+        cbActiv.Enabled = True
+        cbPlan.Enabled = True
+
+        ' Borramos TODOS los datos de los combos
+        cbEquipo.Items.Clear()
+        cbActiv.Items.Clear()
+        cbPlan.Items.Clear()
+
+        ' Cargamos combo con EQUIPOS
+        dtEquipos = ClasGMAO.consultaAux("SELECT IDEQUIPO, (IDEQUIPO + ' ' + NOMBRE) AS NEQUIPO FROM EQUIPOS ORDER BY IDEQUIPO, NOMBRE", "tbl_EQUIPOS")
+
+        For Each row As DataRow In dtEquipos.Rows
+            cbEquipo.Items.Add(CStr(row("NEQUIPO")))
+        Next
+
+        ' Cargamos combo con ACTIVIDADES
+        dtActividades = ClasGMAO.consultaAux("SELECT IDACTIVIDAD, (CAST(IDACTIVIDAD AS varchar(10)) + ' ' + NOMBRE) AS NACTIVIDAD FROM ACTIVIDADES ORDER BY IDACTIVIDAD, NOMBRE", "tbl_ACTIVIDADES")
+
+        For Each row As DataRow In dtActividades.Rows
+            cbActiv.Items.Add(CStr(row("NACTIVIDAD")))
+        Next
+
+        ' Cargamos combo con PLANES
+        dtPlanes = ClasGMAO.consultaAux("SELECT IDPLAN FROM MANTEPLAN ORDER BY IDPLAN", "tbl_PLANES")
+
+        For Each row As DataRow In dtPlanes.Rows
+            cbPlan.Items.Add(CStr(row("IDPLAN")))
+        Next
+
+        cbEquipo.Enabled = False
+        cbActiv.Enabled = False
+        cbPlan.Enabled = False
+
+    End Sub
 
     Private Sub Enlacebin()
 
         CargaCombos()
 
         Me.txt_ID.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDPLAN")
+        Me.txt_IDPM.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDPM")
 
         Me.txt_IDACTIV.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDACTIVIDAD")
         Me.txt_IDEQUIPO.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDEQUIPO")
         Me.txt_FIni.DataBindings.Add("text", ClasGMAO.bsGMAO, "FechaInicio")
-        Me.calFInicio.SetDate(txt_FIni.Text)
-
-        'Me.cbEquipo.DataBindings.Add("text", ClasGMAO.bsGMAO, "NombreEquipo")
-        'Me.cbActiv.DataBindings.Add("text", ClasGMAO.bsGMAO, "NombreActividad")
-
-        'Me.calFInicio.DataBindings.Add("text", ClasGMAO.bsGMAO, "FechaInicio")
-
-        cbEquipo.FindString(txt_IDEQUIPO.Text)
-        cbActiv.FindString(txt_IDACTIV.Text)
+        If IsDate(txt_FIni.Text) Then
+            Me.calFInicio.SetDate(txt_FIni.Text)
+        Else
+            Me.calFInicio.SetDate(Now)
+        End If
 
     End Sub
 
     Private Sub FrmGMAO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ClasGMAO.ConsultaGMAO("SELECT PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo, " _
+        txt_ID.Text = ""
+        txt_IDPM.Text = ""
+        txt_IDACTIV.Text = ""
+        txt_IDEQUIPO.Text = ""
+        txt_FIni.Text = ""
+
+        ClasGMAO.ConsultaGMAO("SELECT PLANESGMAO.IDPM, PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo, " _
                               & "PLANESGMAO.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, PLANESGMAO.FechaInicio " _
                               & "FROM PLANESGMAO INNER JOIN ACTIVIDADES " _
                               & "ON PLANESGMAO.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD " _
                               & "INNER JOIN EQUIPOS ON PLANESGMAO.IDEQUIPO=EQUIPOS.IDEQUIPO")
         dgvSecc.DataSource = ClasGMAO.bsGMAO
         dgvSecc.AutoGenerateColumns = True
+        dgvSecc.Columns("IDPM").Visible = False
         dgvSecc.Columns("IDEQUIPO").Visible = False
         dgvSecc.Columns("IDACTIVIDAD").Visible = False
 
@@ -49,12 +94,14 @@ Public Class FrmGMAO
     Private Sub Limpiabinding()
 
         Me.txt_ID.DataBindings.Clear()
+        Me.txt_IDPM.DataBindings.Clear()
         Me.txt_IDACTIV.DataBindings.Clear()
         Me.txt_IDEQUIPO.DataBindings.Clear()
         Me.txt_FIni.DataBindings.Clear()
 
         Me.cbEquipo.DataBindings.Clear()
         Me.cbActiv.DataBindings.Clear()
+        Me.cbPlan.DataBindings.Clear()
 
         Me.calFInicio.DataBindings.Clear()
 
@@ -111,7 +158,7 @@ Public Class FrmGMAO
 
         If MessageBox.Show("¿Esta seguro de que desea Eliminar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
             Try
-                valor = txt_ID.Text
+                valor = txt_IDPM.Text
                 Limpiabinding()
                 ClasGMAO.Eliminar("PLANESGMAO", "IDPM = " & valor)
                 Actualizar()
@@ -125,7 +172,6 @@ Public Class FrmGMAO
     Private Sub calFInicio_DateChanged(sender As Object, e As DateRangeEventArgs) Handles calFInicio.DateChanged
 
         txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
-        'MessageBox.Show(calFInicio.SelectionRange.Start.ToString)
 
     End Sub
 
@@ -134,7 +180,10 @@ Public Class FrmGMAO
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasGMAO.InsertaGMAO("Insert Into PLANESGMAO(IDPLAN,IDACTIVIDAD,IDEQUIPO,FechaInicio)" & _
+                    If (txt_FIni.Text = "") Then
+                        txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
+                    End If
+                    If ClasGMAO.InsertaGMAO("Insert Into PLANESGMAO(IDPLAN, IDACTIVIDAD, IDEQUIPO, FechaInicio)" & _
                                                    "values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_IDACTIV.Text &
                                                    "'" & "," & "'" & Me.txt_IDEQUIPO.Text & "'" & "," & "'" & Me.txt_FIni.Text & "'" & ")") = True Then
                         MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
@@ -151,16 +200,16 @@ Public Class FrmGMAO
                 Me.txt_IDACTIV.ReadOnly = True
                 Me.cbEquipo.Enabled = False
                 Me.cbActiv.Enabled = False
+                Me.cbPlan.Enabled = False
 
                 tsSave.Enabled = False
                 tsEdit.Enabled = True
-                tsSave.Enabled = True
                 tsNew.Enabled = True
                 tsDel.Enabled = True
             End If
         ElseIf tipoOperacion = "M" Then
 
-            If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + txt_ID.Text + "'" + "," + "IDACTIVIDAD =" + "'" + txt_IDACTIV.Text + "'" + "," + "IDEQUIPO= " + "'" + txt_IDEQUIPO.Text + "'" + "," + "FechaInicio= " + "'" + txt_FIni.Text + "'", " IDPM= " + txt_ID.Text) Then
+            If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + Trim(txt_ID.Text) + "'" + "," + "IDACTIVIDAD =" + "'" + Trim(txt_IDACTIV.Text) + "'" + "," + "IDEQUIPO= " + "'" + txt_IDEQUIPO.Text + "'" + "," + "FechaInicio= " + "'" + Trim(txt_FIni.Text) + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
 
                 Actualizar()
                 Me.txt_ID.ReadOnly = True
@@ -169,13 +218,18 @@ Public Class FrmGMAO
                 Me.txt_IDACTIV.ReadOnly = True
                 Me.cbEquipo.Enabled = False
                 Me.cbActiv.Enabled = False
+                Me.cbPlan.Enabled = False
 
+                tsSave.Enabled = False
+                tsEdit.Enabled = True
                 tsNew.Enabled = True
                 tsDel.Enabled = True
-                tsSave.Enabled = False
+
                 MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
+
+        btSalir.Enabled = True
 
     End Sub
 
@@ -183,6 +237,7 @@ Public Class FrmGMAO
 
         'Añadir Nuevo Registro
         Limpiabinding()
+
         Me.txt_FIni.Text = " "
         Me.txt_IDEQUIPO.Text = " "
         Me.txt_IDACTIV.Text = " "
@@ -194,6 +249,7 @@ Public Class FrmGMAO
 
         Me.cbEquipo.Enabled = True
         Me.cbActiv.Enabled = True
+        Me.cbPlan.Enabled = True
 
         tsEdit.Enabled = False
         tsDel.Enabled = False
@@ -206,41 +262,20 @@ Public Class FrmGMAO
 
         Limpiabinding()
 
+        btSalir.Enabled = False
+
         Me.txt_FIni.ReadOnly = False
         Me.txt_IDEQUIPO.ReadOnly = False
         Me.txt_IDACTIV.ReadOnly = False
 
         Me.cbEquipo.Enabled = True
         Me.cbActiv.Enabled = True
+        Me.cbPlan.Enabled = True
 
         tsSave.Enabled = True
         tsNew.Enabled = False
         tsDel.Enabled = False
         tipoOperacion = "M"
-
-    End Sub
-
-    Public Sub CargaCombos()
-
-        ' Carga los COMBOS CON LAS TABLAS AUXILIARES NECESARIAS.
-
-        cbEquipo.Enabled = True
-        cbActiv.Enabled = True
-
-        dtEquipos = ClasGMAO.consultaAux("SELECT IDEQUIPO, (IDEQUIPO + ' ' + NOMBRE) AS NEQUIPO FROM EQUIPOS ORDER BY IDEQUIPO, NOMBRE", "tbl_EQUIPOS")
-
-        For Each row As DataRow In dtEquipos.Rows
-            cbEquipo.Items.Add(CStr(row("NEQUIPO")))
-        Next
-
-        dtActividades = ClasGMAO.consultaAux("SELECT IDACTIVIDAD, (CAST(IDACTIVIDAD AS varchar(10)) + ' ' + NOMBRE) AS NACTIVIDAD FROM ACTIVIDADES ORDER BY IDACTIVIDAD, NOMBRE", "tbl_ACTIVIDADES")
-
-        For Each row As DataRow In dtActividades.Rows
-            cbActiv.Items.Add(CStr(row("NACTIVIDAD")))
-        Next
-
-        cbEquipo.Enabled = False
-        cbActiv.Enabled = False
 
     End Sub
 
@@ -256,15 +291,24 @@ Public Class FrmGMAO
     Private Sub cbActiv_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbActiv.SelectedValueChanged
 
         Dim codigo As String = ""
-        Dim indice As Integer = 0
 
-        codigo = cbActiv.Text.Substring(0, 2)
+        codigo = Trim(cbActiv.Text)
+        codigo = codigo.Substring(0, 2)
+        codigo = Trim(codigo)
         'MessageBox.Show("El índice de la Actividad es: " + codigo)
-        If IsNumeric(Trim(codigo)) Then
-            txt_IDACTIV.Text = Trim(codigo)
+        If IsNumeric(codigo) Then
+            txt_IDACTIV.Text = codigo
         End If
 
-        'txt_IDACTIV.Text = codigo
+    End Sub
+
+    Private Sub cbPlan_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbPlan.SelectedValueChanged
+
+        Dim codigo As String = ""
+
+        codigo = Trim(cbPlan.Text)
+
+        txt_ID.Text = codigo
 
     End Sub
 
@@ -298,6 +342,12 @@ Public Class FrmGMAO
             fInicio = txt_FIni.Text
             calFInicio.SetDate(fInicio)
         End If
+
+    End Sub
+
+    Private Sub txt_ID_TextChanged(sender As Object, e As EventArgs) Handles txt_ID.TextChanged
+
+        cbPlan.Text = txt_ID.Text
 
     End Sub
 End Class

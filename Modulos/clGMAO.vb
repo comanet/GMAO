@@ -65,9 +65,10 @@ Public Class clGMAO
 
         cnn.Open()
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
-        ' update evorh set evolucion = Lo he conseguido actulizar where 
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
+        'MessageBox.Show(query)
+        'i = 1
         cnn.Close()
 
         If i > 0 Then
@@ -120,17 +121,11 @@ Public Class clGMAO
 
     Public Function consultaAux(ByVal sql As String, ByVal tabla As String) As DataTable
 
-        'Dim sql As String
-        'sql = "select * from " & tabla
-
-        da = New SqlDataAdapter(sql, cnn)
-
         Dim dts As New DataSet
-
-        da.Fill(dts, tabla)
-
         Dim dt As New DataTable
 
+        da = New SqlDataAdapter(sql, cnn)
+        da.Fill(dts, tabla)
         dt = dts.Tables(tabla)
         Return dt
 
