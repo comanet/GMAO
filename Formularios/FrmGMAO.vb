@@ -307,12 +307,15 @@ Public Class FrmGMAO
     Private Sub cbPlan_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbPlan.SelectedValueChanged
 
         Dim codigo As String = ""
+        Dim i As Integer = 0
 
         codigo = Trim(cbPlan.Text)
 
         txt_ID.Text = codigo
 
         ' Rellenamos el grid de ACTIVIDADES - dgvActiv
+        ClasGMAO.dsActiv.Clear()
+
         ClasGMAO.ConsultaActiv("SELECT PLANESGMAO.IDPM, PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, " _
                                & "EQUIPOS.NOMBRE AS NombreEquipo, PLANESGMAO.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, " _
                                & "PLANESGMAO.FechaInicio " _
@@ -321,13 +324,14 @@ Public Class FrmGMAO
                                & "INNER JOIN EQUIPOS " _
                                & "ON PLANESGMAO.IDEQUIPO=EQUIPOS.IDEQUIPO " _
                                & "WHERE PLANESGMAO.IDPLAN = '" & txt_ID.Text & "'")
+
         dgvActiv.DataSource = ClasGMAO.bsActiv
         dgvActiv.AutoGenerateColumns = True
         dgvActiv.Columns("IDPM").Visible = False
         dgvActiv.Columns("IDPLAN").Visible = False
         dgvActiv.Columns("IDEQUIPO").Visible = False
         dgvActiv.Columns("IDACTIVIDAD").Visible = False
-        dgvActiv.Columns("FechaInicio").Visible = False
+        dgvActiv.Update()
 
         ' Rellenamos el grid de EQUIPOS - dgvEquip
         dgvEquip.DataSource = ClasGMAO.bsActiv
