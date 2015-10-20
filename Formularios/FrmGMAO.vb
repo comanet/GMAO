@@ -12,7 +12,6 @@ Public Class FrmGMAO
     Public Sub CargaCombos()
 
         ' Carga los combos con los datos de cada lista
-
         cbEquipo.Enabled = True
         cbActiv.Enabled = True
         cbPlan.Enabled = True
@@ -75,6 +74,7 @@ Public Class FrmGMAO
         txt_IDEQUIPO.Text = ""
         txt_FIni.Text = ""
 
+        ' Rellenamos el dataGridView con TODAS las lineas - dgvSecc
         ClasGMAO.ConsultaGMAO("SELECT PLANESGMAO.IDPM, PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo, " _
                               & "PLANESGMAO.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, PLANESGMAO.FechaInicio " _
                               & "FROM PLANESGMAO INNER JOIN ACTIVIDADES " _
@@ -85,6 +85,8 @@ Public Class FrmGMAO
         dgvSecc.Columns("IDPM").Visible = False
         dgvSecc.Columns("IDEQUIPO").Visible = False
         dgvSecc.Columns("IDACTIVIDAD").Visible = False
+
+        ' Los otros dos grids (dgvActiv y dgvEquip) se rellenan cuando se rellene el primero y se pueblen los combos
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
@@ -309,6 +311,32 @@ Public Class FrmGMAO
         codigo = Trim(cbPlan.Text)
 
         txt_ID.Text = codigo
+
+        ' Rellenamos el grid de ACTIVIDADES - dgvActiv
+        ClasGMAO.ConsultaActiv("SELECT PLANESGMAO.IDPM, PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, " _
+                               & "EQUIPOS.NOMBRE AS NombreEquipo, PLANESGMAO.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, " _
+                               & "PLANESGMAO.FechaInicio " _
+                               & "FROM PLANESGMAO INNER JOIN ACTIVIDADES " _
+                               & "ON PLANESGMAO.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD " _
+                               & "INNER JOIN EQUIPOS " _
+                               & "ON PLANESGMAO.IDEQUIPO=EQUIPOS.IDEQUIPO " _
+                               & "WHERE PLANESGMAO.IDPLAN = '" & txt_ID.Text & "'")
+        dgvActiv.DataSource = ClasGMAO.bsActiv
+        dgvActiv.AutoGenerateColumns = True
+        dgvActiv.Columns("IDPM").Visible = False
+        dgvActiv.Columns("IDPLAN").Visible = False
+        dgvActiv.Columns("IDEQUIPO").Visible = False
+        dgvActiv.Columns("IDACTIVIDAD").Visible = False
+        dgvActiv.Columns("FechaInicio").Visible = False
+
+        ' Rellenamos el grid de EQUIPOS - dgvEquip
+        dgvEquip.DataSource = ClasGMAO.bsActiv
+        dgvEquip.AutoGenerateColumns = True
+        dgvEquip.Columns("IDPM").Visible = False
+        dgvEquip.Columns("IDPLAN").Visible = False
+        dgvEquip.Columns("IDACTIVIDAD").Visible = False
+        dgvEquip.Columns("NombreActividad").Visible = False
+        dgvEquip.Columns("FechaInicio").Visible = False
 
     End Sub
 

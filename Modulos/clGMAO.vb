@@ -2,19 +2,40 @@
 
 Public Class clGMAO
 
+    ' Elementos para TODAS las lineas - dgvSecc
     Public dsGMAO As New DataSet
     Public daGMAO As New SqlDataAdapter
     Public da As New SqlDataAdapter
     Public bsGMAO As New BindingSource
     Private comando As SqlCommand
 
+    ' Elementos para las ACTIVIDADES de un Plan - dgvActiv
+    Public dsActiv As New DataSet
+    Public daActiv As New SqlDataAdapter
+    Public bsActiv As New BindingSource
+
+    ' Elementos para los EQUIPOS de un Plan - dgvEquip
+    Public dsEquip As New DataSet
+    Public daEquip As New SqlDataAdapter
+    Public bsEquip As New BindingSource
+
     Public Sub ConsultaGMAO(ByVal sql As String)
 
         cnn.Open()
         daGMAO = New SqlDataAdapter(sql, cnn)
-        'cmb = New SqlCommandBuilder(daGMAO)
         daGMAO.Fill(dsGMAO, "PLANESGMAO")
         bsGMAO.DataSource = dsGMAO.Tables("PLANESGMAO")
+
+        cnn.Close()
+
+    End Sub
+
+    Public Sub ConsultaActiv(ByVal sql As String)
+
+        cnn.Open()
+        daActiv = New SqlDataAdapter(sql, cnn)
+        daActiv.Fill(dsActiv, "ActivxPlan")
+        bsActiv.DataSource = dsActiv.Tables("ActivxPlan")
 
         cnn.Close()
 

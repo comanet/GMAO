@@ -23,7 +23,7 @@ Partial Class FrmAddPlan
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim NOMBRELabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.txt_Nombre = New System.Windows.Forms.TextBox()
         Me.PanelPlanes = New System.Windows.Forms.Panel()
@@ -139,19 +139,19 @@ Partial Class FrmAddPlan
         '
         Me.dgvSecc.AllowUserToAddRows = False
         Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDPERSONAL, Me.NOMBRE, Me.APELLIDOS, Me.DNI, Me.TELEFONO1})
-        Me.dgvSecc.Location = New System.Drawing.Point(18, 138)
+        Me.dgvSecc.Location = New System.Drawing.Point(18, 117)
         Me.dgvSecc.Name = "dgvSecc"
         Me.dgvSecc.ReadOnly = True
         Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSecc.Size = New System.Drawing.Size(565, 137)
+        Me.dgvSecc.Size = New System.Drawing.Size(565, 220)
         Me.dgvSecc.TabIndex = 22
         '
         'IDPERSONAL
