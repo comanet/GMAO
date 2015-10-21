@@ -22,6 +22,7 @@ Public Class clGMAO
     Public Sub ConsultaGMAO(ByVal sql As String)
 
         cnn.Open()
+
         daGMAO = New SqlDataAdapter(sql, cnn)
         daGMAO.Fill(dsGMAO, "PLANESGMAO")
         bsGMAO.DataSource = dsGMAO.Tables("PLANESGMAO")
@@ -33,6 +34,7 @@ Public Class clGMAO
     Public Sub ConsultaActiv(ByVal sql As String)
 
         cnn.Open()
+
         daActiv = New SqlDataAdapter(sql, cnn)
         daActiv.Fill(dsActiv, "ActivxPlan")
         bsActiv.DataSource = dsActiv.Tables("ActivxPlan")
@@ -44,13 +46,16 @@ Public Class clGMAO
     Public Function buscaID(ByVal valor As String)
 
         Dim i As Integer
+        Dim query As String
 
         cnn.Open()
-        Dim query As String
+
         query = "SELECT COUNT(*) FROM PLANESGMAO WHERE IDPM =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
+
         cnn.Close()
+
         If i > 0 Then
             Return True
         Else
@@ -61,19 +66,14 @@ Public Class clGMAO
 
     Public Function CargaDoc_GMAO(ByVal sql As String, ByVal tabla As String) As DataTable
 
-        ' Dim sql As String
-        'sql = "select * from " & tabla
         Dim daGMAO As SqlDataAdapter
-
-        daGMAO = New SqlDataAdapter(sql, cnn)
-
         Dim dts As New DataSet
-
-        daGMAO.Fill(dts, tabla)
-
         Dim dt As New DataTable
 
+        daGMAO = New SqlDataAdapter(sql, cnn)
+        daGMAO.Fill(dts, tabla)
         dt = dts.Tables(tabla)
+
         Return dt
 
     End Function
@@ -85,11 +85,11 @@ Public Class clGMAO
         Dim i As Integer
 
         cnn.Open()
+
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
-        'MessageBox.Show(query)
-        'i = 1
+        
         cnn.Close()
 
         If i > 0 Then
@@ -102,13 +102,12 @@ Public Class clGMAO
 
     Public Function InsertaGMAO(ByVal query As String) As Boolean
 
-        cnn.Open()
-        comando = New SqlCommand(query, cnn)
-
-        'Dim comando As New SqlCommand(query, cnn)
         Dim i As Integer
 
+        cnn.Open()
+        comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery
+
         cnn.Close()
 
         If i > 0 Then
@@ -126,17 +125,18 @@ Public Class clGMAO
         Dim i As Integer
 
         cnn.Open()
+
         sql = "delete from " & tablas & " where " & condicion
-        'MsgBox(sql)
         comando = New SqlCommand(sql, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
+
         If i > 0 Then
             Return True
         Else
             Return False
         End If
-        ' cnn.Close()
 
     End Function
 

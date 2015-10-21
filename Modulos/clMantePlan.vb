@@ -11,6 +11,7 @@ Public Class clMantePlan
     Public Sub ConsultaMantePlan(ByVal sql As String)
 
         cnn.Open()
+
         daMantePlan = New SqlDataAdapter(sql, cnn)
         daMantePlan.Fill(dsMantePlan, "MANTEPLAN")
         bsMantePlan.DataSource = dsMantePlan.Tables("MANTEPLAN")
@@ -24,11 +25,14 @@ Public Class clMantePlan
         Dim i As Integer
 
         cnn.Open()
+
         Dim query As String
         query = "SELECT COUNT(*) FROM MANTEPLAN WHERE IDPLAN =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
+
         cnn.Close()
+
         If i > 0 Then
             Return True
         Else
@@ -40,16 +44,13 @@ Public Class clMantePlan
     Public Function CargaDoc_MantePlan(ByVal sql As String, ByVal tabla As String) As DataTable
 
         Dim daMantePlan As SqlDataAdapter
-
-        daMantePlan = New SqlDataAdapter(sql, cnn)
-
         Dim dts As New DataSet
-
-        daMantePlan.Fill(dts, tabla)
-
         Dim dt As New DataTable
 
+        daMantePlan = New SqlDataAdapter(sql, cnn)
+        daMantePlan.Fill(dts, tabla)
         dt = dts.Tables(tabla)
+
         Return dt
 
     End Function
@@ -61,10 +62,11 @@ Public Class clMantePlan
         Dim i As Integer
 
         cnn.Open()
+
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
-        ' update evorh set evolucion = Lo he conseguido actulizar where 
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
 
         If i > 0 Then
@@ -77,13 +79,12 @@ Public Class clMantePlan
 
     Public Function InsertaMantePLan(ByVal query As String) As Boolean
 
-        cnn.Open()
-        comando = New SqlCommand(query, cnn)
-
-        'Dim comando As New SqlCommand(query, cnn)
         Dim i As Integer
 
+        cnn.Open()
+        comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery
+
         cnn.Close()
 
         If i > 0 Then
@@ -101,30 +102,30 @@ Public Class clMantePlan
         Dim i As Integer
 
         cnn.Open()
+
         sql = "delete from " & tablas & " where " & condicion
         comando = New SqlCommand(sql, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
+
         If i > 0 Then
             Return True
         Else
             Return False
         End If
-        ' cnn.Close()
 
     End Function
 
     Public Function consultaAux(ByVal sql As String, ByVal tabla As String) As DataTable
 
-       da = New SqlDataAdapter(sql, cnn)
-
         Dim dts As New DataSet
-
-        da.Fill(dts, tabla)
-
         Dim dt As New DataTable
 
+        da = New SqlDataAdapter(sql, cnn)
+        da.Fill(dts, tabla)
         dt = dts.Tables(tabla)
+
         Return dt
 
     End Function

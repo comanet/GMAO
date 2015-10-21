@@ -11,6 +11,7 @@ Public Class clEspecialidades
     Public Sub ConsultaEspecialidades(ByVal sql As String)
 
         cnn.Open()
+
         daEspecialidades = New SqlDataAdapter(sql, cnn)
         daEspecialidades.Fill(dsEspecialidades, "ESPECIALIDADES")
         bsEspecialidades.DataSource = dsEspecialidades.Tables("ESPECIALIDADES")

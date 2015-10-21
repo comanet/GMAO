@@ -145,7 +145,7 @@ Public Class FrmEquipos
     Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
 
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
-            'aNTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
+            'ANTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
             '  MsgBox(ClasEquipos.buscaID(Me.txt_ID.Text))
 
             If ClasEquipos.buscaID(Me.txt_ID.Text) = True Then

@@ -2,6 +2,7 @@
 Imports System.Text
 
 Module Funciones
+
     Private des As New TripleDESCryptoServiceProvider 'Algorithmo TripleDES
     Private hashmd5 As New MD5CryptoServiceProvider 'objeto md5
     Private myKey As String = "ComanetMurcia_Jovir" 'Clave secreta

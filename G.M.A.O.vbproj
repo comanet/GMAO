@@ -151,6 +151,12 @@
     <Compile Include="Formularios\FrmPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FrmProveedores.Designer.vb">
+      <DependentUpon>FrmProveedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmProveedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\FrmRepuestos.Designer.vb">
       <DependentUpon>FrmRepuestos.vb</DependentUpon>
     </Compile>
@@ -186,6 +192,7 @@
     <Compile Include="Modulos\clFrecuencias.vb" />
     <Compile Include="Modulos\clGMAO.vb" />
     <Compile Include="Modulos\clMantePlan.vb" />
+    <Compile Include="Modulos\clProveedores.vb" />
     <Compile Include="Modulos\clRepuesto.vb" />
     <Compile Include="Modulos\clEquipos.vb" />
     <Compile Include="Modulos\clAlmacen.vb" />
@@ -252,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmProveedores.resx">
+      <DependentUpon>FrmProveedores.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmRepuestos.resx">
       <DependentUpon>FrmRepuestos.vb</DependentUpon>

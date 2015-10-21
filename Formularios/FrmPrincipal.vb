@@ -1,5 +1,7 @@
 ﻿Imports System.IO
+
 Public Class FrmPrincipal
+
     Dim Mibinding As BindingSource
 
     Private Sub FrmPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -88,6 +90,8 @@ Public Class FrmPrincipal
                 Mibinding = FActividades.ClasActividades.bsActividades
             ElseIf ActiveControl.Name = "FrmGMAO" Then
                 Mibinding = FGMAO.ClasGMAO.bsGMAO
+            ElseIf ActiveControl.Name = "FrmProveedores" Then
+                Mibinding = FProveedores.ClasProveedores.bsProveedores
             ElseIf ActiveControl.Name = "frmPrintView" Or ActiveControl.Name = " " Then
                 'MsgBox("aqui")
                 Mibinding = Nothing
@@ -314,6 +318,16 @@ Public Class FrmPrincipal
             FGMAO = New FrmGMAO()
             FGMAO.MdiParent = Me
             FGMAO.Show()
+        End If
+
+    End Sub
+
+    Private Sub MantenimientoDeFabricantesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoDeFabricantesToolStripMenuItem.Click
+
+        If (FProveedores Is Nothing) Then
+            FProveedores = New FrmProveedores()
+            FProveedores.MdiParent = Me
+            FProveedores.Show()
         End If
 
     End Sub

@@ -1,21 +1,21 @@
 ﻿Imports System.Data.SqlClient
+Public Class clProveedores
 
-Public Class clSecciones
-
-    Public dsSecciones As New DataSet
-    Public daSecciones As New SqlDataAdapter
-    Public bsSecciones As New BindingSource
+    Public dsProveedores As New DataSet
+    Public daProveedores As New SqlDataAdapter
+    Public da As New SqlDataAdapter
+    Public bsProveedores As New BindingSource
     Private comando As SqlCommand
     Private cmb As SqlCommandBuilder
 
-    Public Sub ConsultaSeccion(ByVal sql As String)
+    Public Sub ConsultaProveedores(ByVal sql As String)
 
         cnn.Open()
 
-        daSecciones = New SqlDataAdapter(sql, cnn)
-        cmb = New SqlCommandBuilder(daSecciones)
-        daSecciones.Fill(dsSecciones, "SECCIONES")
-        bsSecciones.DataSource = dsSecciones.Tables("SECCIONES")
+        daProveedores = New SqlDataAdapter(sql, cnn)
+        cmb = New SqlCommandBuilder(daProveedores)
+        daProveedores.Fill(dsProveedores, "PROVEEDOR")
+        bsProveedores.DataSource = dsProveedores.Tables("PROVEEDOR")
 
         cnn.Close()
 
@@ -43,12 +43,13 @@ Public Class clSecciones
 
     End Function
 
-    Public Function InsertaSeccion(ByVal query As String) As Boolean
+    Public Function InsertaProveedores(ByVal query As String) As Boolean
+
+        Dim i As Integer
 
         cnn.Open()
 
         comando = New SqlCommand(query, cnn)
-        Dim i As Integer
         i = comando.ExecuteNonQuery
 
         cnn.Close()
@@ -57,8 +58,8 @@ Public Class clSecciones
             Return True
         Else
             Return False
-
         End If
+
     End Function
 
     ' Metodo Eliminar Registros. Paramentros :Nombre de Tabla y Condicion. Return : True
@@ -67,8 +68,15 @@ Public Class clSecciones
         Dim sql As String
         Dim i As Integer
 
-        cnn.Open()
-
+        Try
+            cnn.Open()
+        Catch ex As Exception
+            cnn.Close()
+            MessageBox.Show(ex.Message.ToString)
+            Return False
+            Exit Function
+        End Try
+        
         sql = "delete from " & tablas & " where " & condicion
         comando = New SqlCommand(sql, cnn)
         i = comando.ExecuteNonQuery()
@@ -83,20 +91,37 @@ Public Class clSecciones
 
     End Function
 
-    Function UltimoRegistro(ByVal campo As String, tabla As String) As Integer
+    Public Function consultaAux(ByVal sql As String, ByVal tabla As String) As DataTable
 
+        Dim dts As New DataSet
+        Dim dt As New DataTable
+
+        da = New SqlDataAdapter(sql, cnn)
+        da.Fill(dts, tabla)
+        dt = dts.Tables(tabla)
+
+        Return dt
+
+    End Function
+
+    Public Function buscaID(ByVal valor As String)
+
+        Dim i As Integer
         Dim query As String
-        Dim idregistro As Integer
 
         cnn.Open()
 
-        query = "select max(" + campo + ")" + "from " + tabla + ""
+        query = "SELECT COUNT(*) FROM PROVEEDORES WHERE IDPROVEEDOR =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
-        idregistro = comando.ExecuteScalar + 1
+        i = Convert.ToInt32(comando.ExecuteScalar())
 
         cnn.Close()
 
-        Return idregistro
+        If i > 0 Then
+            Return True
+        Else
+            Return False
+        End If
 
     End Function
 End Class

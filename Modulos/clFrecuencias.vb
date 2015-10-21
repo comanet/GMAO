@@ -11,8 +11,8 @@ Public Class clFrecuencias
     Public Sub ConsultaFrecuencias(ByVal sql As String)
 
         cnn.Open()
+
         daFrecuencias = New SqlDataAdapter(sql, cnn)
-        'cmb = New SqlCommandBuilder(daFrecuencias)
         daFrecuencias.Fill(dsFrecuencias, "FRECUENCIAS")
         bsFrecuencias.DataSource = dsFrecuencias.Tables("FRECUENCIAS")
 

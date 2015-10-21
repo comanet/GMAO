@@ -1,4 +1,6 @@
-﻿Module variables
+﻿Imports System.Text.RegularExpressions
+
+Module variables
 
     Public FSecciones As FrmSeccion = Nothing
     Public FPersonal As FrmPersonal = Nothing
@@ -14,6 +16,7 @@
     Public FActividades As FrmActividades = Nothing
     Public FAddPlan As FrmAddPlan = Nothing
     Public FGMAO As FrmGMAO = Nothing
+    Public FProveedores As FrmProveedores = Nothing
 
     Public IdEquipo As String = ""
     Public NombreEquipo As String = ""
