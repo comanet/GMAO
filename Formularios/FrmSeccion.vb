@@ -80,7 +80,7 @@
                     If ClasSecciones.InsertaSeccion("Insert Into SECCIONES(IDSECCION,NOMBRE,DESCRIPCION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Nom.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & ")") = True Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
-                        MsgBox("Registro Agregado Con Exito")
+                        'MsgBox("Registro Agregado Con Exito")
                         ' Para actualizar los valores nuevos insertados y que se muestren en el dvgrid
                         Actualizar()
                     End If

@@ -129,7 +129,7 @@
                     If ClasAlma.InsertaAlma("Insert Into ALMACEN(IDALMACEN,DESCRIPCION,UBICACION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & "," & "'" & Me.txt_Ubi.Text & "'" & ")") = True Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
                         ' Para actualizar los valores nuevos insertados y que se muestren en el dvgrid
                         Actualizar()
                     End If
@@ -157,7 +157,7 @@
                 tsNew.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 

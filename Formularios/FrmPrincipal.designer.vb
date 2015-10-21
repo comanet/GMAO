@@ -224,19 +224,19 @@ Partial Class FrmPrincipal
         'PlanesDeMantenimientoToolStripMenuItem
         '
         Me.PlanesDeMantenimientoToolStripMenuItem.Name = "PlanesDeMantenimientoToolStripMenuItem"
-        Me.PlanesDeMantenimientoToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.PlanesDeMantenimientoToolStripMenuItem.Text = "Planes de Mantenimiento"
+        Me.PlanesDeMantenimientoToolStripMenuItem.Size = New System.Drawing.Size(285, 22)
+        Me.PlanesDeMantenimientoToolStripMenuItem.Text = "Plantillas para Planes de Mantenimiento"
         '
         'TareasDeMantenimientoPreventivoToolStripMenuItem
         '
         Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Name = "TareasDeMantenimientoPreventivoToolStripMenuItem"
-        Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Text = "Tareas programadas"
+        Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Size = New System.Drawing.Size(285, 22)
+        Me.TareasDeMantenimientoPreventivoToolStripMenuItem.Text = "Tareas programadas - Actividades"
         '
         'GMAOToolStripMenuItem
         '
         Me.GMAOToolStripMenuItem.Name = "GMAOToolStripMenuItem"
-        Me.GMAOToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.GMAOToolStripMenuItem.Size = New System.Drawing.Size(285, 22)
         Me.GMAOToolStripMenuItem.Text = "GMAO"
         '
         'OrdenesDeTrabajoToolStripMenuItem

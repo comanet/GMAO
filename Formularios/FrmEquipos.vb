@@ -166,7 +166,7 @@ Public Class FrmEquipos
                                                    "'" & "," & "'" & Me.dtFGarantia.Text & "'" & "," & "'" & Me.CBEstado.Text &
                                                    "'" & "," & "'" & Me.txt_Notas.Text & "'" & ")") = True Then
 
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -228,7 +228,7 @@ Public Class FrmEquipos
                 tsNew.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 
@@ -327,7 +327,7 @@ Public Class FrmEquipos
             Try
                 'Grabar en tabla equip_doc datos documento.
                 If ClasEquipos.InsertaEquipo("Insert Into EQUIP_DOC(IDEQUIPO,NOMBRE,TIPO) VALUES(" + "'" + Me.txt_ID.Text + "'" + "," + "'" + nombrefile + "'" + "," + "'" + tipofile + "'" + ")") = True Then
-                    MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                    'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                     'Copiar el Archivo a la Carpeta \res\doc
                     FileSystem.CopyFile(OpenFileDialog1.FileName.ToString(), destinofile, True)
@@ -414,7 +414,7 @@ Public Class FrmEquipos
             Try
                 'Grabar en tabla equip_doc datos documento.
                 If ClasEquipos.InsertaEquipo("Insert Into EQUIP_DOC(IDEQUIPO,NOMBRE,TIPO) VALUES(" + "'" + Me.txt_ID.Text + "'" + "," + "'" + nombrefile + "'" + "," + "'" + tipofile + "'" + ")") = True Then
-                    MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                    'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                     'Copiar el Archivo a la Carpeta \res\doc
                     FileSystem.CopyFile(OpenFileDialog1.FileName.ToString(), destinofile, True)

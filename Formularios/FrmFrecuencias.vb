@@ -136,7 +136,7 @@ Public Class FrmFrecuencias
                     If ClasFrecuencias.InsertaFrecuencia("Insert Into FRECUENCIAS(DESCRIPCION,DIAS)" & _
                                                    "values(" & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.txt_DIAS.Text & "'" & ")") Then
 
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -165,7 +165,7 @@ Public Class FrmFrecuencias
                 tsNew.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 

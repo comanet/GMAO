@@ -22,7 +22,7 @@ Partial Class FrmProveedores
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmProveedores))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblEmail = New System.Windows.Forms.Label()
@@ -56,7 +56,6 @@ Partial Class FrmProveedores
         Me.tsbtnFiltro = New System.Windows.Forms.ToolStripButton()
         Me.TsbtnPrint = New System.Windows.Forms.ToolStripButton()
         Me.txt_ID = New System.Windows.Forms.TextBox()
-        Me.lblID = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvProv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -170,6 +169,7 @@ Partial Class FrmProveedores
         Me.cbEspecialidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.cbEspecialidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbEspecialidad.Enabled = False
         Me.cbEspecialidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbEspecialidad.FormattingEnabled = True
         Me.cbEspecialidad.Location = New System.Drawing.Point(575, 40)
@@ -214,6 +214,7 @@ Partial Class FrmProveedores
         Me.cbPais.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.cbPais.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbPais.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbPais.Enabled = False
         Me.cbPais.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbPais.FormattingEnabled = True
         Me.cbPais.Location = New System.Drawing.Point(283, 109)
@@ -237,6 +238,7 @@ Partial Class FrmProveedores
         Me.cbProvincia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.cbProvincia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbProvincia.Enabled = False
         Me.cbProvincia.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbProvincia.FormattingEnabled = True
         Me.cbProvincia.Location = New System.Drawing.Point(92, 109)
@@ -312,8 +314,8 @@ Partial Class FrmProveedores
         '
         Me.dgvProv.AllowUserToAddRows = False
         Me.dgvProv.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray
-        Me.dgvProv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray
+        Me.dgvProv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvProv.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -427,24 +429,12 @@ Partial Class FrmProveedores
         '
         Me.txt_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_ID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_ID.Location = New System.Drawing.Point(575, 393)
+        Me.txt_ID.Location = New System.Drawing.Point(-200, 393)
         Me.txt_ID.MaxLength = 50
         Me.txt_ID.Name = "txt_ID"
         Me.txt_ID.ReadOnly = True
         Me.txt_ID.Size = New System.Drawing.Size(111, 26)
         Me.txt_ID.TabIndex = 4
-        Me.txt_ID.Visible = False
-        '
-        'lblID
-        '
-        Me.lblID.AutoSize = True
-        Me.lblID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblID.Location = New System.Drawing.Point(436, 396)
-        Me.lblID.Name = "lblID"
-        Me.lblID.Size = New System.Drawing.Size(133, 20)
-        Me.lblID.TabIndex = 22
-        Me.lblID.Text = "IDPROVEEDOR:"
-        Me.lblID.Visible = False
         '
         'FrmProveedores
         '
@@ -452,7 +442,6 @@ Partial Class FrmProveedores
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(902, 432)
-        Me.Controls.Add(Me.lblID)
         Me.Controls.Add(Me.txt_ID)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.btSalir)
@@ -502,5 +491,4 @@ Partial Class FrmProveedores
     Friend WithEvents tsbtnFiltro As System.Windows.Forms.ToolStripButton
     Friend WithEvents TsbtnPrint As System.Windows.Forms.ToolStripButton
     Friend WithEvents txt_ID As System.Windows.Forms.TextBox
-    Friend WithEvents lblID As System.Windows.Forms.Label
 End Class

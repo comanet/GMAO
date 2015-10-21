@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+
 Public Class clProveedores
 
     Public dsProveedores As New DataSet
@@ -13,7 +14,7 @@ Public Class clProveedores
         cnn.Open()
 
         daProveedores = New SqlDataAdapter(sql, cnn)
-        cmb = New SqlCommandBuilder(daProveedores)
+        'cmb = New SqlCommandBuilder(daProveedores)
         daProveedores.Fill(dsProveedores, "PROVEEDOR")
         bsProveedores.DataSource = dsProveedores.Tables("PROVEEDOR")
 
@@ -76,7 +77,7 @@ Public Class clProveedores
             Return False
             Exit Function
         End Try
-        
+
         sql = "delete from " & tablas & " where " & condicion
         comando = New SqlCommand(sql, cnn)
         i = comando.ExecuteNonQuery()
@@ -111,7 +112,7 @@ Public Class clProveedores
 
         cnn.Open()
 
-        query = "SELECT COUNT(*) FROM PROVEEDORES WHERE IDPROVEEDOR =" & "'" & valor & "'"
+        query = "SELECT COUNT(*) FROM PROVEEDOR WHERE IDPROVEEDOR =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
 

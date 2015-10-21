@@ -147,7 +147,7 @@ Public Class FrmActividades
                                                    "values(" & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.cbEspe.ValueMember.ToString &
                                                    "'" & "," & "'" & Me.cbFrec.ValueMember.ToString & "'" & "," & "'" & Me.cbTMant.ValueMember.ToString & "'" & ")") = True Then
 
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -185,7 +185,7 @@ Public Class FrmActividades
                 tsNew.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 

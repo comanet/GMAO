@@ -101,7 +101,7 @@
                     If ClasTipEqui.InsertaSeccion("Insert Into TIP_EQUIP(IDTIPO,NOMBRE,DESCRIPCION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Nom.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & ")") = True Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
                         ' Para actualizar los valores nuevos insertados y que se muestren en el dvgrid
                         Actualizar()
                     End If

@@ -133,7 +133,7 @@
                     If ClasMantePlan.InsertaMantePLan("Insert Into MANTEPLAN(IDPLAN,NOMBRE,DESCRIPCION)" & _
                                                    "values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & ")") Then
 
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -162,7 +162,7 @@
                 tsNew.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 

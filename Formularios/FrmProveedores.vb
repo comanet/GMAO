@@ -192,7 +192,11 @@ Public Class FrmProveedores
     Private Sub FrmProveedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         fillCombo()
-        ClasProveedores.ConsultaProveedores("SELECT * FROM PROVEEDORES")
+        ClasProveedores.ConsultaProveedores("SELECT * FROM PROVEEDOR")
+        dgvProv.DataSource = ClasProveedores.bsProveedores
+        dgvProv.AutoGenerateColumns = True
+
+        'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 
     End Sub
@@ -203,7 +207,7 @@ Public Class FrmProveedores
         If Not ClasProveedores.bsProveedores Is Nothing Then
             ClasProveedores.daProveedores.Update(CType(ClasProveedores.bsProveedores.DataSource, DataTable))
             If bCargar Then
-                ' dgvSecc.Refresh()
+                ' dgvProv.Refresh()
                 ClasProveedores.dsProveedores.Tables.Clear()
                 FrmProveedores_Load(Me, New System.EventArgs)
             End If
@@ -262,6 +266,7 @@ Public Class FrmProveedores
 
         tsEdit.Enabled = False
         tsDel.Enabled = False
+        tsNew.Enabled = False
         tsSave.Enabled = True
         tipoOperacion = "A"
 
@@ -281,14 +286,14 @@ Public Class FrmProveedores
 
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasProveedores.InsertaProveedores("Insert Into PROVEEDORES(NOMBRE, ESPECIALIDAD, DIRECCION, POBLACION, PROVINCIA, PAIS, TELEFONO, WEB, EMAIL, CPOSTAL)" & _
+                    If ClasProveedores.InsertaProveedores("Insert Into PROVEEDOR(NOMBRE, ESPECIALIDAD, DIRECCION, POBLACION, PROVINCIA, PAIS, TELEFONO, WEB, EMAIL, CPOSTAL)" & _
                                                    "values(" & "'" & Me.txt_Nombre.Text & "'" & "," & "'" & Me.cbEspecialidad.Text &
                                                    "'" & "," & "'" & Me.txt_Direccion.Text & "'" & "," & "'" & Me.txt_Poblacion.Text &
                                                    "'" & "," & "'" & Me.cbProvincia.Text & "'" & "," & "'" & Me.cbPais.Text &
                                                    "'" & "," & "'" & Me.txt_Telefono.Text & "'" & "," & "'" & Me.txt_web.Text &
                                                    "'" & "," & "'" & Me.txt_Email.Text & "'" & "," & "'" & Me.txt_CP.Text & "'" & ")") = True Then
 
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -335,9 +340,10 @@ Public Class FrmProveedores
                 Me.cbEspecialidad.Enabled = False
 
                 tsNew.Enabled = True
+                tsEdit.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 
@@ -347,7 +353,7 @@ Public Class FrmProveedores
 
         Limpiabinding()
 
-        Me.txt_ID.ReadOnly = False
+        Me.txt_ID.ReadOnly = True
         Me.txt_Nombre.ReadOnly = False
         Me.txt_Direccion.ReadOnly = False
         Me.txt_Poblacion.ReadOnly = False
@@ -361,6 +367,7 @@ Public Class FrmProveedores
         Me.cbEspecialidad.Enabled = True
 
         tsSave.Enabled = True
+        tsEdit.Enabled = False
         tsNew.Enabled = False
         tsDel.Enabled = False
         tipoOperacion = "M"

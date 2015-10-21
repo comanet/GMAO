@@ -129,7 +129,7 @@ Public Class FrmEspecialidades
                     If ClasEspecialidades.InsertaEspecialidades("Insert Into ESPECIALIDADES(NOMBRE)" & _
                                                    "values(" & "'" & Me.txt_NOMBRE.Text & "'" & ")") Then
 
-                        MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -156,7 +156,7 @@ Public Class FrmEspecialidades
                 tsNew.Enabled = True
                 tsDel.Enabled = True
                 tsSave.Enabled = False
-                MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
+                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
 
