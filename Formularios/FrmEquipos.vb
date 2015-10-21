@@ -514,7 +514,7 @@ Public Class FrmEquipos
             IdEquipo = txt_ID.Text
         End If
 
-        ' Llamamos al FrmAddPlan con ShowDialog (modal)
+        ' Llamamos al FrmAddPlan con ShowDialog (modal), no nos interesa que se vaya a otro form
         If (FAddPlan Is Nothing) Then
             FAddPlan = New FrmAddPlan()
             FAddPlan.ShowDialog(Me)
