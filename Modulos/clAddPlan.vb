@@ -11,9 +11,10 @@ Public Class clAddPlan
     Public Sub ConsultaAddPlan(ByVal sql As String)
 
         cnn.Open()
+
         daAddPlan = New SqlDataAdapter(sql, cnn)
-        daAddPlan.Fill(dsAddPlan, "PLANESGMAO")
-        bsAddPlan.DataSource = dsAddPlan.Tables("PLANESGMAO")
+        daAddPlan.Fill(dsAddPlan, "tbl_PLANESGMAO")
+        bsAddPlan.DataSource = dsAddPlan.Tables("tbl_PLANESGMAO")
 
         cnn.Close()
 
@@ -26,7 +27,7 @@ Public Class clAddPlan
 
         cnn.Open()
 
-        query = "SELECT COUNT(*) FROM PLANESGMAO WHERE IdPM =" & "'" & valor & "'"
+        query = "SELECT COUNT(*) FROM PLANESGMAO WHERE IDPM =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
 

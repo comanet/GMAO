@@ -6,6 +6,12 @@ Public Class clEquipos
     Public daEquipos As New SqlDataAdapter
     Public da As New SqlDataAdapter
     Public bsEquipos As New BindingSource
+
+    Public dsPlanes As New DataSet
+    Public daPlanes As New SqlDataAdapter
+    Public daP As New SqlDataAdapter
+    Public bsPlanes As New BindingSource
+
     Private comando As SqlCommand
 
     Public Sub ConsultaEquipos(ByVal sql As String)
@@ -13,7 +19,6 @@ Public Class clEquipos
         cnn.Open()
 
         daEquipos = New SqlDataAdapter(sql, cnn)
-        'cmb = New SqlCommandBuilder(daEquipos)
         daEquipos.Fill(dsEquipos, "EQUIPOS")
         bsEquipos.DataSource = dsEquipos.Tables("EQUIPOS")
 

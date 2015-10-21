@@ -468,6 +468,29 @@ Public Class FrmEquipos
         '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         Me.TabControl1.SelectedTab = TabPage1
 
+        ' cargamos dgvPlanes
+
+        Dim sql As String
+
+        Dim dsPlanes As New DataSet
+        Dim daPlanes As New System.Data.SqlClient.SqlDataAdapter
+        Dim daP As New System.Data.SqlClient.SqlDataAdapter
+        Dim bsPlanes As New BindingSource
+
+        sql = "SELECT DISTINCT MANTEPLAN.IDPLAN, MANTEPLAN.NOMBRE, PLANESGMAO.FechaInicio " _
+            & "FROM PLANESGMAO INNER JOIN MANTEPLAN " _
+            & "ON PLANESGMAO.IDPLAN=MANTEPLAN.IDPLAN " _
+            & "WHERE PLANESGMAO.IDEQUIPO = '" + txt_ID.Text + "'"
+
+        cnn.Open()
+
+        daPlanes = New System.Data.SqlClient.SqlDataAdapter(sql, cnn)
+        daPlanes.Fill(dsPlanes, "PLANES")
+        bsPlanes.DataSource = dsPlanes.Tables("PLANES")
+
+        cnn.Close()
+        dgvPlanes.DataSource = bsPlanes
+
     End Sub
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
@@ -491,9 +514,9 @@ Public Class FrmEquipos
             IdEquipo = txt_ID.Text
         End If
 
+        ' Llamamos al FrmAddPlan con ShowDialog (modal)
         If (FAddPlan Is Nothing) Then
             FAddPlan = New FrmAddPlan()
-            'FAddPlan.MdiParent = Me
             FAddPlan.ShowDialog(Me)
         End If
 
