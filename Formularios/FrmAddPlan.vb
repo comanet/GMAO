@@ -58,7 +58,7 @@
             & "FROM PLANESGMAO " _
             & "WHERE IDEQUIPO LIKE '" + IdEquipo + "') " _
             & "ORDER BY MANTEPLAN.IDPLAN"
-        'Clipboard.SetText(sql)
+        Clipboard.SetText(sql)
         'MessageBox.Show(sql)
         cbPlan.Items.Clear()
         dtcbPlanes = ClasAddPlan.consultaAux(sql, "tbl_PLANES")
@@ -72,8 +72,43 @@
 
     Private Sub btnAddPlan_Click(sender As Object, e As EventArgs) Handles btnAddPlan.Click
 
+        Dim dtActXPlan As DataTable
+        Dim comando As System.Data.SqlClient.SqlCommand
+        Dim sql, query As String
+
         If Not (cbPlan.Text = "") Then
-            MessageBox.Show("Asignamos el equipo " + IdEquipo + " " + NombreEquipo + " al plan " + cbPlan.Text + " con fecha de inicio " + dtpFInicio.Value.ToString)
+            MessageBox.Show("Asignamos el equipo " + IdEquipo + " " + NombreEquipo + " al plan " + Trim(cbPlan.Text) + " con fecha de inicio " + dtpFInicio.Value.ToString)
+
+            ' Obtenemos un dataSet con las actividades del plan mostrado en cbPlan.text
+            sql = "SELECT DISTINCT ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE, FRECUENCIAS.DIAS, PLANESGMAO.IDPLAN " _
+                & "FROM ACTIVIDADES INNER JOIN FRECUENCIAS " _
+                & "ON ACTIVIDADES.IDFRECUENCIA=FRECUENCIAS.DESCRIPCION " _
+                & "INNER JOIN PLANESGMAO " _
+                & "ON ACTIVIDADES.IDACTIVIDAD=PLANESGMAO.IDACTIVIDAD " _
+                & "WHERE PLANESGMAO.IDPLAN LIKE '" + Trim(cbPlan.Text) + "%' " _
+                & "ORDER BY ACTIVIDADES.NOMBRE ASC"
+
+            dtActXPlan = ClasAddPlan.consultaAux(sql, "ACTIVIDADES")
+            'MessageBox.Show(sql)
+            'Clipboard.SetText(sql)
+
+            ' Insertamos los registros correspondientes a la terna PLAN-ACTIVIDAD-EQUIPO en la tabla PLANESGMAO
+            For Each row In dtActXPlan.Rows
+
+                Try
+                    query = "INSERT INTO PLANESGMAO(IDPLAN, IDACTIVIDAD, IDEQUIPO, FechaInicio) VALUES('"
+                    query += Trim(cbPlan.Text) + "','" + row(dtActXPlan.Columns(0)).ToString + "','" + IdEquipo + "','" + dtpFInicio.Value.ToString + "')"
+                    'MessageBox.Show(query)
+                    'Clipboard.SetText(query)
+                    'comando = New System.Data.SqlClient.SqlCommand(query, cnn)
+                    'i = comando.ExecuteNonQuery()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message.ToString)
+                    Exit Sub
+                End Try
+
+            Next row
+
         End If
 
     End Sub

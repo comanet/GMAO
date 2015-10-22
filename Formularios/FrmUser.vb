@@ -1,4 +1,6 @@
-﻿Public Class FrmUser
+﻿Imports System.Text.RegularExpressions
+
+Public Class FrmUser
 
     Public ClasUser As New clUser
     Dim dtPerfil As DataTable
@@ -7,6 +9,10 @@
     Private Sub FrmUser_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ClasUser.ConsultaUser("SELECT NOMBRE,USUARIO,PASSWD,ACT,PERFIL,EMAIL FROM USUARIOS ")
+        dgvUser.DataSource = ClasUser.bsUser
+        dgvUser.AutoGenerateColumns = True
+        dgvUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 
@@ -85,9 +91,7 @@
             Try
                 valor = txt_ID.Text
                 Limpiabinding()
-                'ClasSecciones.Eliminar("SECCIONES", "idseccion = " & ClasSecciones.dsSecciones.Tables("SECCIONES").Rows(dgvSecc.CurrentRow.Index).Item("IDSECCION"))
                 ClasUser.Eliminar("USUARIOS", "USUARIO = " & "'" & valor & "'")
-                '"SECCIONES", "idseccion = " & valor
                 Actualizar()
             Catch ex As Exception
                 MessageBox.Show("Error " & ex.Message.ToString)
@@ -159,7 +163,7 @@
             row = dtUser.Rows(index)
 
             If row(0).ToString = Me.txt_ID.Text Then
-                MsgBox("Usuario ya Existe en el Sistema, prueve con otro", MsgBoxStyle.Information)
+                MsgBox("Usuario ya Existe en el Sistema, pruebe con otro", MsgBoxStyle.Information)
                 Me.txt_ID.Text = ""
                 ActiveControl = Me.txt_ID
             End If
@@ -227,7 +231,28 @@
         'Label4.Text = Desencriptar(Label2.Text)
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Public Function validar_Mail(ByVal sMail As String) As Boolean
+
+        Dim re As Regex = New Regex("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", RegexOptions.IgnoreCase)
+        Dim m As Match = re.Match(txt_email.Text)
+
+        If m.Captures.Count = 0 Then
+            MessageBox.Show("El email proporcionado no es correcto.")
+            Return False
+        Else
+            Return True
+        End If
+
+    End Function
+
+    Private Sub txt_email_Validated(sender As Object, e As EventArgs) Handles txt_email.Validated
+
+        If Not (txt_email.Text.Length = 0) Then
+            If Not (validar_Mail(LCase(txt_email.Text))) Then
+                MessageBox.Show("El email no es válido, debe tener el formato: nombre@dominio.com", "Validación de email", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                txt_email.Text = ""
+            End If
+        End If
 
     End Sub
 End Class

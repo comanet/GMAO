@@ -1,4 +1,6 @@
-﻿Public Class FrmMantePlan
+﻿Imports System.Data.SqlClient
+
+Public Class FrmMantePlan
 
     Public ClasMantePlan As New clMantePlan
 
@@ -22,7 +24,9 @@
     End Sub
 
     Private Sub FrmMantePlan_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+
         FMantePlan = Nothing
+
     End Sub
 
     Private Sub FrmMantePlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -83,7 +87,7 @@
                 valor = txt_ID.Text
                 Limpiabinding()
                 ClasMantePlan.Eliminar("MANTEPLAN", "IDPLAN = " & "'" & valor & "'")
-                actualizar()
+                Actualizar()
             Catch ex As Exception
                 MessageBox.Show("Error " & ex.Message)
             End Try
@@ -181,6 +185,43 @@
         tsNew.Enabled = False
         tsDel.Enabled = False
         tipoOperacion = "M"
+
+    End Sub
+
+    Private Sub btnLimpiaDB_Click(sender As Object, e As EventArgs) Handles btnLimpiaDB.Click
+
+        Dim dtPlanes As DataTable
+        Dim comando As SqlCommand
+        Dim sql As String
+        Dim query As String
+        Dim i As Integer
+        Dim valorPasado, valorFuturo As String
+
+        cnn.Open()
+
+        ' Recuperamos todos los MANTEPLAN/IDPLAN
+
+        sql = "SELECT IDPLAN FROM MANTEPLAN"
+
+        dtPlanes = ClasMantePlan.consultaAux(sql, "tbl_PLANES")
+        ' ACTUALIZAMOS REGISTROS
+        For Each row In dtPlanes.Rows
+
+            Try
+                valorPasado = row(dtPlanes.Columns(0)).ToString
+                valorFuturo = Trim(valorPasado)
+                'MessageBox.Show("valorpasado=" + valorPasado + ", longitud=" + valorPasado.Length.ToString + ". valorFuturo=" + valorFuturo + ", longitud=" + valorFuturo.Length.ToString)
+                query = "UPDATE MANTEPLAN SET IDPLAN='" + valorFuturo + "' WHERE IDPLAN='" + valorPasado + "'"
+                Clipboard.SetText(query)
+                comando = New SqlCommand(query, cnn)
+                i = comando.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message.ToString)
+            End Try
+
+        Next row
+
+        cnn.Close()
 
     End Sub
 End Class

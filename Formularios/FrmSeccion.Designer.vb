@@ -31,14 +31,11 @@ Partial Class FrmSeccion
         Me.lbID = New System.Windows.Forms.Label()
         Me.txt_Des = New System.Windows.Forms.TextBox()
         Me.txt_ID = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.dgvSecc = New System.Windows.Forms.DataGridView()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btSalir = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -120,26 +117,6 @@ Partial Class FrmSeccion
         Me.txt_ID.Size = New System.Drawing.Size(101, 26)
         Me.txt_ID.TabIndex = 14
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(12, 441)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "btnNuevo"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(88, 441)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 4
-        Me.Button2.Text = "btnEliminar"
-        Me.Button2.UseVisualStyleBackColor = True
-        Me.Button2.Visible = False
-        '
         'dgvSecc
         '
         Me.dgvSecc.AllowUserToAddRows = False
@@ -198,16 +175,6 @@ Partial Class FrmSeccion
         Me.btSalir.TabIndex = 4
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(169, 441)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 14
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
-        Me.Button3.Visible = False
         '
         'ToolStrip1
         '
@@ -272,11 +239,8 @@ Partial Class FrmSeccion
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(542, 476)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.dgvSecc)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
@@ -298,13 +262,10 @@ Partial Class FrmSeccion
     Friend WithEvents lbID As System.Windows.Forms.Label
     Friend WithEvents txt_Des As System.Windows.Forms.TextBox
     Friend WithEvents txt_ID As System.Windows.Forms.TextBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents dgvSecc As System.Windows.Forms.DataGridView
     Friend WithEvents txt_Nom As System.Windows.Forms.TextBox
     Friend WithEvents lbNombre As System.Windows.Forms.Label
     Friend WithEvents btSalir As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents tsNew As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsEdit As System.Windows.Forms.ToolStripButton

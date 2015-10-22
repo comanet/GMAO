@@ -45,6 +45,7 @@ Partial Class FrmMantePlan
         Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btEquipos = New System.Windows.Forms.Button()
+        Me.btnLimpiaDB = New System.Windows.Forms.Button()
         DESCRIPCIONLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
         IDMANTEPLANLabel = New System.Windows.Forms.Label()
@@ -283,12 +284,27 @@ Partial Class FrmMantePlan
         Me.btEquipos.Text = "&Relación de Equipos"
         Me.btEquipos.UseVisualStyleBackColor = False
         '
+        'btnLimpiaDB
+        '
+        Me.btnLimpiaDB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnLimpiaDB.BackColor = System.Drawing.Color.DimGray
+        Me.btnLimpiaDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnLimpiaDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLimpiaDB.ForeColor = System.Drawing.Color.White
+        Me.btnLimpiaDB.Location = New System.Drawing.Point(336, 456)
+        Me.btnLimpiaDB.Name = "btnLimpiaDB"
+        Me.btnLimpiaDB.Size = New System.Drawing.Size(91, 36)
+        Me.btnLimpiaDB.TabIndex = 26
+        Me.btnLimpiaDB.Text = "Formatea IDPLAN"
+        Me.btnLimpiaDB.UseVisualStyleBackColor = False
+        '
         'FrmMantePlan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(633, 504)
+        Me.Controls.Add(Me.btnLimpiaDB)
         Me.Controls.Add(Me.btEquipos)
         Me.Controls.Add(Me.dgvmantep)
         Me.Controls.Add(Me.btSalir)
@@ -325,4 +341,5 @@ Partial Class FrmMantePlan
     Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btEquipos As System.Windows.Forms.Button
+    Friend WithEvents btnLimpiaDB As System.Windows.Forms.Button
 End Class
