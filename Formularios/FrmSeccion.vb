@@ -25,6 +25,8 @@
 
         ClasSecciones.ConsultaSeccion("SELECT IDSECCION,NOMBRE,DESCRIPCION FROM SECCIONES")
         dgvSecc.DataSource = ClasSecciones.bsSecciones
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 

@@ -23,16 +23,16 @@ Partial Class FrmAddPlan
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim NOMBRELabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.txt_Nombre = New System.Windows.Forms.TextBox()
         Me.PanelPlanes = New System.Windows.Forms.Panel()
+        Me.dtpFInicio = New System.Windows.Forms.DateTimePicker()
         Me.btnAddPlan = New System.Windows.Forms.Button()
         Me.LabelFecha = New System.Windows.Forms.Label()
         Me.LabelPlan = New System.Windows.Forms.Label()
         Me.cbPlan = New System.Windows.Forms.ComboBox()
         Me.dgvSecc = New System.Windows.Forms.DataGridView()
-        Me.dtpFInicio = New System.Windows.Forms.DateTimePicker()
         NOMBRELabel = New System.Windows.Forms.Label()
         Me.PanelPlanes.SuspendLayout()
         CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,21 +75,33 @@ Partial Class FrmAddPlan
         '
         'PanelPlanes
         '
+        Me.PanelPlanes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelPlanes.AutoScroll = True
         Me.PanelPlanes.Controls.Add(Me.dtpFInicio)
         Me.PanelPlanes.Controls.Add(Me.btnAddPlan)
         Me.PanelPlanes.Controls.Add(Me.LabelFecha)
         Me.PanelPlanes.Controls.Add(Me.LabelPlan)
         Me.PanelPlanes.Controls.Add(Me.cbPlan)
-        Me.PanelPlanes.Location = New System.Drawing.Point(18, 57)
+        Me.PanelPlanes.Location = New System.Drawing.Point(1, 57)
         Me.PanelPlanes.Name = "PanelPlanes"
-        Me.PanelPlanes.Size = New System.Drawing.Size(733, 90)
+        Me.PanelPlanes.Size = New System.Drawing.Size(761, 77)
         Me.PanelPlanes.TabIndex = 14
+        '
+        'dtpFInicio
+        '
+        Me.dtpFInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpFInicio.Location = New System.Drawing.Point(164, 41)
+        Me.dtpFInicio.Name = "dtpFInicio"
+        Me.dtpFInicio.Size = New System.Drawing.Size(264, 22)
+        Me.dtpFInicio.TabIndex = 23
         '
         'btnAddPlan
         '
+        Me.btnAddPlan.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddPlan.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddPlan.Location = New System.Drawing.Point(442, 17)
+        Me.btnAddPlan.Location = New System.Drawing.Point(462, 17)
         Me.btnAddPlan.Name = "btnAddPlan"
         Me.btnAddPlan.Size = New System.Drawing.Size(288, 43)
         Me.btnAddPlan.TabIndex = 4
@@ -100,7 +112,7 @@ Partial Class FrmAddPlan
         '
         Me.LabelFecha.AutoSize = True
         Me.LabelFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFecha.Location = New System.Drawing.Point(3, 43)
+        Me.LabelFecha.Location = New System.Drawing.Point(14, 43)
         Me.LabelFecha.Name = "LabelFecha"
         Me.LabelFecha.Size = New System.Drawing.Size(107, 17)
         Me.LabelFecha.TabIndex = 2
@@ -110,7 +122,7 @@ Partial Class FrmAddPlan
         '
         Me.LabelPlan.AutoSize = True
         Me.LabelPlan.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPlan.Location = New System.Drawing.Point(3, 17)
+        Me.LabelPlan.Location = New System.Drawing.Point(14, 17)
         Me.LabelPlan.Name = "LabelPlan"
         Me.LabelPlan.Size = New System.Drawing.Size(144, 17)
         Me.LabelPlan.TabIndex = 1
@@ -122,7 +134,7 @@ Partial Class FrmAddPlan
         Me.cbPlan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbPlan.FormattingEnabled = True
-        Me.cbPlan.Location = New System.Drawing.Point(153, 17)
+        Me.cbPlan.Location = New System.Drawing.Point(164, 17)
         Me.cbPlan.Name = "cbPlan"
         Me.cbPlan.Size = New System.Drawing.Size(264, 21)
         Me.cbPlan.TabIndex = 0
@@ -131,27 +143,19 @@ Partial Class FrmAddPlan
         '
         Me.dgvSecc.AllowUserToAddRows = False
         Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvSecc.Location = New System.Drawing.Point(18, 153)
+        Me.dgvSecc.Location = New System.Drawing.Point(18, 140)
         Me.dgvSecc.Name = "dgvSecc"
         Me.dgvSecc.ReadOnly = True
         Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvSecc.Size = New System.Drawing.Size(733, 184)
         Me.dgvSecc.TabIndex = 22
-        '
-        'dtpFInicio
-        '
-        Me.dtpFInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpFInicio.Location = New System.Drawing.Point(153, 41)
-        Me.dtpFInicio.Name = "dtpFInicio"
-        Me.dtpFInicio.Size = New System.Drawing.Size(264, 22)
-        Me.dtpFInicio.TabIndex = 23
         '
         'FrmAddPlan
         '

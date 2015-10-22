@@ -174,7 +174,7 @@ Partial Class FrmUser
         Me.cbPerfil.FormattingEnabled = True
         Me.cbPerfil.Location = New System.Drawing.Point(150, 125)
         Me.cbPerfil.Name = "cbPerfil"
-        Me.cbPerfil.Size = New System.Drawing.Size(140, 28)
+        Me.cbPerfil.Size = New System.Drawing.Size(177, 28)
         Me.cbPerfil.TabIndex = 3
         '
         'Label3

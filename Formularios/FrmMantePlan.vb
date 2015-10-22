@@ -29,6 +29,7 @@
 
         ClasMantePlan.ConsultaMantePlan("SELECT * FROM MANTEPLAN ORDER BY IDPLAN ASC")
         dgvmantep.DataSource = ClasMantePlan.bsMantePlan
+        dgvmantep.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()

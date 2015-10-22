@@ -31,6 +31,7 @@
 
         ClasAlma.ConsultaAlmacen("SELECT IDALMACEN,DESCRIPCION,UBICACION FROM ALMACEN")
         dgvAlma.DataSource = ClasAlma.bsAlmacen
+        dgvAlma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 

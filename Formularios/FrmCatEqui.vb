@@ -7,6 +7,7 @@
 
         ClasTipEqui.ConsultaSeccion("SELECT IDTIPO,NOMBRE,DESCRIPCION FROM TIP_EQUIP")
         dgvSecc.DataSource = ClasTipEqui.bsCatEqui
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 

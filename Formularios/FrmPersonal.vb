@@ -16,6 +16,7 @@
         dgvSecc.Columns("HORA_EXTRA").Visible = False
         dgvSecc.Columns("ESPECIALIDAD").Visible = False
         dgvSecc.Columns("CATEGORIA").Visible = False
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()

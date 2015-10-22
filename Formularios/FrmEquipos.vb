@@ -67,12 +67,21 @@ Public Class FrmEquipos
         Me.dtFcompra.DataBindings.Add("text", ClasEquipos.bsEquipos, "FCOMPRA")
         Me.dtFGarantia.DataBindings.Add("text", ClasEquipos.bsEquipos, "FGARANTIA")
 
+        Me.dgvDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dgvimages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+
     End Sub
 
     Private Sub FrmEquipos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         NombreEquipo = ""
         ClasEquipos.ConsultaEquipos("SELECT * FROM EQUIPOS")
+
+        Me.dgvDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dgvimages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+
         Enlacebin()
 
     End Sub

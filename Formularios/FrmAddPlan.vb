@@ -48,6 +48,7 @@
         ClasAddPlan.ConsultaAddPlan(sql)
         dgvSecc.DataSource = ClasAddPlan.bsAddPlan
         dgvSecc.AutoGenerateColumns = True
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
         ' Cargamos el combo con los planes en los que NO aparezca IdEquipo
         sql = "SELECT DISTINCT MANTEPLAN.IDPLAN " _

@@ -35,6 +35,7 @@ Public Class FrmFrecuencias
 
         dgvSecc.DataSource = ClasFrecuencias.bsFrecuencias
         dgvSecc.AutoGenerateColumns = True
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
         'dgvSecc.AutoGenerateColumns = False
         'dgvSecc.Columns("IDFRECUENCIA").Visible = False
         'dgvSecc.Columns("DESCRIPCION").Visible = False

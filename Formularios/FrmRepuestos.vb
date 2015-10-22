@@ -37,6 +37,8 @@
 
         ClasRepuesto.ConsultaRepuesto("SELECT REFERENCIA,MODELO,NOMBRE,MARCA,NOTAS,PROVEEDOR,UNIDAD,STOCKMIN,STOCKMAX,PRECIO FROM REPUESTOS")
         dgvRepuesto.DataSource = ClasRepuesto.bsRepuesto
+        dgvRepuesto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
 
