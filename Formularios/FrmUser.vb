@@ -11,7 +11,7 @@ Public Class FrmUser
         ClasUser.ConsultaUser("SELECT NOMBRE,USUARIO,PASSWD,ACT,PERFIL,EMAIL FROM USUARIOS ")
         dgvUser.DataSource = ClasUser.bsUser
         dgvUser.AutoGenerateColumns = True
-        dgvUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()

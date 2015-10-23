@@ -293,7 +293,7 @@ Partial Class FrmActividades
         Me.dgvActividades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvActividades.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvActividades.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvActividades.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NOMBRE, Me.ESPECIALIDAD, Me.DESCRIPCION})
         Me.dgvActividades.Location = New System.Drawing.Point(0, 267)
@@ -319,7 +319,7 @@ Partial Class FrmActividades
         '
         'NOMBRE
         '
-        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.NOMBRE.DataPropertyName = "NOMBRE"
         Me.NOMBRE.HeaderText = "NOMBRE"
         Me.NOMBRE.Name = "NOMBRE"
@@ -328,7 +328,7 @@ Partial Class FrmActividades
         '
         'ESPECIALIDAD
         '
-        Me.ESPECIALIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ESPECIALIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.ESPECIALIDAD.DataPropertyName = "IDESPECIALIDAD"
         Me.ESPECIALIDAD.HeaderText = "ESPECIALIDAD"
         Me.ESPECIALIDAD.Name = "ESPECIALIDAD"
@@ -337,7 +337,7 @@ Partial Class FrmActividades
         '
         'DESCRIPCION
         '
-        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
         Me.DESCRIPCION.HeaderText = "DESCRIPCION"
         Me.DESCRIPCION.Name = "DESCRIPCION"

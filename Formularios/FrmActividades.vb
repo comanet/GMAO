@@ -100,7 +100,7 @@ Public Class FrmActividades
         dgvActividades.AutoGenerateColumns = False
         dgvActividades.Columns("IDACTIVIDAD").Visible = False
         dgvActividades.Columns("idTipOt").Visible = False
-        dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()

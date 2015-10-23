@@ -3,6 +3,7 @@
     Public ClasRepuesto As New clRepuesto
 
     Dim tipoOperacion As String
+    Dim dtProveedores As DataTable
 
     Private Sub FrmRepuesto_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
@@ -37,7 +38,7 @@
 
         ClasRepuesto.ConsultaRepuesto("SELECT REFERENCIA,MODELO,NOMBRE,MARCA,NOTAS,PROVEEDOR,UNIDAD,STOCKMIN,STOCKMAX,PRECIO FROM REPUESTOS")
         dgvRepuesto.DataSource = ClasRepuesto.bsRepuesto
-        dgvRepuesto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvRepuesto.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
@@ -56,6 +57,12 @@
         Me.txt_StcMin.DataBindings.Add("text", ClasRepuesto.bsRepuesto, "STOCKMIN")
         Me.txt_Precio.DataBindings.Add("text", ClasRepuesto.bsRepuesto, "PRECIO")
         Me.cbUM.DataBindings.Add("text", ClasRepuesto.bsRepuesto, "UNIDAD")
+
+        cbProveedores.Items.Clear()
+        dtProveedores = ClasRepuesto.consultaAux("SELECT DISTINCT NOMBRE FROM PROVEEDORES ORDER BY NOMBRE", "tbl_PROVEEDORES")
+        For Each row As DataRow In dtProveedores.Rows
+            cbProveedores.Items.Add(CStr(row("NOMBRE")))
+        Next
 
     End Sub
 
@@ -100,6 +107,7 @@
         Me.txt_StcMax.Text = ""
         Me.txt_StcMin.Text = ""
         Me.txt_Precio.Text = ""
+        Me.cbProveedores.SelectedIndex = 0
         Me.cbUM.SelectedIndex = 0
 
         Me.txt_REF.ReadOnly = False
@@ -111,6 +119,7 @@
         Me.txt_StcMax.ReadOnly = False
         Me.txt_StcMin.ReadOnly = False
         Me.txt_Precio.ReadOnly = False
+        Me.cbProveedores.Enabled = True
         Me.cbUM.Enabled = True
 
         tsEdit.Enabled = False
@@ -133,6 +142,7 @@
         Me.txt_StcMax.ReadOnly = False
         Me.txt_StcMin.ReadOnly = False
         Me.txt_Precio.ReadOnly = False
+        Me.cbProveedores.Enabled = True
         Me.cbUM.Enabled = True
 
         tsSave.Enabled = True
@@ -189,6 +199,7 @@
                 Me.txt_StcMax.ReadOnly = True
                 Me.txt_StcMin.ReadOnly = True
                 Me.txt_Precio.ReadOnly = True
+                Me.cbProveedores.Enabled = True
                 Me.cbUM.Enabled = False
 
                 tsSave.Enabled = False
@@ -212,6 +223,7 @@
                 Me.txt_StcMax.ReadOnly = True
                 Me.txt_StcMin.ReadOnly = True
                 Me.txt_Precio.ReadOnly = True
+                Me.cbProveedores.Enabled = True
                 Me.cbUM.Enabled = False
 
                 'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
@@ -223,4 +235,15 @@
 
     End Sub
 
+    Private Sub txt_Prov_TextChanged(sender As Object, e As EventArgs) Handles txt_Prov.TextChanged
+
+        cbProveedores.Text = txt_Prov.Text
+
+    End Sub
+
+    Private Sub cbProveedores_TextChanged(sender As Object, e As EventArgs) Handles cbProveedores.TextChanged
+
+        txt_Prov.Text = cbProveedores.Text
+
+    End Sub
 End Class

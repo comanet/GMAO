@@ -26,7 +26,7 @@ Partial Class FrmMantePlan
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim IDMANTEPLANLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMantePlan))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -208,7 +208,7 @@ Partial Class FrmMantePlan
         Me.txt_ID.MaxLength = 15
         Me.txt_ID.Name = "txt_ID"
         Me.txt_ID.ReadOnly = True
-        Me.txt_ID.Size = New System.Drawing.Size(188, 26)
+        Me.txt_ID.Size = New System.Drawing.Size(508, 26)
         Me.txt_ID.TabIndex = 24
         '
         'btSalir
@@ -229,12 +229,12 @@ Partial Class FrmMantePlan
         '
         Me.dgvmantep.AllowUserToAddRows = False
         Me.dgvmantep.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
-        Me.dgvmantep.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Beige
+        Me.dgvmantep.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvmantep.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvmantep.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvmantep.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvmantep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvmantep.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDPLAN, Me.NOMBRE, Me.DESCRIPCION})
         Me.dgvmantep.Location = New System.Drawing.Point(0, 292)
@@ -246,7 +246,7 @@ Partial Class FrmMantePlan
         '
         'IDPLAN
         '
-        Me.IDPLAN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IDPLAN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.IDPLAN.DataPropertyName = "IDPLAN"
         Me.IDPLAN.HeaderText = "IDPLAN"
         Me.IDPLAN.Name = "IDPLAN"
@@ -255,7 +255,7 @@ Partial Class FrmMantePlan
         '
         'NOMBRE
         '
-        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.NOMBRE.DataPropertyName = "NOMBRE"
         Me.NOMBRE.HeaderText = "NOMBRE"
         Me.NOMBRE.Name = "NOMBRE"

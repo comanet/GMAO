@@ -5,6 +5,7 @@ Public Class clRepuesto
     Public dsRepuesto As New DataSet
     Public daRepuesto As New SqlDataAdapter
     Public bsRepuesto As New BindingSource
+    Public da As New SqlDataAdapter
     Private comando As SqlCommand
     Private cmb As SqlCommandBuilder
 
@@ -81,6 +82,19 @@ Public Class clRepuesto
         Else
             Return False
         End If
+
+    End Function
+
+    Public Function consultaAux(ByVal sql As String, ByVal tabla As String) As DataTable
+
+        Dim dts As New DataSet
+        Dim dt As New DataTable
+
+        da = New SqlDataAdapter(sql, cnn)
+        da.Fill(dts, tabla)
+        dt = dts.Tables(tabla)
+
+        Return dt
 
     End Function
 End Class

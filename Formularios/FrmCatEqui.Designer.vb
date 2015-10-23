@@ -182,7 +182,7 @@ Partial Class FrmCatEqui
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.NOMBRE, Me.DESCRIPCION})
         Me.dgvSecc.Location = New System.Drawing.Point(0, 220)
@@ -194,7 +194,7 @@ Partial Class FrmCatEqui
         '
         'ID
         '
-        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.ID.DataPropertyName = "IDTIPO"
         Me.ID.HeaderText = "ID"
         Me.ID.Name = "ID"
@@ -203,7 +203,7 @@ Partial Class FrmCatEqui
         '
         'NOMBRE
         '
-        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.NOMBRE.DataPropertyName = "NOMBRE"
         Me.NOMBRE.HeaderText = "NOMBRE"
         Me.NOMBRE.Name = "NOMBRE"

@@ -441,7 +441,7 @@ Partial Class FrmPersonal
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDPERSONAL, Me.NOMBRE, Me.APELLIDOS, Me.DNI, Me.TELEFONO1})
         Me.dgvSecc.Location = New System.Drawing.Point(12, 361)
@@ -453,7 +453,7 @@ Partial Class FrmPersonal
         '
         'IDPERSONAL
         '
-        Me.IDPERSONAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IDPERSONAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.IDPERSONAL.DataPropertyName = "IDPERSONAL"
         Me.IDPERSONAL.HeaderText = "ID"
         Me.IDPERSONAL.Name = "IDPERSONAL"
@@ -469,7 +469,7 @@ Partial Class FrmPersonal
         '
         'APELLIDOS
         '
-        Me.APELLIDOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.APELLIDOS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.APELLIDOS.DataPropertyName = "APELLIDOS"
         Me.APELLIDOS.HeaderText = "APELLIDOS"
         Me.APELLIDOS.Name = "APELLIDOS"

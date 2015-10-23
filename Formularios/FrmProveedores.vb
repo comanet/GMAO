@@ -195,7 +195,7 @@ Public Class FrmProveedores
         ClasProveedores.ConsultaProveedores("SELECT * FROM PROVEEDOR")
         dgvProv.DataSource = ClasProveedores.bsProveedores
         dgvProv.AutoGenerateColumns = True
-        dgvProv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvProv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()

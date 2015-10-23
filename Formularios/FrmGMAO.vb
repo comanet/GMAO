@@ -85,9 +85,9 @@ Public Class FrmGMAO
         dgvSecc.Columns("IDPM").Visible = False
         dgvSecc.Columns("IDEQUIPO").Visible = False
         dgvSecc.Columns("IDACTIVIDAD").Visible = False
-        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
-        dgvActiv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
-        dgvEquip.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        dgvActiv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        dgvEquip.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         ' Los otros dos grids (dgvActiv y dgvEquip) se rellenan cuando se rellene el primero y se pueblen los combos
 

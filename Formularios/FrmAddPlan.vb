@@ -4,6 +4,7 @@
 
     Public ClasAddPlan As New clAddPlan
 
+    Dim IdPlantilla As Integer
     Dim tipoOperacion As String
     Dim dtcbPlanes As DataTable
 
@@ -38,25 +39,29 @@
 
         numPlanes = 1
 
+        'MessageBox.Show("IdEquipo = " & IdEquipo)
+
         ' Cargamos el dataGridView con los planes del equipo IdEquipo
         sql = "SELECT DISTINCT MANTEPLAN.IDPLAN, MANTEPLAN.NOMBRE, PLANESGMAO.FechaInicio " _
-            & "FROM PLANESGMAO INNER JOIN MANTEPLAN " _
-            & "ON PLANESGMAO.IDPLAN=MANTEPLAN.IDPLAN " _
-            & "WHERE PLANESGMAO.IDEQUIPO = '" + IdEquipo + "'"
+            & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
+            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " _
+            & "INNER JOIN MANTEPLAN " _
+            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLAN " _
+            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" + IdEquipo + "'"
         Clipboard.SetText(sql)
         'MessageBox.Show(sql)
         ClasAddPlan.ConsultaAddPlan(sql)
         dgvSecc.DataSource = ClasAddPlan.bsAddPlan
         dgvSecc.AutoGenerateColumns = True
-        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         ' Cargamos el combo con los planes en los que NO aparezca IdEquipo
         sql = "SELECT DISTINCT MANTEPLAN.IDPLAN " _
-            & "FROM MANTEPLAN INNER JOIN PLANESGMAO " _
-            & "ON MANTEPLAN.IDPLAN=PLANESGMAO.IDPLAN " _
-            & "WHERE MANTEPLAN.IDPLAN NOT IN (SELECT DISTINCT IDPLAN " _
-            & "FROM PLANESGMAO " _
-            & "WHERE IDEQUIPO LIKE '" + IdEquipo + "') " _
+            & "FROM MANTEPLAN " _
+            & "WHERE MANTEPLAN.IDPLAN NOT IN ( " _
+            & "SELECT DISTINCT IDPLAN " _
+            & "FROM PLANTILLAS " _
+            & "WHERE IDEQUIPO LIKE '" + IdEquipo + "%') " _
             & "ORDER BY MANTEPLAN.IDPLAN"
         Clipboard.SetText(sql)
         'MessageBox.Show(sql)
@@ -73,41 +78,49 @@
     Private Sub btnAddPlan_Click(sender As Object, e As EventArgs) Handles btnAddPlan.Click
 
         Dim dtActXPlan As DataTable
-        Dim comando As System.Data.SqlClient.SqlCommand
+        'Dim comando As System.Data.SqlClient.SqlCommand
         Dim sql, query As String
 
         If Not (cbPlan.Text = "") Then
             MessageBox.Show("Asignamos el equipo " + IdEquipo + " " + NombreEquipo + " al plan " + Trim(cbPlan.Text) + " con fecha de inicio " + dtpFInicio.Value.ToString)
 
             ' Obtenemos un dataSet con las actividades del plan mostrado en cbPlan.text
-            sql = "SELECT DISTINCT ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE, FRECUENCIAS.DIAS, PLANESGMAO.IDPLAN " _
+            sql = "SELECT DISTINCT ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE, FRECUENCIAS.DIAS, PLANTILLAS.IDPLAN, PLANTILLAS.IDPLANTILLA " _
                 & "FROM ACTIVIDADES INNER JOIN FRECUENCIAS " _
                 & "ON ACTIVIDADES.IDFRECUENCIA=FRECUENCIAS.DESCRIPCION " _
-                & "INNER JOIN PLANESGMAO " _
-                & "ON ACTIVIDADES.IDACTIVIDAD=PLANESGMAO.IDACTIVIDAD " _
-                & "WHERE PLANESGMAO.IDPLAN LIKE '" + Trim(cbPlan.Text) + "%' " _
-                & "ORDER BY ACTIVIDADES.NOMBRE ASC"
+                & "INNER JOIN PLANTILLAS " _
+                & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
+                & "WHERE PLANTILLAS.IDPLAN LIKE '" + Trim(cbPlan.Text) + "%' " _
+                & "ORDER BY ACTIVIDADES.NOMBRE ASC "
 
             dtActXPlan = ClasAddPlan.consultaAux(sql, "ACTIVIDADES")
             'MessageBox.Show(sql)
             'Clipboard.SetText(sql)
 
+            ' Hallamos el IdPlantilla de la plantilla mostrada en cbPlan.Text
+
+
             ' Insertamos los registros correspondientes a la terna PLAN-ACTIVIDAD-EQUIPO en la tabla PLANESGMAO
-            For Each row In dtActXPlan.Rows
+            'For Each row In dtActXPlan.Rows
 
-                Try
-                    query = "INSERT INTO PLANESGMAO(IDPLAN, IDACTIVIDAD, IDEQUIPO, FechaInicio) VALUES('"
-                    query += Trim(cbPlan.Text) + "','" + row(dtActXPlan.Columns(0)).ToString + "','" + IdEquipo + "','" + dtpFInicio.Value.ToString + "')"
-                    'MessageBox.Show(query)
-                    'Clipboard.SetText(query)
-                    'comando = New System.Data.SqlClient.SqlCommand(query, cnn)
-                    'i = comando.ExecuteNonQuery()
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message.ToString)
-                    Exit Sub
-                End Try
+            '    Try
+            '        query = "INSERT INTO PLANESGMAO(IDPLANTILLA, FechaInicio) VALUES('"
+            '        query += Trim(cbPlan.Text) + "','" + row(dtActXPlan.Columns(0)).ToString + "','" + IdEquipo + "','" + dtpFInicio.Value.ToString + "')"
+            '        'MessageBox.Show(query)
+            '        'Clipboard.SetText(query)
+            '        'comando = New System.Data.SqlClient.SqlCommand(query, cnn)
+            '        'i = comando.ExecuteNonQuery()
+            '    Catch ex As Exception
+            '        MessageBox.Show(ex.Message.ToString)
+            '        Exit Sub
+            '    End Try
 
-            Next row
+            'Next row
+        Else
+
+            MessageBox.Show(" No se han encontrado plantillas para asignar al equipo." & vbCrLf _
+                            & "Puede ser que no haya selecccionado ninguna plantilla, que esté asignado a todas las plantillas existentes o que no existan plantillas válidas para éste equipo." & vbCrLf _
+                            & "Si tiene dudas contacte con el servicio técnico.")
 
         End If
 

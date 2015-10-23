@@ -23,7 +23,7 @@ Partial Class FrmRepuestos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmRepuestos))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -56,6 +56,7 @@ Partial Class FrmRepuestos
         Me.txt_Prov = New System.Windows.Forms.TextBox()
         Me.lbum = New System.Windows.Forms.Label()
         Me.LBPRO = New System.Windows.Forms.Label()
+        Me.cbProveedores = New System.Windows.Forms.ComboBox()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvRepuesto, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,12 +241,12 @@ Partial Class FrmRepuestos
         '
         Me.dgvRepuesto.AllowUserToAddRows = False
         Me.dgvRepuesto.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray
-        Me.dgvRepuesto.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray
+        Me.dgvRepuesto.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvRepuesto.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvRepuesto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvRepuesto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvRepuesto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvRepuesto.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.DESCRIPCION, Me.NOMBRE})
         Me.dgvRepuesto.Location = New System.Drawing.Point(1, 220)
@@ -257,7 +258,7 @@ Partial Class FrmRepuestos
         '
         'ID
         '
-        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.ID.DataPropertyName = "REFERENCIA"
         Me.ID.HeaderText = "REFERENCIA"
         Me.ID.Name = "ID"
@@ -265,7 +266,7 @@ Partial Class FrmRepuestos
         '
         'DESCRIPCION
         '
-        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.DESCRIPCION.DataPropertyName = "MODELO"
         Me.DESCRIPCION.HeaderText = "MODELO"
         Me.DESCRIPCION.Name = "DESCRIPCION"
@@ -296,6 +297,7 @@ Partial Class FrmRepuestos
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.cbProveedores)
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.txt_StcMin)
         Me.Panel2.Controls.Add(Me.Label2)
@@ -303,7 +305,6 @@ Partial Class FrmRepuestos
         Me.Panel2.Controls.Add(Me.txt_StcMax)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.cbUM)
-        Me.Panel2.Controls.Add(Me.txt_Prov)
         Me.Panel2.Controls.Add(Me.lbum)
         Me.Panel2.Controls.Add(Me.LBPRO)
         Me.Panel2.Location = New System.Drawing.Point(527, 51)
@@ -385,7 +386,7 @@ Partial Class FrmRepuestos
         'txt_Prov
         '
         Me.txt_Prov.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_Prov.Location = New System.Drawing.Point(108, 9)
+        Me.txt_Prov.Location = New System.Drawing.Point(515, 443)
         Me.txt_Prov.MaxLength = 50
         Me.txt_Prov.Name = "txt_Prov"
         Me.txt_Prov.ReadOnly = True
@@ -412,6 +413,19 @@ Partial Class FrmRepuestos
         Me.LBPRO.TabIndex = 9
         Me.LBPRO.Text = "Proveedor:"
         '
+        'cbProveedores
+        '
+        Me.cbProveedores.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cbProveedores.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbProveedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbProveedores.Enabled = False
+        Me.cbProveedores.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbProveedores.FormattingEnabled = True
+        Me.cbProveedores.Location = New System.Drawing.Point(108, 8)
+        Me.cbProveedores.Name = "cbProveedores"
+        Me.cbProveedores.Size = New System.Drawing.Size(208, 28)
+        Me.cbProveedores.TabIndex = 18
+        '
         'FrmRepuestos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -423,6 +437,7 @@ Partial Class FrmRepuestos
         Me.Controls.Add(Me.dgvRepuesto)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Controls.Add(Me.txt_Prov)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.MinimumSize = New System.Drawing.Size(870, 514)
@@ -471,4 +486,5 @@ Partial Class FrmRepuestos
     Friend WithEvents ID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents cbProveedores As System.Windows.Forms.ComboBox
 End Class

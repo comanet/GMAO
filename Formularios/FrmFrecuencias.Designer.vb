@@ -231,7 +231,7 @@ Partial Class FrmFrecuencias
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvSecc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDFRECUENCIA, Me.DESCRIPCION, Me.DIAS})
         Me.dgvSecc.Location = New System.Drawing.Point(0, 213)
@@ -243,7 +243,7 @@ Partial Class FrmFrecuencias
         '
         'IDFRECUENCIA
         '
-        Me.IDFRECUENCIA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IDFRECUENCIA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.IDFRECUENCIA.DataPropertyName = "IDFRECUENCIA"
         Me.IDFRECUENCIA.HeaderText = "IDFRECUENCIA"
         Me.IDFRECUENCIA.Name = "IDFRECUENCIA"
@@ -252,7 +252,7 @@ Partial Class FrmFrecuencias
         '
         'DESCRIPCION
         '
-        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
         Me.DESCRIPCION.HeaderText = "DESCRIPCION"
         Me.DESCRIPCION.Name = "DESCRIPCION"
@@ -261,7 +261,7 @@ Partial Class FrmFrecuencias
         '
         'DIAS
         '
-        Me.DIAS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DIAS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.DIAS.DataPropertyName = "DIAS"
         Me.DIAS.HeaderText = "DIAS"
         Me.DIAS.Name = "DIAS"

@@ -67,9 +67,9 @@ Public Class FrmEquipos
         Me.dtFcompra.DataBindings.Add("text", ClasEquipos.bsEquipos, "FCOMPRA")
         Me.dtFGarantia.DataBindings.Add("text", ClasEquipos.bsEquipos, "FGARANTIA")
 
-        Me.dgvDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.dgvimages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.dgvDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvimages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
     End Sub
 
@@ -77,10 +77,6 @@ Public Class FrmEquipos
 
         NombreEquipo = ""
         ClasEquipos.ConsultaEquipos("SELECT * FROM EQUIPOS")
-
-        Me.dgvDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.dgvimages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
         Enlacebin()
 
@@ -155,8 +151,7 @@ Public Class FrmEquipos
 
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             'ANTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
-            '  MsgBox(ClasEquipos.buscaID(Me.txt_ID.Text))
-
+            
             If ClasEquipos.buscaID(Me.txt_ID.Text) = True Then
                 MsgBox("Atención, el IDEQUIPO ya está siendo utilizado en el Sistema.", MsgBoxStyle.Exclamation)
                 ActiveControl = Me.txt_ID
@@ -486,11 +481,12 @@ Public Class FrmEquipos
         Dim daP As New System.Data.SqlClient.SqlDataAdapter
         Dim bsPlanes As New BindingSource
 
-        sql = "SELECT DISTINCT MANTEPLAN.IDPLAN, MANTEPLAN.NOMBRE, PLANESGMAO.FechaInicio " _
-            & "FROM PLANESGMAO INNER JOIN MANTEPLAN " _
-            & "ON PLANESGMAO.IDPLAN=MANTEPLAN.IDPLAN " _
-            & "WHERE PLANESGMAO.IDEQUIPO = '" + txt_ID.Text + "'"
+        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, PLANESGMAO.FechaInicio " _
+            & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
+            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " _
+            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" + txt_ID.Text + "%' "
 
+        Clipboard.SetText(sql)
         cnn.Open()
 
         daPlanes = New System.Data.SqlClient.SqlDataAdapter(sql, cnn)
@@ -498,6 +494,7 @@ Public Class FrmEquipos
         bsPlanes.DataSource = dsPlanes.Tables("PLANES")
 
         cnn.Close()
+
         dgvPlanes.DataSource = bsPlanes
 
     End Sub
@@ -511,7 +508,7 @@ Public Class FrmEquipos
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
 
-        ' Cargamos las variable globales NombreEquipo, Seccion y NSerie
+        ' Cargamos las variable globales NombreEquipo, Seccion, NSerie e IdEquipo
         NombreEquipo = txt_Nombre.Text
         If Not (cbseccion.Text = "") Then
             Seccion = cbseccion.Text

@@ -11,7 +11,7 @@ Public Class FrmEspecialidades
         ClasEspecialidades.ConsultaEspecialidades("SELECT * FROM ESPECIALIDADES")
         dgvSecc.DataSource = ClasEspecialidades.bsEspecialidades
         dgvSecc.AutoGenerateColumns = True
-        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
         'dgvSecc.AutoGenerateColumns = False
         'dgvSecc.Columns("IDFRECUENCIA").Visible = False
         'dgvSecc.Columns("DESCRIPCION").Visible = False
