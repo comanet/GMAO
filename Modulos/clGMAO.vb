@@ -19,6 +19,11 @@ Public Class clGMAO
     Public daEquip As New SqlDataAdapter
     Public bsEquip As New BindingSource
 
+    ' Elementos para el siguiente registro
+    Public dsProx As New DataSet
+    Public daProx As New SqlDataAdapter
+    Public bsProx As New BindingSource
+
     Public Sub ConsultaGMAO(ByVal sql As String)
 
         cnn.Open()
@@ -26,6 +31,18 @@ Public Class clGMAO
         daGMAO = New SqlDataAdapter(sql, cnn)
         daGMAO.Fill(dsGMAO, "PLANESGMAO")
         bsGMAO.DataSource = dsGMAO.Tables("PLANESGMAO")
+
+        cnn.Close()
+
+    End Sub
+
+    Public Sub ConsultaProx(ByVal sql As String)
+
+        cnn.Open()
+
+        daProx = New SqlDataAdapter(sql, cnn)
+        daProx.Fill(dsProx, "PROXREG")
+        bsProx.DataSource = dsProx.Tables("PROXREG")
 
         cnn.Close()
 
@@ -105,6 +122,7 @@ Public Class clGMAO
         Dim i As Integer
 
         cnn.Open()
+
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery
 
@@ -148,6 +166,7 @@ Public Class clGMAO
         da = New SqlDataAdapter(sql, cnn)
         da.Fill(dts, tabla)
         dt = dts.Tables(tabla)
+
         Return dt
 
     End Function

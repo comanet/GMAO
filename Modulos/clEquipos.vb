@@ -68,9 +68,11 @@ Public Class clEquipos
         Dim i As Integer
 
         cnn.Open()
+
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
 
         If i > 0 Then

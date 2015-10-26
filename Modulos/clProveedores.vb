@@ -112,7 +112,7 @@ Public Class clProveedores
 
         cnn.Open()
 
-        query = "SELECT COUNT(*) FROM PROVEEDOR WHERE IDPROVEEDOR =" & "'" & valor & "'"
+        query = "SELECT COUNT(*) FROM PROVEEDORES WHERE IDPROVEEDOR =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
 

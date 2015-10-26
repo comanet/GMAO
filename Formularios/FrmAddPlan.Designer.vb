@@ -54,7 +54,7 @@ Partial Class FrmAddPlan
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(660, 343)
+        Me.btSalir.Location = New System.Drawing.Point(660, 346)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 11
@@ -100,13 +100,16 @@ Partial Class FrmAddPlan
         '
         Me.btnAddPlan.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddPlan.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddPlan.BackColor = System.Drawing.Color.DimGray
+        Me.btnAddPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAddPlan.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btnAddPlan.ForeColor = System.Drawing.Color.White
         Me.btnAddPlan.Location = New System.Drawing.Point(462, 17)
         Me.btnAddPlan.Name = "btnAddPlan"
-        Me.btnAddPlan.Size = New System.Drawing.Size(288, 43)
+        Me.btnAddPlan.Size = New System.Drawing.Size(288, 46)
         Me.btnAddPlan.TabIndex = 4
-        Me.btnAddPlan.Text = "Asignar Plantilla a "
-        Me.btnAddPlan.UseVisualStyleBackColor = True
+        Me.btnAddPlan.Text = "&Asignar Plantilla a "
+        Me.btnAddPlan.UseVisualStyleBackColor = False
         '
         'LabelFecha
         '
@@ -154,7 +157,7 @@ Partial Class FrmAddPlan
         Me.dgvSecc.Name = "dgvSecc"
         Me.dgvSecc.ReadOnly = True
         Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSecc.Size = New System.Drawing.Size(733, 184)
+        Me.dgvSecc.Size = New System.Drawing.Size(733, 200)
         Me.dgvSecc.TabIndex = 22
         '
         'FrmAddPlan
@@ -162,7 +165,7 @@ Partial Class FrmAddPlan
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(763, 391)
+        Me.ClientSize = New System.Drawing.Size(763, 394)
         Me.Controls.Add(Me.dgvSecc)
         Me.Controls.Add(Me.PanelPlanes)
         Me.Controls.Add(NOMBRELabel)

@@ -17,11 +17,17 @@ Module variables
     Public FAddPlan As FrmAddPlan = Nothing
     Public FGMAO As FrmGMAO = Nothing
     Public FProveedores As FrmProveedores = Nothing
+    Public FAddEquipo As FrmAddEquipo = Nothing
 
     Public IdEquipo As String = ""
     Public NombreEquipo As String = ""
     Public Seccion As String = ""
     Public NSerie As String = ""
+    Public strIdPlan As String
+    Public ProxReg As Integer = 0
+    Public errorConn As String = ""
+
+    Public enviadoPlan As Boolean = False
 
     Public Sub Main()
         Application.EnableVisualStyles()

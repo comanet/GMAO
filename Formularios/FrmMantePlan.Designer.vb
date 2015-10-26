@@ -26,7 +26,10 @@ Partial Class FrmMantePlan
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim IDMANTEPLANLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMantePlan))
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim LabelIDPLANTILLA As System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -45,13 +48,19 @@ Partial Class FrmMantePlan
         Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btEquipos = New System.Windows.Forms.Button()
-        Me.btnLimpiaDB = New System.Windows.Forms.Button()
+        Me.dgvEquipos = New System.Windows.Forms.DataGridView()
+        Me.btActividades = New System.Windows.Forms.Button()
+        Me.dgvActividades = New System.Windows.Forms.DataGridView()
+        Me.txt_IDPLANTILLA = New System.Windows.Forms.TextBox()
         DESCRIPCIONLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
         IDMANTEPLANLabel = New System.Windows.Forms.Label()
+        LabelIDPLANTILLA = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvmantep, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvEquipos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvActividades, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DESCRIPCIONLabel
@@ -77,9 +86,9 @@ Partial Class FrmMantePlan
         IDMANTEPLANLabel.AutoSize = True
         IDMANTEPLANLabel.Location = New System.Drawing.Point(12, 29)
         IDMANTEPLANLabel.Name = "IDMANTEPLANLabel"
-        IDMANTEPLANLabel.Size = New System.Drawing.Size(49, 13)
+        IDMANTEPLANLabel.Size = New System.Drawing.Size(52, 13)
         IDMANTEPLANLabel.TabIndex = 23
-        IDMANTEPLANLabel.Text = "CODIGO"
+        IDMANTEPLANLabel.Text = "CODIGO:"
         '
         'ToolStrip1
         '
@@ -166,6 +175,8 @@ Partial Class FrmMantePlan
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txt_IDPLANTILLA)
+        Me.GroupBox1.Controls.Add(LabelIDPLANTILLA)
         Me.GroupBox1.Controls.Add(Me.txt_DESCRIPCION)
         Me.GroupBox1.Controls.Add(DESCRIPCIONLabel)
         Me.GroupBox1.Controls.Add(Me.txt_NOMBRE)
@@ -174,13 +185,14 @@ Partial Class FrmMantePlan
         Me.GroupBox1.Controls.Add(IDMANTEPLANLabel)
         Me.GroupBox1.Location = New System.Drawing.Point(0, 57)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(621, 214)
+        Me.GroupBox1.Size = New System.Drawing.Size(621, 201)
         Me.GroupBox1.TabIndex = 11
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Planes de Mantenimiento"
         '
         'txt_DESCRIPCION
         '
+        Me.txt_DESCRIPCION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_DESCRIPCION.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_DESCRIPCION.Location = New System.Drawing.Point(107, 95)
         Me.txt_DESCRIPCION.MaxLength = 250
@@ -193,6 +205,7 @@ Partial Class FrmMantePlan
         '
         'txt_NOMBRE
         '
+        Me.txt_NOMBRE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_NOMBRE.Location = New System.Drawing.Point(107, 58)
         Me.txt_NOMBRE.MaxLength = 250
@@ -203,12 +216,13 @@ Partial Class FrmMantePlan
         '
         'txt_ID
         '
+        Me.txt_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_ID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_ID.Location = New System.Drawing.Point(107, 21)
-        Me.txt_ID.MaxLength = 15
+        Me.txt_ID.MaxLength = 50
         Me.txt_ID.Name = "txt_ID"
         Me.txt_ID.ReadOnly = True
-        Me.txt_ID.Size = New System.Drawing.Size(508, 26)
+        Me.txt_ID.Size = New System.Drawing.Size(183, 26)
         Me.txt_ID.TabIndex = 24
         '
         'btSalir
@@ -218,7 +232,7 @@ Partial Class FrmMantePlan
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(530, 456)
+        Me.btSalir.Location = New System.Drawing.Point(530, 629)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 13
@@ -229,19 +243,18 @@ Partial Class FrmMantePlan
         '
         Me.dgvmantep.AllowUserToAddRows = False
         Me.dgvmantep.AllowUserToDeleteRows = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Beige
-        Me.dgvmantep.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
-        Me.dgvmantep.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Beige
+        Me.dgvmantep.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.dgvmantep.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvmantep.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvmantep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvmantep.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDPLAN, Me.NOMBRE, Me.DESCRIPCION})
-        Me.dgvmantep.Location = New System.Drawing.Point(0, 292)
+        Me.dgvmantep.Location = New System.Drawing.Point(0, 264)
         Me.dgvmantep.Name = "dgvmantep"
         Me.dgvmantep.ReadOnly = True
         Me.dgvmantep.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvmantep.Size = New System.Drawing.Size(633, 147)
+        Me.dgvmantep.Size = New System.Drawing.Size(633, 107)
         Me.dgvmantep.TabIndex = 24
         '
         'IDPLAN
@@ -277,34 +290,91 @@ Partial Class FrmMantePlan
         Me.btEquipos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btEquipos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btEquipos.ForeColor = System.Drawing.Color.White
-        Me.btEquipos.Location = New System.Drawing.Point(433, 456)
+        Me.btEquipos.Location = New System.Drawing.Point(280, 629)
         Me.btEquipos.Name = "btEquipos"
-        Me.btEquipos.Size = New System.Drawing.Size(91, 36)
+        Me.btEquipos.Size = New System.Drawing.Size(244, 36)
         Me.btEquipos.TabIndex = 25
-        Me.btEquipos.Text = "&Relación de Equipos"
+        Me.btEquipos.Text = "Añadir &Equipo a la Plantilla "
         Me.btEquipos.UseVisualStyleBackColor = False
         '
-        'btnLimpiaDB
+        'dgvEquipos
         '
-        Me.btnLimpiaDB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnLimpiaDB.BackColor = System.Drawing.Color.DimGray
-        Me.btnLimpiaDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnLimpiaDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLimpiaDB.ForeColor = System.Drawing.Color.White
-        Me.btnLimpiaDB.Location = New System.Drawing.Point(336, 456)
-        Me.btnLimpiaDB.Name = "btnLimpiaDB"
-        Me.btnLimpiaDB.Size = New System.Drawing.Size(91, 36)
-        Me.btnLimpiaDB.TabIndex = 26
-        Me.btnLimpiaDB.Text = "Formatea IDPLAN"
-        Me.btnLimpiaDB.UseVisualStyleBackColor = False
+        Me.dgvEquipos.AllowUserToAddRows = False
+        Me.dgvEquipos.AllowUserToDeleteRows = False
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Beige
+        Me.dgvEquipos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvEquipos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvEquipos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvEquipos.Location = New System.Drawing.Point(0, 377)
+        Me.dgvEquipos.Name = "dgvEquipos"
+        Me.dgvEquipos.ReadOnly = True
+        Me.dgvEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvEquipos.Size = New System.Drawing.Size(633, 114)
+        Me.dgvEquipos.TabIndex = 26
+        '
+        'btActividades
+        '
+        Me.btActividades.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btActividades.BackColor = System.Drawing.Color.DimGray
+        Me.btActividades.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btActividades.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btActividades.ForeColor = System.Drawing.Color.White
+        Me.btActividades.Location = New System.Drawing.Point(30, 629)
+        Me.btActividades.Name = "btActividades"
+        Me.btActividades.Size = New System.Drawing.Size(244, 36)
+        Me.btActividades.TabIndex = 27
+        Me.btActividades.Text = "Añadir &Actividad a la Plantilla "
+        Me.btActividades.UseVisualStyleBackColor = False
+        '
+        'dgvActividades
+        '
+        Me.dgvActividades.AllowUserToAddRows = False
+        Me.dgvActividades.AllowUserToDeleteRows = False
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Beige
+        Me.dgvActividades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvActividades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvActividades.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvActividades.Location = New System.Drawing.Point(0, 497)
+        Me.dgvActividades.Name = "dgvActividades"
+        Me.dgvActividades.ReadOnly = True
+        Me.dgvActividades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvActividades.Size = New System.Drawing.Size(633, 114)
+        Me.dgvActividades.TabIndex = 28
+        '
+        'txt_IDPLANTILLA
+        '
+        Me.txt_IDPLANTILLA.Enabled = False
+        Me.txt_IDPLANTILLA.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_IDPLANTILLA.Location = New System.Drawing.Point(432, 21)
+        Me.txt_IDPLANTILLA.MaxLength = 15
+        Me.txt_IDPLANTILLA.Name = "txt_IDPLANTILLA"
+        Me.txt_IDPLANTILLA.ReadOnly = True
+        Me.txt_IDPLANTILLA.Size = New System.Drawing.Size(183, 26)
+        Me.txt_IDPLANTILLA.TabIndex = 31
+        '
+        'LabelIDPLANTILLA
+        '
+        LabelIDPLANTILLA.AutoSize = True
+        LabelIDPLANTILLA.Location = New System.Drawing.Point(337, 29)
+        LabelIDPLANTILLA.Name = "LabelIDPLANTILLA"
+        LabelIDPLANTILLA.Size = New System.Drawing.Size(78, 13)
+        LabelIDPLANTILLA.TabIndex = 30
+        LabelIDPLANTILLA.Text = "IDPLANTILLA:"
         '
         'FrmMantePlan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(633, 504)
-        Me.Controls.Add(Me.btnLimpiaDB)
+        Me.ClientSize = New System.Drawing.Size(633, 677)
+        Me.Controls.Add(Me.dgvActividades)
+        Me.Controls.Add(Me.btActividades)
+        Me.Controls.Add(Me.dgvEquipos)
         Me.Controls.Add(Me.btEquipos)
         Me.Controls.Add(Me.dgvmantep)
         Me.Controls.Add(Me.btSalir)
@@ -319,6 +389,8 @@ Partial Class FrmMantePlan
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvmantep, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvEquipos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvActividades, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -341,5 +413,8 @@ Partial Class FrmMantePlan
     Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btEquipos As System.Windows.Forms.Button
-    Friend WithEvents btnLimpiaDB As System.Windows.Forms.Button
+    Friend WithEvents dgvEquipos As System.Windows.Forms.DataGridView
+    Friend WithEvents btActividades As System.Windows.Forms.Button
+    Friend WithEvents dgvActividades As System.Windows.Forms.DataGridView
+    Friend WithEvents txt_IDPLANTILLA As System.Windows.Forms.TextBox
 End Class

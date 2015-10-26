@@ -27,6 +27,14 @@ Public Class FrmFrecuencias
 
         FFrecuencias = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub FrmFrecuencias_Load(sender As Object, e As EventArgs) Handles MyBase.Load

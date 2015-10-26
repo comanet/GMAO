@@ -6,6 +6,12 @@ Public Class clMantePlan
     Public daMantePlan As New SqlDataAdapter
     Public da As New SqlDataAdapter
     Public bsMantePlan As New BindingSource
+
+    Public dsDetPlan As New DataSet
+    Public daDetPlan As New SqlDataAdapter
+    Public daDet As New SqlDataAdapter
+    Public bsDetPlan As New BindingSource
+
     Private comando As SqlCommand
 
     Public Sub ConsultaMantePlan(ByVal sql As String)
@@ -20,14 +26,26 @@ Public Class clMantePlan
 
     End Sub
 
-    Public Function buscaID(ByVal valor As String)
+    Public Sub ConsultaDetPlan(ByVal sql As String)
+
+        cnn.Open()
+
+        daDetPlan = New SqlDataAdapter(sql, cnn)
+        daDetPlan.Fill(dsMantePlan, "DETPLAN")
+        bsDetPlan.DataSource = dsDetPlan.Tables("DETPLAN")
+
+        cnn.Close()
+
+    End Sub
+
+    Public Function buscaID(ByVal valor As String) As Boolean
 
         Dim i As Integer
 
         cnn.Open()
 
         Dim query As String
-        query = "SELECT COUNT(*) FROM MANTEPLAN WHERE IDPLAN =" & "'" & valor & "'"
+        query = "SELECT COUNT(*) FROM MANTEPLAN WHERE IDPLAN LIKE " & "'" & valor & "%'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
 
@@ -82,6 +100,7 @@ Public Class clMantePlan
         Dim i As Integer
 
         cnn.Open()
+
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery
 

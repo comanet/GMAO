@@ -27,7 +27,17 @@ Public Class FrmActividades
     End Sub
 
     Private Sub FrmActividades_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+
         FActividades = Nothing
+
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub Limpiabinding()

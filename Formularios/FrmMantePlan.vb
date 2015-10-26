@@ -27,10 +27,19 @@ Public Class FrmMantePlan
 
         FMantePlan = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub FrmMantePlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        dgvmantep.DataSource = Nothing
         ClasMantePlan.ConsultaMantePlan("SELECT * FROM MANTEPLAN ORDER BY IDPLAN ASC")
         dgvmantep.DataSource = ClasMantePlan.bsMantePlan
         dgvmantep.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
@@ -51,6 +60,7 @@ Public Class FrmMantePlan
     Private Sub Enlacebin()
 
         Me.txt_ID.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "IDPLAN")
+        'Me.txt_IDPLANTILLA.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "IDPLANTILLA")
         Me.txt_NOMBRE.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "NOMBRE")
         Me.txt_DESCRIPCION.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "DESCRIPCION")
 
@@ -63,9 +73,10 @@ Public Class FrmMantePlan
     Public Sub Actualizar(Optional ByVal bCargar As Boolean = True) ' Se utiliza para limpiar el datagridview y refrescar los datos modificados.
 
         '*** Actualizar y guardar cambios
-        Me.txt_ID.Text = Trim(Me.txt_ID.Text)
-        Me.txt_NOMBRE.Text = Trim(Me.txt_NOMBRE.Text)
-        Me.txt_DESCRIPCION.Text = Trim(Me.txt_DESCRIPCION.Text)
+        'Me.txt_ID.Text = Trim(Me.txt_ID.Text)
+        'Me.txt_IDPLANTILLA.Text = Trim(Me.txt_IDPLANTILLA.Text)
+        'Me.txt_NOMBRE.Text = Trim(Me.txt_NOMBRE.Text)
+        'Me.txt_DESCRIPCION.Text = Trim(Me.txt_DESCRIPCION.Text)
 
         If Not ClasMantePlan.bsMantePlan Is Nothing Then
             ClasMantePlan.daMantePlan.Update(CType(ClasMantePlan.bsMantePlan.DataSource, DataTable))
@@ -86,7 +97,7 @@ Public Class FrmMantePlan
             Try
                 valor = txt_ID.Text
                 Limpiabinding()
-                ClasMantePlan.Eliminar("MANTEPLAN", "IDPLAN = " & "'" & valor & "'")
+                ClasMantePlan.Eliminar("MANTEPLAN", "IDPLAN LIKE " & "'" & valor & "%'")
                 Actualizar()
             Catch ex As Exception
                 MessageBox.Show("Error " & ex.Message)
@@ -123,6 +134,11 @@ Public Class FrmMantePlan
 
     Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
 
+        Dim query As String
+
+        btEquipos.Enabled = False
+        btActividades.Enabled = False
+
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             'ANTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
 
@@ -130,15 +146,19 @@ Public Class FrmMantePlan
                 MsgBox("Atención, el IDPLAN ya está siendo utilizado en el Sistema.", MsgBoxStyle.Exclamation)
                 ActiveControl = Me.txt_ID
                 Me.txt_ID.Text = ""
+                Me.txt_ID.Focus()
                 Exit Sub  ' Si el ID existe, se vuelve al Textbox para modificar valor.
             End If
 
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasMantePlan.InsertaMantePLan("Insert Into MANTEPLAN(IDPLAN,NOMBRE,DESCRIPCION)" & _
-                                                   "values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & ")") Then
+                    query = "INSERT INTO MANTEPLAN(IDPLAN,NOMBRE,DESCRIPCION) " & _
+                       "VALUES('" & Me.txt_ID.Text & "', '" & Me.txt_NOMBRE.Text & "', '" & Me.txt_DESCRIPCION.Text & "')"
+                    MessageBox.Show(query)
+                    Clipboard.SetText(query)
+                    If ClasMantePlan.InsertaMantePLan(query) Then
 
-                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
+                        MsgBox("Registro Agregado correctamente", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
@@ -156,8 +176,9 @@ Public Class FrmMantePlan
                 tsDel.Enabled = True
 
             End If
-        ElseIf tipoOperacion = "M" Then
-            If ClasMantePlan.actualizar("MANTEPLAN", "IDPLAN = " + "'" + txt_ID.Text + "'" + "," + "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION = " + "'" + txt_DESCRIPCION.Text + "'", " IDPLAN= " + "'" + txt_ID.Text + "'") Then
+        Else
+            If tipoOperacion = "M" Then
+                'If ClasMantePlan.actualizar("MANTEPLAN", "IDPLAN = " + "'" + txt_ID.Text + "'" + "," + "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION = " + "'" + txt_DESCRIPCION.Text + "'", " IDPLAN= " + "'" + txt_ID.Text + "'") Then
 
                 Actualizar()
                 Me.txt_ID.ReadOnly = True
@@ -170,6 +191,17 @@ Public Class FrmMantePlan
                 'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
             End If
         End If
+
+        Try
+            If (cnn.State = ConnectionState.Open) Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
+        btEquipos.Enabled = True
+        btActividades.Enabled = True
 
     End Sub
 
@@ -188,40 +220,74 @@ Public Class FrmMantePlan
 
     End Sub
 
-    Private Sub btnLimpiaDB_Click(sender As Object, e As EventArgs) Handles btnLimpiaDB.Click
+    Private Sub txt_ID_TextChanged(sender As Object, e As EventArgs) Handles txt_ID.TextChanged
 
-        Dim dtPlanes As DataTable
-        Dim comando As SqlCommand
-        Dim sql As String
-        Dim query As String
-        Dim i As Integer
-        Dim valorPasado, valorFuturo As String
+        Dim consulta As String
+        Dim numLineas As String
+        Dim datos As DataTable
 
-        cnn.Open()
+        strIdPlan = txt_ID.Text
 
-        ' Recuperamos todos los MANTEPLAN/IDPLAN
+        dgvEquipos.DataSource = Nothing
+        dgvActividades.DataSource = Nothing
 
-        sql = "SELECT IDPLAN FROM MANTEPLAN"
+        btEquipos.Text = "Añadir &Equipo a la Plantilla " & Trim(strIdPlan)
+        btEquipos.TextAlign = ContentAlignment.MiddleCenter
+        btActividades.Text = "Añadir &Actividad a la Plantilla " & Trim(strIdPlan)
+        btActividades.TextAlign = ContentAlignment.MiddleCenter
 
-        dtPlanes = ClasMantePlan.consultaAux(sql, "tbl_PLANES")
-        ' ACTUALIZAMOS REGISTROS
-        For Each row In dtPlanes.Rows
+        consulta = "SELECT DISTINCT EQUIPOS.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo  " _
+            & "FROM EQUIPOS INNER JOIN PLANTILLAS " _
+            & "ON EQUIPOS.IDEQUIPO=PLANTILLAS.IDEQUIPO " _
+            & "WHERE PLANTILLAS.IDPLAN LIKE '" & Trim(strIdPlan) & "%' " _
+            & "ORDER BY NombreEquipo ASC"
 
-            Try
-                valorPasado = row(dtPlanes.Columns(0)).ToString
-                valorFuturo = Trim(valorPasado)
-                'MessageBox.Show("valorpasado=" + valorPasado + ", longitud=" + valorPasado.Length.ToString + ". valorFuturo=" + valorFuturo + ", longitud=" + valorFuturo.Length.ToString)
-                query = "UPDATE MANTEPLAN SET IDPLAN='" + valorFuturo + "' WHERE IDPLAN='" + valorPasado + "'"
-                Clipboard.SetText(query)
-                comando = New SqlCommand(query, cnn)
-                i = comando.ExecuteNonQuery()
-            Catch ex As Exception
-                MessageBox.Show(ex.Message.ToString)
-            End Try
+        dgvEquipos.AutoGenerateColumns = True
+        datos = ClasMantePlan.consultaAux(consulta, "EQUIPOS_PLAN")
+        dgvEquipos.DataSource = datos
+        dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
-        Next row
+        numLineas = datos.Rows.Count
+        'MessageBox.Show(numLineas.ToString)
 
-        cnn.Close()
+        If (numLineas > 0) Then
+            IdEquipo = dgvEquipos.CurrentCell.Value.ToString
+            consulta = "SELECT ACTIVIDADES.NOMBRE AS NombreActividad " _
+                & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " _
+                & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
+                & "INNER JOIN EQUIPOS " _
+                & "ON EQUIPOS.IDEQUIPO=PLANTILLAS.IDEQUIPO " _
+                & "WHERE PLANTILLAS.IDPLAN LIKE '" & Trim(strIdPlan) & "%' " _
+                & "AND EQUIPOS.IDEQUIPO LIKE '" & Trim(IdEquipo) & "%' " _
+                & "ORDER BY IDPLAN ASC"
+
+            'MessageBox.Show(dgvEquipos.CurrentCell.Value.ToString)
+            dgvActividades.AutoGenerateColumns = True
+            dgvActividades.DataSource = ClasMantePlan.consultaAux(consulta, "ACTIVIDADES_PLAN")
+            dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        End If
+
+    End Sub
+
+    Private Sub btEquipos_Click(sender As Object, e As EventArgs) Handles btEquipos.Click
+
+        If (dgvmantep.RowCount > 0) Then
+            enviadoPlan = True
+
+            If (FAddEquipo Is Nothing) Then
+                FAddEquipo = New FrmAddEquipo()
+                FAddEquipo.ShowDialog()
+            End If
+        Else
+            MessageBox.Show("Primero debe crear una plantilla.")
+        End If
+
+    End Sub
+
+    Private Sub txt_ID_Enter(sender As Object, e As EventArgs) Handles txt_ID.Enter
+
+        txt_ID.SelectionStart = 0
+        txt_ID.SelectionLength = 0
 
     End Sub
 End Class

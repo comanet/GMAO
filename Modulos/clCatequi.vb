@@ -10,10 +10,12 @@ Public Class clCatEqui
     Public Sub ConsultaSeccion(ByVal sql As String)
 
         cnn.Open()
+
         daCatEqui = New SqlDataAdapter(sql, cnn)
         ' cmb = New SqlCommandBuilder(daCatEqui)
         daCatEqui.Fill(dsCatEqui, "TIP_EQUIP")
         bsCatEqui.DataSource = dsCatEqui.Tables("TIP_EQUIP")
+
         cnn.Close()
 
     End Sub
@@ -25,10 +27,12 @@ Public Class clCatEqui
         Dim i As Integer
 
         cnn.Open()
+
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
         ' update evorh set evolucion = Lo he conseguido actulizar where 
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
 
         If i > 0 Then
@@ -44,8 +48,10 @@ Public Class clCatEqui
         Dim i As Integer
 
         cnn.Open()
+
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery
+
         cnn.Close()
 
         If i > 0 Then
@@ -63,10 +69,12 @@ Public Class clCatEqui
         Dim i As Integer
 
         cnn.Open()
+
         sql = "delete from " & tablas & " where " & condicion
         'MsgBox(sql)
         comando = New SqlCommand(sql, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
 
         If i > 0 Then
@@ -82,10 +90,13 @@ Public Class clCatEqui
         Dim idregistro As Integer
 
         cnn.Open()
+
         query = "select max(" + campo + ")" + "from " + tabla + ""
         comando = New SqlCommand(query, cnn)
         idregistro = comando.ExecuteScalar + 1
+
         cnn.Close()
+
         Return idregistro
 
     End Function

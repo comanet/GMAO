@@ -276,6 +276,14 @@
 
         FPersonal = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub txt_Hora_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_Hora.KeyPress, txt_HoraE.KeyPress

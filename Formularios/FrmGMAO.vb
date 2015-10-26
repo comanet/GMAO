@@ -7,6 +7,7 @@ Public Class FrmGMAO
     Dim dtEquipos As DataTable
     Dim dtActividades As DataTable
     Dim dtPlanes As DataTable
+    Dim dtProxReg As DataTable
     Dim tipoOperacion As String
 
     Public Sub CargaCombos()
@@ -48,6 +49,17 @@ Public Class FrmGMAO
 
     End Sub
 
+    Public Sub verProxReg()
+
+        'Dim sql As String = ""
+
+        '' carga en txt_NumPlantilla el valor que tomará el campo PLANESGMAO.NUMPLANTILLA
+        'sql = "SELECT DISTINCT TOP 1 NUMPLANTILLA FROM PLANTILLAS ORDER BY NUMPLANTILLA"
+
+        'dtProxReg = ClasGMAO.consultaAux(sql, "NUMPLANTILLA")
+
+    End Sub
+
     Private Sub Enlacebin()
 
         CargaCombos()
@@ -56,7 +68,7 @@ Public Class FrmGMAO
         Me.txt_IDPM.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDPM")
 
         Me.txt_IDACTIV.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDACTIVIDAD")
-        Me.txt_IDEQUIPO.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDEQUIPO")
+        Me.txt_IDEQUIPO.DataBindings.Add("text", ClasGMAO.bsGMAO, "IdenEquipo")
         Me.txt_FIni.DataBindings.Add("text", ClasGMAO.bsGMAO, "FechaInicio")
         If IsDate(txt_FIni.Text) Then
             Me.calFInicio.SetDate(txt_FIni.Text)
@@ -64,9 +76,17 @@ Public Class FrmGMAO
             Me.calFInicio.SetDate(Now)
         End If
 
+        Me.txt_NumPlantilla.DataBindings.Add("text", ClasGMAO.bsProx, "NUMPLANTILLA")
+        If IsNumeric(txt_NumPlantilla.Text) Then
+            ProxReg = txt_NumPlantilla.Text + 1
+        End If
+        MessageBox.Show(ProxReg)
+
     End Sub
 
     Private Sub FrmGMAO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim sql As String = ""
 
         txt_ID.Text = ""
         txt_IDPM.Text = ""
@@ -75,21 +95,27 @@ Public Class FrmGMAO
         txt_FIni.Text = ""
 
         ' Rellenamos el dataGridView con TODAS las lineas - dgvSecc
-        ClasGMAO.ConsultaGMAO("SELECT PLANESGMAO.IDPM, PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo, " _
-                              & "PLANESGMAO.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, PLANESGMAO.FechaInicio " _
-                              & "FROM PLANESGMAO INNER JOIN ACTIVIDADES " _
-                              & "ON PLANESGMAO.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD " _
-                              & "INNER JOIN EQUIPOS ON PLANESGMAO.IDEQUIPO=EQUIPOS.IDEQUIPO")
+        sql = "SELECT PLANESGMAO.IDPM, PLANTILLAS.IDPLAN, PLANTILLAS.IDEQUIPO AS IdenEquipo, EQUIPOS.NOMBRE AS NombreEquipo, " _
+            & "ACTIVIDADES.NOMBRE AS NombreActividad, ACTIVIDADES.IDACTIVIDAD, PLANESGMAO.FechaInicio " _
+            & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
+            & "ON PLANESGMAO.NUMPLANTILLA=PLANTILLAS.NUMPLANTILLA " _
+            & "INNER JOIN EQUIPOS " _
+            & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " _
+            & "INNER JOIN ACTIVIDADES " _
+            & "ON PLANTILLAS.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD"
+        Clipboard.SetText(sql)
+        ClasGMAO.ConsultaGMAO(sql)
         dgvSecc.DataSource = ClasGMAO.bsGMAO
         dgvSecc.AutoGenerateColumns = True
-        dgvSecc.Columns("IDPM").Visible = False
-        dgvSecc.Columns("IDEQUIPO").Visible = False
-        dgvSecc.Columns("IDACTIVIDAD").Visible = False
+        
         dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-        dgvActiv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-        dgvEquip.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        'dgvActiv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        'dgvEquip.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         ' Los otros dos grids (dgvActiv y dgvEquip) se rellenan cuando se rellene el primero y se pueblen los combos
+
+        ' carga en txt_NumPlantilla el valor que tomará el campo PLANESGMAO.NUMPLANTILLA
+        ClasGMAO.ConsultaProx("SELECT DISTINCT TOP 1 NUMPLANTILLA FROM PLANTILLAS ORDER BY NUMPLANTILLA")
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
@@ -155,6 +181,14 @@ Public Class FrmGMAO
 
         FGMAO = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub tsDel_Click(sender As Object, e As EventArgs) Handles tsDel.Click
@@ -188,15 +222,16 @@ Public Class FrmGMAO
                     If (txt_FIni.Text = "") Then
                         txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
                     End If
-                    If ClasGMAO.InsertaGMAO("Insert Into PLANESGMAO(IDPLAN, IDACTIVIDAD, IDEQUIPO, FechaInicio)" & _
-                                                   "values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_IDACTIV.Text &
-                                                   "'" & "," & "'" & Me.txt_IDEQUIPO.Text & "'" & "," & "'" & Me.txt_FIni.Text & "'" & ")") = True Then
+                    ProxReg = ProxReg + 1
+                    If ClasGMAO.InsertaGMAO("Insert Into PLANTILLAS(IDPLAN, IDACTIVIDAD, IDEQUIPO, NUMPLANTILLA)" & _
+                                                   "values(" & "'" & Me.txt_ID.Text & "', '" & txt_IDACTIV.Text & "', '" & txt_IDEQUIPO.Text & "', '" & ProxReg.ToString & "')") = True Then
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
                         ' Para actualizar los valores nuevos insertados y que se muestren en el dvgrid
                         Actualizar()
                     End If
                 Catch ex As Exception
-                    MessageBox.Show("Error " & ex.Message)
+                    MessageBox.Show("Error tsSave_Click" & vbCrLf & ex.Message.ToString)
+                    ProxReg = ProxReg - 1
                 End Try
 
                 Me.txt_ID.ReadOnly = True
@@ -214,7 +249,7 @@ Public Class FrmGMAO
             End If
         ElseIf tipoOperacion = "M" Then
 
-            If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + Trim(txt_ID.Text) + "'" + "," + "IDACTIVIDAD =" + "'" + Trim(txt_IDACTIV.Text) + "'" + "," + "IDEQUIPO= " + "'" + txt_IDEQUIPO.Text + "'" + "," + "FechaInicio= " + "'" + Trim(txt_FIni.Text) + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
+            If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + Trim(txt_ID.Text) + "'" + "," + "FechaInicio= " + "'" + Trim(txt_FIni.Text) + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
 
                 Actualizar()
                 Me.txt_ID.ReadOnly = True
@@ -239,6 +274,12 @@ Public Class FrmGMAO
     End Sub
 
     Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
+
+        subAdd()
+
+    End Sub
+
+    Private Sub subAdd()
 
         'Añadir Nuevo Registro
         Limpiabinding()
@@ -319,31 +360,31 @@ Public Class FrmGMAO
         ' Rellenamos el grid de ACTIVIDADES - dgvActiv
         ClasGMAO.dsActiv.Clear()
 
-        ClasGMAO.ConsultaActiv("SELECT PLANESGMAO.IDPM, PLANESGMAO.IDPLAN, PLANESGMAO.IDEQUIPO, " _
-                               & "EQUIPOS.NOMBRE AS NombreEquipo, PLANESGMAO.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, " _
-                               & "PLANESGMAO.FechaInicio " _
-                               & "FROM PLANESGMAO INNER JOIN ACTIVIDADES " _
-                               & "ON PLANESGMAO.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD " _
-                               & "INNER JOIN EQUIPOS " _
-                               & "ON PLANESGMAO.IDEQUIPO=EQUIPOS.IDEQUIPO " _
-                               & "WHERE PLANESGMAO.IDPLAN = '" & txt_ID.Text & "'")
+        ClasGMAO.ConsultaActiv("SELECT EQUIPOS.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo, " _
+                               & "ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, PLANESGMAO.FechaInicio, PLANTILLAS.NUMPLANTILLA " _
+                               & "FROM PLANTILLAS INNER JOIN EQUIPOS " _
+                               & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " _
+                               & "INNER JOIN ACTIVIDADES " _
+                               & "ON PLANTILLAS.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD " _
+                               & "INNER JOIN PLANESGMAO " _
+                               & "ON PLANTILLAS.NUMPLANTILLA=PLANESGMAO.NUMPLANTILLA " _
+                               & "WHERE PLANTILLAS.IDPLAN LIKE '" & Trim(txt_ID.Text) & "%' ")
 
         dgvActiv.DataSource = ClasGMAO.bsActiv
         dgvActiv.AutoGenerateColumns = True
-        dgvActiv.Columns("IDPM").Visible = False
-        dgvActiv.Columns("IDPLAN").Visible = False
         dgvActiv.Columns("IDEQUIPO").Visible = False
-        dgvActiv.Columns("IDACTIVIDAD").Visible = False
+        dgvActiv.Columns("NombreEquipo").Visible = False
+        dgvActiv.Columns("FechaInicio").Visible = False
+        dgvActiv.Columns("NUMPLANTILLA").Visible = False
         dgvActiv.Update()
 
         ' Rellenamos el grid de EQUIPOS - dgvEquip
         dgvEquip.DataSource = ClasGMAO.bsActiv
         dgvEquip.AutoGenerateColumns = True
-        dgvEquip.Columns("IDPM").Visible = False
-        dgvEquip.Columns("IDPLAN").Visible = False
         dgvEquip.Columns("IDACTIVIDAD").Visible = False
         dgvEquip.Columns("NombreActividad").Visible = False
         dgvEquip.Columns("FechaInicio").Visible = False
+        dgvEquip.Columns("NUMPLANTILLA").Visible = False
 
     End Sub
 

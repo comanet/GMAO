@@ -18,6 +18,14 @@
 
         FAddPlan = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub Enlacebin()
@@ -42,18 +50,26 @@
         'MessageBox.Show("IdEquipo = " & IdEquipo)
 
         ' Cargamos el dataGridView con los planes del equipo IdEquipo
-        sql = "SELECT DISTINCT MANTEPLAN.IDPLAN, MANTEPLAN.NOMBRE, PLANESGMAO.FechaInicio " _
+        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, MANTEPLAN.NOMBRE, PLANESGMAO.FechaInicio, ACTIVIDADES.NOMBRE AS NombreActividad " _
             & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
-            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " _
+            & "ON PLANESGMAO.IDPLAN=PLANTILLAS.IDPLAN " _
             & "INNER JOIN MANTEPLAN " _
             & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLAN " _
+            & "INNER JOIN ACTIVIDADES " _
+            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
             & "WHERE PLANTILLAS.IDEQUIPO LIKE '" + IdEquipo + "'"
         Clipboard.SetText(sql)
         'MessageBox.Show(sql)
-        ClasAddPlan.ConsultaAddPlan(sql)
-        dgvSecc.DataSource = ClasAddPlan.bsAddPlan
-        dgvSecc.AutoGenerateColumns = True
-        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+        Try
+            ClasAddPlan.ConsultaAddPlan(sql)
+            dgvSecc.DataSource = ClasAddPlan.bsAddPlan
+            dgvSecc.AutoGenerateColumns = True
+            dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar dataGridView con los planes del equipo " & IdEquipo & "." & vbCrLf _
+                            & ex.Message.ToString)
+        End Try
 
         ' Cargamos el combo con los planes en los que NO aparezca IdEquipo
         sql = "SELECT DISTINCT MANTEPLAN.IDPLAN " _
@@ -65,11 +81,17 @@
             & "ORDER BY MANTEPLAN.IDPLAN"
         Clipboard.SetText(sql)
         'MessageBox.Show(sql)
-        cbPlan.Items.Clear()
-        dtcbPlanes = ClasAddPlan.consultaAux(sql, "tbl_PLANES")
-        For Each row As DataRow In dtcbPlanes.Rows
-            cbPlan.Items.Add(CStr(row("IDPLAN")))
-        Next
+
+        Try
+            cbPlan.Items.Clear()
+            dtcbPlanes = ClasAddPlan.consultaAux(sql, "tbl_PLANES")
+            For Each row As DataRow In dtcbPlanes.Rows
+                cbPlan.Items.Add(CStr(row("IDPLAN")))
+            Next
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar comboBox con los planes a los que se puede asignar el equipo " & IdEquipo & "." & vbCrLf _
+                            & ex.Message.ToString)
+        End Try
 
         'Enlacebin()
 
@@ -79,13 +101,13 @@
 
         Dim dtActXPlan As DataTable
         'Dim comando As System.Data.SqlClient.SqlCommand
-        Dim sql, query As String
+        Dim sql As String
 
         If Not (cbPlan.Text = "") Then
             MessageBox.Show("Asignamos el equipo " + IdEquipo + " " + NombreEquipo + " al plan " + Trim(cbPlan.Text) + " con fecha de inicio " + dtpFInicio.Value.ToString)
 
             ' Obtenemos un dataSet con las actividades del plan mostrado en cbPlan.text
-            sql = "SELECT DISTINCT ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE, FRECUENCIAS.DIAS, PLANTILLAS.IDPLAN, PLANTILLAS.IDPLANTILLA " _
+            sql = "SELECT DISTINCT PLANTILLAS.IDACTIVIDAD, ACTIVIDADES.NOMBRE, FRECUENCIAS.DIAS, PLANTILLAS.IDPLAN " _
                 & "FROM ACTIVIDADES INNER JOIN FRECUENCIAS " _
                 & "ON ACTIVIDADES.IDFRECUENCIA=FRECUENCIAS.DESCRIPCION " _
                 & "INNER JOIN PLANTILLAS " _
@@ -95,7 +117,7 @@
 
             dtActXPlan = ClasAddPlan.consultaAux(sql, "ACTIVIDADES")
             'MessageBox.Show(sql)
-            'Clipboard.SetText(sql)
+            Clipboard.SetText(sql)
 
             ' Hallamos el IdPlantilla de la plantilla mostrada en cbPlan.Text
 

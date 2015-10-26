@@ -29,6 +29,14 @@ Public Class FrmEquipos
 
         FEquipos = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub Limpiabinding()
@@ -481,9 +489,11 @@ Public Class FrmEquipos
         Dim daP As New System.Data.SqlClient.SqlDataAdapter
         Dim bsPlanes As New BindingSource
 
-        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, PLANESGMAO.FechaInicio " _
+        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, PLANESGMAO.FechaInicio, ACTIVIDADES.NOMBRE " _
             & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
-            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " _
+            & "ON PLANESGMAO.IDPLAN=PLANTILLAS.IDPLAN " _
+            & "INNER JOIN ACTIVIDADES " _
+            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
             & "WHERE PLANTILLAS.IDEQUIPO LIKE '" + txt_ID.Text + "%' "
 
         Clipboard.SetText(sql)

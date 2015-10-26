@@ -31,9 +31,9 @@ Partial Class FrmGMAO
         Dim Label4 As System.Windows.Forms.Label
         Dim Label5 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmGMAO))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
@@ -56,10 +56,11 @@ Partial Class FrmGMAO
         Me.dgvSecc = New System.Windows.Forms.DataGridView()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.dgvActiv = New System.Windows.Forms.DataGridView()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgvEquip = New System.Windows.Forms.DataGridView()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.txt_NumPlantilla = New System.Windows.Forms.TextBox()
         EQUIPOLabel = New System.Windows.Forms.Label()
         IDPLANLabel = New System.Windows.Forms.Label()
         ACTIVIDADLabel = New System.Windows.Forms.Label()
@@ -73,10 +74,10 @@ Partial Class FrmGMAO
         CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
         CType(Me.dgvActiv, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
         CType(Me.dgvEquip, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage5.SuspendLayout()
         Me.SuspendLayout()
         '
         'EQUIPOLabel
@@ -118,42 +119,38 @@ Partial Class FrmGMAO
         'Label2
         '
         Label2.AutoSize = True
-        Label2.Location = New System.Drawing.Point(79, 309)
+        Label2.Location = New System.Drawing.Point(9, 356)
         Label2.Name = "Label2"
         Label2.Size = New System.Drawing.Size(38, 13)
         Label2.TabIndex = 30
         Label2.Text = "FInicio"
-        Label2.Visible = False
         '
         'Label3
         '
         Label3.AutoSize = True
-        Label3.Location = New System.Drawing.Point(241, 309)
+        Label3.Location = New System.Drawing.Point(171, 356)
         Label3.Name = "Label3"
         Label3.Size = New System.Drawing.Size(59, 13)
         Label3.TabIndex = 31
         Label3.Text = "IDEQUIPO"
-        Label3.Visible = False
         '
         'Label4
         '
         Label4.AutoSize = True
-        Label4.Location = New System.Drawing.Point(241, 331)
+        Label4.Location = New System.Drawing.Point(171, 378)
         Label4.Name = "Label4"
         Label4.Size = New System.Drawing.Size(49, 13)
         Label4.TabIndex = 32
         Label4.Text = "IDACTIV"
-        Label4.Visible = False
         '
         'Label5
         '
         Label5.AutoSize = True
-        Label5.Location = New System.Drawing.Point(79, 331)
+        Label5.Location = New System.Drawing.Point(9, 378)
         Label5.Name = "Label5"
         Label5.Size = New System.Drawing.Size(34, 13)
         Label5.TabIndex = 35
         Label5.Text = "IDPM"
-        Label5.Visible = False
         '
         'btSalir
         '
@@ -162,7 +159,7 @@ Partial Class FrmGMAO
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(601, 436)
+        Me.btSalir.Location = New System.Drawing.Point(598, 563)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 12
@@ -321,28 +318,28 @@ Partial Class FrmGMAO
         '
         'txt_IDPM
         '
-        Me.txt_IDPM.Location = New System.Drawing.Point(152, 328)
+        Me.txt_IDPM.Location = New System.Drawing.Point(82, 375)
         Me.txt_IDPM.Name = "txt_IDPM"
         Me.txt_IDPM.Size = New System.Drawing.Size(42, 20)
         Me.txt_IDPM.TabIndex = 34
         '
         'txt_FIni
         '
-        Me.txt_FIni.Location = New System.Drawing.Point(152, 306)
+        Me.txt_FIni.Location = New System.Drawing.Point(82, 353)
         Me.txt_FIni.Name = "txt_FIni"
         Me.txt_FIni.Size = New System.Drawing.Size(83, 20)
         Me.txt_FIni.TabIndex = 29
         '
         'txt_IDEQUIPO
         '
-        Me.txt_IDEQUIPO.Location = New System.Drawing.Point(306, 306)
+        Me.txt_IDEQUIPO.Location = New System.Drawing.Point(236, 353)
         Me.txt_IDEQUIPO.Name = "txt_IDEQUIPO"
         Me.txt_IDEQUIPO.Size = New System.Drawing.Size(42, 20)
         Me.txt_IDEQUIPO.TabIndex = 28
         '
         'txt_IDACTIV
         '
-        Me.txt_IDACTIV.Location = New System.Drawing.Point(306, 328)
+        Me.txt_IDACTIV.Location = New System.Drawing.Point(236, 375)
         Me.txt_IDACTIV.Name = "txt_IDACTIV"
         Me.txt_IDACTIV.Size = New System.Drawing.Size(42, 20)
         Me.txt_IDACTIV.TabIndex = 27
@@ -351,24 +348,23 @@ Partial Class FrmGMAO
         '
         Me.dgvSecc.AllowUserToAddRows = False
         Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvSecc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvSecc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvSecc.Location = New System.Drawing.Point(3, 3)
+        Me.dgvSecc.Location = New System.Drawing.Point(3, 0)
         Me.dgvSecc.Name = "dgvSecc"
         Me.dgvSecc.ReadOnly = True
         Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSecc.Size = New System.Drawing.Size(687, 114)
+        Me.dgvSecc.Size = New System.Drawing.Size(687, 227)
         Me.dgvSecc.TabIndex = 15
         '
         'TabControl1
         '
-        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
@@ -376,7 +372,7 @@ Partial Class FrmGMAO
         Me.TabControl1.Location = New System.Drawing.Point(0, 284)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(701, 146)
+        Me.TabControl1.Size = New System.Drawing.Size(701, 265)
         Me.TabControl1.TabIndex = 36
         '
         'TabPage1
@@ -385,38 +381,17 @@ Partial Class FrmGMAO
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(693, 120)
+        Me.TabPage1.Size = New System.Drawing.Size(693, 239)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Actividades Plan"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.dgvEquip)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(693, 120)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Equipos Plan"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'TabPage5
-        '
-        Me.TabPage5.Controls.Add(Me.dgvSecc)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(693, 120)
-        Me.TabPage5.TabIndex = 2
-        Me.TabPage5.Text = "Todos"
-        Me.TabPage5.UseVisualStyleBackColor = True
         '
         'dgvActiv
         '
         Me.dgvActiv.AllowUserToAddRows = False
         Me.dgvActiv.AllowUserToDeleteRows = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.LightGray
-        Me.dgvActiv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray
+        Me.dgvActiv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvActiv.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -426,15 +401,26 @@ Partial Class FrmGMAO
         Me.dgvActiv.Name = "dgvActiv"
         Me.dgvActiv.ReadOnly = True
         Me.dgvActiv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvActiv.Size = New System.Drawing.Size(687, 114)
+        Me.dgvActiv.Size = New System.Drawing.Size(687, 230)
         Me.dgvActiv.TabIndex = 16
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.dgvEquip)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(693, 239)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Equipos Plan"
+        Me.TabPage2.UseVisualStyleBackColor = True
         '
         'dgvEquip
         '
         Me.dgvEquip.AllowUserToAddRows = False
         Me.dgvEquip.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray
-        Me.dgvEquip.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray
+        Me.dgvEquip.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvEquip.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -444,15 +430,33 @@ Partial Class FrmGMAO
         Me.dgvEquip.Name = "dgvEquip"
         Me.dgvEquip.ReadOnly = True
         Me.dgvEquip.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEquip.Size = New System.Drawing.Size(687, 114)
+        Me.dgvEquip.Size = New System.Drawing.Size(687, 230)
         Me.dgvEquip.TabIndex = 17
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.dgvSecc)
+        Me.TabPage5.Controls.Add(Me.txt_NumPlantilla)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Size = New System.Drawing.Size(693, 239)
+        Me.TabPage5.TabIndex = 2
+        Me.TabPage5.Text = "Todos"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'txt_NumPlantilla
+        '
+        Me.txt_NumPlantilla.Location = New System.Drawing.Point(318, 106)
+        Me.txt_NumPlantilla.Name = "txt_NumPlantilla"
+        Me.txt_NumPlantilla.Size = New System.Drawing.Size(72, 20)
+        Me.txt_NumPlantilla.TabIndex = 37
         '
         'FrmGMAO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(701, 484)
+        Me.ClientSize = New System.Drawing.Size(701, 611)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Label5)
         Me.Controls.Add(Me.txt_IDPM)
@@ -475,10 +479,11 @@ Partial Class FrmGMAO
         CType(Me.dgvSecc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage5.ResumeLayout(False)
         CType(Me.dgvActiv, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
         CType(Me.dgvEquip, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage5.ResumeLayout(False)
+        Me.TabPage5.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -509,4 +514,5 @@ Partial Class FrmGMAO
     Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
     Friend WithEvents dgvActiv As System.Windows.Forms.DataGridView
     Friend WithEvents dgvEquip As System.Windows.Forms.DataGridView
+    Friend WithEvents txt_NumPlantilla As System.Windows.Forms.TextBox
 End Class

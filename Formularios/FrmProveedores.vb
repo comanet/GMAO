@@ -12,25 +12,35 @@ Public Class FrmProveedores
 
     Public Sub fillCombo()
 
-        cnn.Open()
+        If Not (cbPais.Items.Count > 1) Then
+            cnn.Open()
 
-        ' Rellenamos los combos cbPais - cbProvincia - cbEspecialidad
-        dtPaises = ClasProveedores.consultaAux("SELECT NOMBREPAIS FROM PAIS ORDER BY NOMBREPAIS", "PAIS")
-        For Each row As DataRow In dtPaises.Rows
-            cbPais.Items.Add(CStr(row("NOMBREPAIS")))
-        Next
+            cbPais.Enabled = True
+            cbProvincia.Enabled = True
+            cbEspecialidad.Enabled = True
 
-        dtProvincias = ClasProveedores.consultaAux("SELECT NOMBREPROV FROM PROVINCIAS ORDER BY NOMBREPROV ASC", "PROVINCIAS")
-        For Each row As DataRow In dtProvincias.Rows
-            cbProvincia.Items.Add(CStr(row("NOMBREPROV")))
-        Next
+            ' Rellenamos los combos cbPais - cbProvincia - cbEspecialidad
+            dtPaises = ClasProveedores.consultaAux("SELECT NOMBREPAIS FROM PAIS ORDER BY NOMBREPAIS", "PAIS")
+            For Each row As DataRow In dtPaises.Rows
+                cbPais.Items.Add(CStr(row("NOMBREPAIS")))
+            Next
 
-        dtEspecialidad = ClasProveedores.consultaAux("SELECT NOMBRE FROM ESPECIALIDADES ORDER BY NOMBRE", "ESPECIALIDADES")
-        For Each row As DataRow In dtEspecialidad.Rows
-            cbEspecialidad.Items.Add(CStr(row("NOMBRE")))
-        Next
+            dtProvincias = ClasProveedores.consultaAux("SELECT NOMBREPROV FROM PROVINCIAS ORDER BY NOMBREPROV ASC", "PROVINCIAS")
+            For Each row As DataRow In dtProvincias.Rows
+                cbProvincia.Items.Add(CStr(row("NOMBREPROV")))
+            Next
 
-        cnn.Close()
+            dtEspecialidad = ClasProveedores.consultaAux("SELECT NOMBRE FROM ESPECIALIDADES ORDER BY NOMBRE", "ESPECIALIDADES")
+            For Each row As DataRow In dtEspecialidad.Rows
+                cbEspecialidad.Items.Add(CStr(row("NOMBRE")))
+            Next
+
+            cbPais.Enabled = False
+            cbProvincia.Enabled = False
+            cbEspecialidad.Enabled = False
+
+            cnn.Close()
+        End If
 
     End Sub
 
@@ -64,9 +74,6 @@ Public Class FrmProveedores
     End Sub
 
     Public Function validar_Mail(ByVal sMail As String) As Boolean
-
-        '' Devuelve true o false   
-        'Return Regex.IsMatch(sMail, "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$")
 
         Dim re As Regex = New Regex("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", RegexOptions.IgnoreCase)
         Dim m As Match = re.Match(txt_Email.Text)
@@ -147,6 +154,14 @@ Public Class FrmProveedores
 
         FProveedores = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub Limpiabinding()
@@ -192,7 +207,7 @@ Public Class FrmProveedores
     Private Sub FrmProveedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         fillCombo()
-        ClasProveedores.ConsultaProveedores("SELECT * FROM PROVEEDOR")
+        ClasProveedores.ConsultaProveedores("SELECT * FROM PROVEEDORES")
         dgvProv.DataSource = ClasProveedores.bsProveedores
         dgvProv.AutoGenerateColumns = True
         dgvProv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
@@ -224,7 +239,7 @@ Public Class FrmProveedores
             Try
                 valor = txt_ID.Text
                 Limpiabinding()
-                ClasProveedores.Eliminar("PROVEEDOR", "IDPROVEEDOR = " & "'" & valor & "'")
+                ClasProveedores.Eliminar("PROVEEDORES", "IDPROVEEDOR = " & "'" & valor & "'")
                 Actualizar()
             Catch ex As Exception
                 MessageBox.Show("Error " & ex.Message)
@@ -287,7 +302,7 @@ Public Class FrmProveedores
 
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasProveedores.InsertaProveedores("Insert Into PROVEEDOR(NOMBRE, ESPECIALIDAD, DIRECCION, POBLACION, PROVINCIA, PAIS, TELEFONO, WEB, EMAIL, CPOSTAL)" & _
+                    If ClasProveedores.InsertaProveedores("Insert Into PROVEEDORES(NOMBRE, ESPECIALIDAD, DIRECCION, POBLACION, PROVINCIA, PAIS, TELEFONO, WEB, EMAIL, CPOSTAL)" & _
                                                    "values(" & "'" & Me.txt_Nombre.Text & "'" & "," & "'" & Me.cbEspecialidad.Text &
                                                    "'" & "," & "'" & Me.txt_Direccion.Text & "'" & "," & "'" & Me.txt_Poblacion.Text &
                                                    "'" & "," & "'" & Me.cbProvincia.Text & "'" & "," & "'" & Me.cbPais.Text &
@@ -322,7 +337,7 @@ Public Class FrmProveedores
 
             End If
         ElseIf tipoOperacion = "M" Then
-            If ClasProveedores.actualizar("PROVEEDOR", "NOMBRE = " + "'" + txt_Nombre.Text + "'" + "," + "ESPECIALIDAD =" + "'" + cbEspecialidad.Text + "'" + "," + "DIRECCION= " + "'" + txt_Direccion.Text + "'" + "," + "POBLACION= " + "'" + txt_Poblacion.Text +
+            If ClasProveedores.actualizar("PROVEEDORES", "NOMBRE = " + "'" + txt_Nombre.Text + "'" + "," + "ESPECIALIDAD =" + "'" + cbEspecialidad.Text + "'" + "," + "DIRECCION= " + "'" + txt_Direccion.Text + "'" + "," + "POBLACION= " + "'" + txt_Poblacion.Text +
                                        "'" + "," + "PROVINCIA = " + "'" + cbProvincia.Text + "'" + "," + "PAIS= " + "'" + cbPais.Text + "'" + "," + "TELEFONO = " + "'" + txt_Telefono.Text + "'" + "," + "WEB= " + "'" + txt_web.Text +
                                        "'" + "," + "EMAIL = " + "'" + txt_Email.Text + "'" + "," + "CPOSTAL= " + "'" + txt_CP.Text + "'", " IDPROVEEDOR= " + "'" + txt_ID.Text + "'") Then
 

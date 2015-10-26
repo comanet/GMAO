@@ -49,6 +49,14 @@ Public Class FrmEspecialidades
 
         FEspecialidades = Nothing
 
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
+        Catch ex As Exception
+            errorConn = ex.Message.ToString
+        End Try
+
     End Sub
 
     Private Sub Enlacebin()

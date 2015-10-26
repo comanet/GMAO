@@ -169,7 +169,7 @@ Partial Class FrmFrecuencias
         Me.btSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btSalir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSalir.ForeColor = System.Drawing.Color.White
-        Me.btSalir.Location = New System.Drawing.Point(592, 352)
+        Me.btSalir.Location = New System.Drawing.Point(592, 422)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(91, 36)
         Me.btSalir.TabIndex = 12
@@ -238,7 +238,7 @@ Partial Class FrmFrecuencias
         Me.dgvSecc.Name = "dgvSecc"
         Me.dgvSecc.ReadOnly = True
         Me.dgvSecc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSecc.Size = New System.Drawing.Size(695, 133)
+        Me.dgvSecc.Size = New System.Drawing.Size(695, 203)
         Me.dgvSecc.TabIndex = 22
         '
         'IDFRECUENCIA
@@ -273,7 +273,7 @@ Partial Class FrmFrecuencias
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(695, 400)
+        Me.ClientSize = New System.Drawing.Size(695, 470)
         Me.Controls.Add(Me.dgvSecc)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.GroupBox1)

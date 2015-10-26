@@ -24,12 +24,16 @@ Public Class clFrecuencias
 
         Dim i As Integer
 
-        cnn.Open()
         Dim query As String
+
+        cnn.Open()
+
         query = "SELECT COUNT(*) FROM FRECUENCIAS WHERE IDFRECUENCIA =" & "'" & valor & "'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
+
         cnn.Close()
+
         If i > 0 Then
             Return True
         Else
@@ -64,10 +68,12 @@ Public Class clFrecuencias
         Dim i As Integer
 
         cnn.Open()
+
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
         ' update evorh set evolucion = Lo he conseguido actulizar where 
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
 
         If i > 0 Then
@@ -80,13 +86,13 @@ Public Class clFrecuencias
 
     Public Function InsertaFrecuencia(ByVal query As String) As Boolean
 
-        cnn.Open()
-        comando = New SqlCommand(query, cnn)
-
-        'Dim comando As New SqlCommand(query, cnn)
         Dim i As Integer
 
+        cnn.Open()
+
+        comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery
+
         cnn.Close()
 
         If i > 0 Then
@@ -104,11 +110,14 @@ Public Class clFrecuencias
         Dim i As Integer
 
         cnn.Open()
+
         sql = "delete from " & tablas & " where " & condicion
         'MsgBox(sql)
         comando = New SqlCommand(sql, cnn)
         i = comando.ExecuteNonQuery()
+
         cnn.Close()
+
         If i > 0 Then
             Return True
         Else
