@@ -18,16 +18,17 @@ Module variables
     Public FGMAO As FrmGMAO = Nothing
     Public FProveedores As FrmProveedores = Nothing
     Public FAddEquipo As FrmAddEquipo = Nothing
+    Public FAddActividad As FrmAddActividad = Nothing
 
     Public IdEquipo As String = ""
     Public NombreEquipo As String = ""
     Public Seccion As String = ""
     Public NSerie As String = ""
     Public strIdPlan As String
+    Public IdPlantilla As Integer = 0
     Public ProxReg As Integer = 0
     Public errorConn As String = ""
-
-    Public enviadoPlan As Boolean = False
+    Public recarga As Boolean
 
     Public Sub Main()
         Application.EnableVisualStyles()

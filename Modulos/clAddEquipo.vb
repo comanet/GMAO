@@ -1,21 +1,11 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class clMantePlan
+Public Class clAddEquipo
 
-    Public dsMantePlan As New DataSet
-    Public daMantePlan As New SqlDataAdapter
+    Public dsAddEquipo As New DataSet
+    Public daAddEquipo As New SqlDataAdapter
     Public da As New SqlDataAdapter
-    Public bsMantePlan As New BindingSource
-
-    Public dsEquipos As New DataSet
-    Public daEquipos As New SqlDataAdapter
-    Public daEq As New SqlDataAdapter
-    Public bsEquipos As New BindingSource
-
-    Public dsActiv As New DataSet
-    Public daActiv As New SqlDataAdapter
-    Public daAct As New SqlDataAdapter
-    Public bsActiv As New BindingSource
+    Public bsAddEquipo As New BindingSource
 
     Private comando As SqlCommand
 
@@ -23,33 +13,9 @@ Public Class clMantePlan
 
         cnn.Open()
 
-        daMantePlan = New SqlDataAdapter(sql, cnn)
-        daMantePlan.Fill(dsMantePlan, "MANTEPLAN")
-        bsMantePlan.DataSource = dsMantePlan.Tables("MANTEPLAN")
-
-        cnn.Close()
-
-    End Sub
-
-    Public Sub ConsultaEquipos(ByVal sql As String)
-
-        cnn.Open()
-
-        daEquipos = New SqlDataAdapter(sql, cnn)
-        daEquipos.Fill(dsEquipos, "tbl_EQUIPOS")
-        bsEquipos.DataSource = dsEquipos.Tables("tbl_EQUIPOS")
-
-        cnn.Close()
-
-    End Sub
-
-    Public Sub ConsultaActividades(ByVal sql As String)
-
-        cnn.Open()
-
-        daActiv = New SqlDataAdapter(sql, cnn)
-        daActiv.Fill(dsActiv, "tbl_ACTIVIDADES")
-        bsActiv.DataSource = dsActiv.Tables("tbl_ACTIVIDADES")
+        daAddEquipo = New SqlDataAdapter(sql, cnn)
+        daAddEquipo.Fill(dsAddEquipo, "EQUIPOS")
+        bsAddEquipo.DataSource = dsAddEquipo.Tables("EQUIPOS")
 
         cnn.Close()
 
@@ -62,7 +28,7 @@ Public Class clMantePlan
         cnn.Open()
 
         Dim query As String
-        query = "SELECT COUNT(*) FROM MANTEPLAN WHERE IDPLAN LIKE " & "'" & valor & "%'"
+        query = "SELECT COUNT(*) FROM EQUIPOS WHERE IDPLAN LIKE " & "'" & valor & "%'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
 
@@ -73,20 +39,6 @@ Public Class clMantePlan
         Else
             Return False
         End If
-
-    End Function
-
-    Public Function CargaDoc_MantePlan(ByVal sql As String, ByVal tabla As String) As DataTable
-
-        Dim daMantePlan As SqlDataAdapter
-        Dim dts As New DataSet
-        Dim dt As New DataTable
-
-        daMantePlan = New SqlDataAdapter(sql, cnn)
-        daMantePlan.Fill(dts, tabla)
-        dt = dts.Tables(tabla)
-
-        Return dt
 
     End Function
 
@@ -113,7 +65,7 @@ Public Class clMantePlan
 
     End Function
 
-    Public Function InsertaMantePLan(ByVal query As String) As Boolean
+    Public Function InsertaEquipo(ByVal query As String) As Boolean
 
         Dim i As Integer
 

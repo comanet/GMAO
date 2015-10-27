@@ -25,11 +25,14 @@ Partial Class FrmMantePlan
         Dim DESCRIPCIONLabel As System.Windows.Forms.Label
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim IDMANTEPLANLabel As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMantePlan))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim LabelIDPLANTILLA As System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMantePlan))
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -39,28 +42,55 @@ Partial Class FrmMantePlan
         Me.tsbtnFiltro = New System.Windows.Forms.ToolStripButton()
         Me.TsbtnPrint = New System.Windows.Forms.ToolStripButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txt_IDPLANTILLA = New System.Windows.Forms.TextBox()
         Me.txt_DESCRIPCION = New System.Windows.Forms.TextBox()
         Me.txt_NOMBRE = New System.Windows.Forms.TextBox()
         Me.txt_ID = New System.Windows.Forms.TextBox()
         Me.btSalir = New System.Windows.Forms.Button()
-        Me.dgvmantep = New System.Windows.Forms.DataGridView()
-        Me.IDPLAN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btEquipos = New System.Windows.Forms.Button()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txt_Notas = New System.Windows.Forms.TextBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.dgvManteP = New System.Windows.Forms.DataGridView()
+        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+        Me.tsbAgregardoc = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbDeldoc = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.dgvEquipos = New System.Windows.Forms.DataGridView()
-        Me.btActividades = New System.Windows.Forms.Button()
+        Me.ToolStripIMG = New System.Windows.Forms.ToolStrip()
+        Me.tsbagreImg = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbdelimg = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbverimg = New System.Windows.Forms.ToolStripButton()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.dgvActividades = New System.Windows.Forms.DataGridView()
-        Me.txt_IDPLANTILLA = New System.Windows.Forms.TextBox()
+        Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         DESCRIPCIONLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
         IDMANTEPLANLabel = New System.Windows.Forms.Label()
         LabelIDPLANTILLA = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.dgvmantep, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.dgvManteP, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         CType(Me.dgvEquipos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStripIMG.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         CType(Me.dgvActividades, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
         'DESCRIPCIONLabel
@@ -89,6 +119,15 @@ Partial Class FrmMantePlan
         IDMANTEPLANLabel.Size = New System.Drawing.Size(52, 13)
         IDMANTEPLANLabel.TabIndex = 23
         IDMANTEPLANLabel.Text = "CODIGO:"
+        '
+        'LabelIDPLANTILLA
+        '
+        LabelIDPLANTILLA.AutoSize = True
+        LabelIDPLANTILLA.Location = New System.Drawing.Point(337, 29)
+        LabelIDPLANTILLA.Name = "LabelIDPLANTILLA"
+        LabelIDPLANTILLA.Size = New System.Drawing.Size(78, 13)
+        LabelIDPLANTILLA.TabIndex = 30
+        LabelIDPLANTILLA.Text = "IDPLANTILLA:"
         '
         'ToolStrip1
         '
@@ -190,6 +229,17 @@ Partial Class FrmMantePlan
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Planes de Mantenimiento"
         '
+        'txt_IDPLANTILLA
+        '
+        Me.txt_IDPLANTILLA.Enabled = False
+        Me.txt_IDPLANTILLA.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_IDPLANTILLA.Location = New System.Drawing.Point(432, 21)
+        Me.txt_IDPLANTILLA.MaxLength = 15
+        Me.txt_IDPLANTILLA.Name = "txt_IDPLANTILLA"
+        Me.txt_IDPLANTILLA.ReadOnly = True
+        Me.txt_IDPLANTILLA.Size = New System.Drawing.Size(183, 26)
+        Me.txt_IDPLANTILLA.TabIndex = 31
+        '
         'txt_DESCRIPCION
         '
         Me.txt_DESCRIPCION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
@@ -239,162 +289,429 @@ Partial Class FrmMantePlan
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
         '
-        'dgvmantep
+        'TabControl1
         '
-        Me.dgvmantep.AllowUserToAddRows = False
-        Me.dgvmantep.AllowUserToDeleteRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Beige
-        Me.dgvmantep.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvmantep.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvmantep.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvmantep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvmantep.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDPLAN, Me.NOMBRE, Me.DESCRIPCION})
-        Me.dgvmantep.Location = New System.Drawing.Point(0, 264)
-        Me.dgvmantep.Name = "dgvmantep"
-        Me.dgvmantep.ReadOnly = True
-        Me.dgvmantep.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvmantep.Size = New System.Drawing.Size(633, 107)
-        Me.dgvmantep.TabIndex = 24
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 264)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(609, 359)
+        Me.TabControl1.TabIndex = 29
         '
-        'IDPLAN
+        'TabPage1
         '
-        Me.IDPLAN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.IDPLAN.DataPropertyName = "IDPLAN"
-        Me.IDPLAN.HeaderText = "IDPLAN"
-        Me.IDPLAN.Name = "IDPLAN"
-        Me.IDPLAN.ReadOnly = True
-        Me.IDPLAN.Width = 71
+        Me.TabPage1.Controls.Add(Me.txt_Notas)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(601, 302)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Notas"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'NOMBRE
+        'txt_Notas
         '
-        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.NOMBRE.DataPropertyName = "NOMBRE"
-        Me.NOMBRE.HeaderText = "NOMBRE"
-        Me.NOMBRE.Name = "NOMBRE"
-        Me.NOMBRE.ReadOnly = True
-        Me.NOMBRE.Width = 79
+        Me.txt_Notas.AcceptsReturn = True
+        Me.txt_Notas.AcceptsTab = True
+        Me.txt_Notas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txt_Notas.Location = New System.Drawing.Point(3, 3)
+        Me.txt_Notas.Multiline = True
+        Me.txt_Notas.Name = "txt_Notas"
+        Me.txt_Notas.ReadOnly = True
+        Me.txt_Notas.Size = New System.Drawing.Size(592, 293)
+        Me.txt_Notas.TabIndex = 13
         '
-        'DESCRIPCION
+        'TabPage2
         '
-        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
-        Me.DESCRIPCION.HeaderText = "DESCRIPCION"
-        Me.DESCRIPCION.Name = "DESCRIPCION"
-        Me.DESCRIPCION.ReadOnly = True
+        Me.TabPage2.Controls.Add(Me.dgvManteP)
+        Me.TabPage2.Controls.Add(Me.ToolStrip2)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(601, 302)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Plantillas"
+        Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'btEquipos
+        'dgvManteP
         '
-        Me.btEquipos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btEquipos.BackColor = System.Drawing.Color.DimGray
-        Me.btEquipos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btEquipos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btEquipos.ForeColor = System.Drawing.Color.White
-        Me.btEquipos.Location = New System.Drawing.Point(280, 629)
-        Me.btEquipos.Name = "btEquipos"
-        Me.btEquipos.Size = New System.Drawing.Size(244, 36)
-        Me.btEquipos.TabIndex = 25
-        Me.btEquipos.Text = "Añadir &Equipo a la Plantilla "
-        Me.btEquipos.UseVisualStyleBackColor = False
+        Me.dgvManteP.AllowUserToAddRows = False
+        Me.dgvManteP.AllowUserToDeleteRows = False
+        Me.dgvManteP.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvManteP.BackgroundColor = System.Drawing.Color.White
+        Me.dgvManteP.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvManteP.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.dgvManteP.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvManteP.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
+        Me.dgvManteP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvManteP.Cursor = System.Windows.Forms.Cursors.IBeam
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvManteP.DefaultCellStyle = DataGridViewCellStyle14
+        Me.dgvManteP.EnableHeadersVisualStyles = False
+        Me.dgvManteP.GridColor = System.Drawing.Color.White
+        Me.dgvManteP.Location = New System.Drawing.Point(3, 31)
+        Me.dgvManteP.MultiSelect = False
+        Me.dgvManteP.Name = "dgvManteP"
+        Me.dgvManteP.ReadOnly = True
+        Me.dgvManteP.RowHeadersVisible = False
+        Me.dgvManteP.RowHeadersWidth = 40
+        Me.dgvManteP.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.dgvManteP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvManteP.Size = New System.Drawing.Size(592, 265)
+        Me.dgvManteP.TabIndex = 2
+        '
+        'ToolStrip2
+        '
+        Me.ToolStrip2.BackColor = System.Drawing.Color.White
+        Me.ToolStrip2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbAgregardoc, Me.ToolStripSeparator3, Me.tsbDeldoc, Me.ToolStripSeparator2, Me.ToolStripButton2})
+        Me.ToolStrip2.Location = New System.Drawing.Point(3, 3)
+        Me.ToolStrip2.Name = "ToolStrip2"
+        Me.ToolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ToolStrip2.Size = New System.Drawing.Size(595, 25)
+        Me.ToolStrip2.TabIndex = 1
+        Me.ToolStrip2.Text = "ToolStrip2"
+        '
+        'tsbAgregardoc
+        '
+        Me.tsbAgregardoc.AutoSize = False
+        Me.tsbAgregardoc.BackColor = System.Drawing.Color.DimGray
+        Me.tsbAgregardoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.tsbAgregardoc.ForeColor = System.Drawing.Color.White
+        Me.tsbAgregardoc.Image = CType(resources.GetObject("tsbAgregardoc.Image"), System.Drawing.Image)
+        Me.tsbAgregardoc.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbAgregardoc.Name = "tsbAgregardoc"
+        Me.tsbAgregardoc.Size = New System.Drawing.Size(53, 22)
+        Me.tsbAgregardoc.Text = "Agregar"
+        Me.tsbAgregardoc.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'tsbDeldoc
+        '
+        Me.tsbDeldoc.AutoSize = False
+        Me.tsbDeldoc.BackColor = System.Drawing.Color.DimGray
+        Me.tsbDeldoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.tsbDeldoc.Enabled = False
+        Me.tsbDeldoc.ForeColor = System.Drawing.Color.White
+        Me.tsbDeldoc.Image = CType(resources.GetObject("tsbDeldoc.Image"), System.Drawing.Image)
+        Me.tsbDeldoc.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbDeldoc.Name = "tsbDeldoc"
+        Me.tsbDeldoc.Size = New System.Drawing.Size(53, 22)
+        Me.tsbDeldoc.Text = "Eliminar"
+        Me.tsbDeldoc.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.AutoSize = False
+        Me.ToolStripButton2.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton2.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton2.Text = "Ver"
+        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.dgvEquipos)
+        Me.TabPage3.Controls.Add(Me.ToolStripIMG)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(601, 302)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Equipos"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
         'dgvEquipos
         '
         Me.dgvEquipos.AllowUserToAddRows = False
         Me.dgvEquipos.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Beige
-        Me.dgvEquipos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvEquipos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.dgvEquipos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvEquipos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvEquipos.Location = New System.Drawing.Point(0, 377)
+        Me.dgvEquipos.BackgroundColor = System.Drawing.Color.White
+        Me.dgvEquipos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvEquipos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.dgvEquipos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvEquipos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle15
+        Me.dgvEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvEquipos.Cursor = System.Windows.Forms.Cursors.IBeam
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvEquipos.DefaultCellStyle = DataGridViewCellStyle16
+        Me.dgvEquipos.EnableHeadersVisualStyles = False
+        Me.dgvEquipos.GridColor = System.Drawing.Color.White
+        Me.dgvEquipos.Location = New System.Drawing.Point(3, 28)
+        Me.dgvEquipos.MultiSelect = False
         Me.dgvEquipos.Name = "dgvEquipos"
         Me.dgvEquipos.ReadOnly = True
+        Me.dgvEquipos.RowHeadersVisible = False
+        Me.dgvEquipos.RowHeadersWidth = 40
+        Me.dgvEquipos.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.dgvEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEquipos.Size = New System.Drawing.Size(633, 114)
-        Me.dgvEquipos.TabIndex = 26
+        Me.dgvEquipos.Size = New System.Drawing.Size(595, 271)
+        Me.dgvEquipos.TabIndex = 3
         '
-        'btActividades
+        'ToolStripIMG
         '
-        Me.btActividades.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btActividades.BackColor = System.Drawing.Color.DimGray
-        Me.btActividades.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btActividades.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btActividades.ForeColor = System.Drawing.Color.White
-        Me.btActividades.Location = New System.Drawing.Point(30, 629)
-        Me.btActividades.Name = "btActividades"
-        Me.btActividades.Size = New System.Drawing.Size(244, 36)
-        Me.btActividades.TabIndex = 27
-        Me.btActividades.Text = "Añadir &Actividad a la Plantilla "
-        Me.btActividades.UseVisualStyleBackColor = False
+        Me.ToolStripIMG.BackColor = System.Drawing.Color.White
+        Me.ToolStripIMG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ToolStripIMG.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbagreImg, Me.ToolStripSeparator4, Me.tsbdelimg, Me.ToolStripSeparator5, Me.tsbverimg})
+        Me.ToolStripIMG.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripIMG.Name = "ToolStripIMG"
+        Me.ToolStripIMG.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ToolStripIMG.Size = New System.Drawing.Size(601, 25)
+        Me.ToolStripIMG.TabIndex = 2
+        Me.ToolStripIMG.Text = "ToolStrip3"
+        '
+        'tsbagreImg
+        '
+        Me.tsbagreImg.AutoSize = False
+        Me.tsbagreImg.BackColor = System.Drawing.Color.DimGray
+        Me.tsbagreImg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.tsbagreImg.ForeColor = System.Drawing.Color.White
+        Me.tsbagreImg.Image = CType(resources.GetObject("tsbagreImg.Image"), System.Drawing.Image)
+        Me.tsbagreImg.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbagreImg.Name = "tsbagreImg"
+        Me.tsbagreImg.Size = New System.Drawing.Size(53, 22)
+        Me.tsbagreImg.Text = "Agregar"
+        Me.tsbagreImg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'tsbdelimg
+        '
+        Me.tsbdelimg.AutoSize = False
+        Me.tsbdelimg.BackColor = System.Drawing.Color.DimGray
+        Me.tsbdelimg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.tsbdelimg.Enabled = False
+        Me.tsbdelimg.ForeColor = System.Drawing.Color.White
+        Me.tsbdelimg.Image = CType(resources.GetObject("tsbdelimg.Image"), System.Drawing.Image)
+        Me.tsbdelimg.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbdelimg.Name = "tsbdelimg"
+        Me.tsbdelimg.Size = New System.Drawing.Size(53, 22)
+        Me.tsbdelimg.Text = "Eliminar"
+        Me.tsbdelimg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
+        '
+        'tsbverimg
+        '
+        Me.tsbverimg.AutoSize = False
+        Me.tsbverimg.BackColor = System.Drawing.Color.DimGray
+        Me.tsbverimg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.tsbverimg.ForeColor = System.Drawing.Color.White
+        Me.tsbverimg.Image = CType(resources.GetObject("tsbverimg.Image"), System.Drawing.Image)
+        Me.tsbverimg.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbverimg.Name = "tsbverimg"
+        Me.tsbverimg.Size = New System.Drawing.Size(53, 22)
+        Me.tsbverimg.Text = "Ver"
+        Me.tsbverimg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.dgvActividades)
+        Me.TabPage4.Controls.Add(Me.ToolStrip3)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Size = New System.Drawing.Size(601, 333)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "Tareas"
+        Me.TabPage4.UseVisualStyleBackColor = True
         '
         'dgvActividades
         '
         Me.dgvActividades.AllowUserToAddRows = False
         Me.dgvActividades.AllowUserToDeleteRows = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Beige
-        Me.dgvActividades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
-        Me.dgvActividades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvActividades.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvActividades.Location = New System.Drawing.Point(0, 497)
+        Me.dgvActividades.BackgroundColor = System.Drawing.Color.White
+        Me.dgvActividades.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvActividades.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.dgvActividades.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvActividades.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
+        Me.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvActividades.Cursor = System.Windows.Forms.Cursors.IBeam
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvActividades.DefaultCellStyle = DataGridViewCellStyle18
+        Me.dgvActividades.EnableHeadersVisualStyles = false
+        Me.dgvActividades.GridColor = System.Drawing.Color.White
+        Me.dgvActividades.Location = New System.Drawing.Point(3, 28)
+        Me.dgvActividades.MultiSelect = false
         Me.dgvActividades.Name = "dgvActividades"
-        Me.dgvActividades.ReadOnly = True
+        Me.dgvActividades.ReadOnly = true
+        Me.dgvActividades.RowHeadersVisible = false
+        Me.dgvActividades.RowHeadersWidth = 40
+        Me.dgvActividades.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.dgvActividades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvActividades.Size = New System.Drawing.Size(633, 114)
-        Me.dgvActividades.TabIndex = 28
+        Me.dgvActividades.Size = New System.Drawing.Size(400, 119)
+        Me.dgvActividades.TabIndex = 3
         '
-        'txt_IDPLANTILLA
+        'ToolStrip3
         '
-        Me.txt_IDPLANTILLA.Enabled = False
-        Me.txt_IDPLANTILLA.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_IDPLANTILLA.Location = New System.Drawing.Point(432, 21)
-        Me.txt_IDPLANTILLA.MaxLength = 15
-        Me.txt_IDPLANTILLA.Name = "txt_IDPLANTILLA"
-        Me.txt_IDPLANTILLA.ReadOnly = True
-        Me.txt_IDPLANTILLA.Size = New System.Drawing.Size(183, 26)
-        Me.txt_IDPLANTILLA.TabIndex = 31
+        Me.ToolStrip3.BackColor = System.Drawing.Color.White
+        Me.ToolStrip3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripSeparator6, Me.ToolStripButton3, Me.ToolStripSeparator7, Me.ToolStripButton4})
+        Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip3.Name = "ToolStrip3"
+        Me.ToolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ToolStrip3.Size = New System.Drawing.Size(601, 25)
+        Me.ToolStrip3.TabIndex = 2
+        Me.ToolStrip3.Text = "ToolStrip3"
         '
-        'LabelIDPLANTILLA
+        'ToolStripButton1
         '
-        LabelIDPLANTILLA.AutoSize = True
-        LabelIDPLANTILLA.Location = New System.Drawing.Point(337, 29)
-        LabelIDPLANTILLA.Name = "LabelIDPLANTILLA"
-        LabelIDPLANTILLA.Size = New System.Drawing.Size(78, 13)
-        LabelIDPLANTILLA.TabIndex = 30
-        LabelIDPLANTILLA.Text = "IDPLANTILLA:"
+        Me.ToolStripButton1.AutoSize = false
+        Me.ToolStripButton1.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton1.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"),System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton1.Text = "Agregar"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.AutoSize = false
+        Me.ToolStripButton3.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton3.Enabled = false
+        Me.ToolStripButton3.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"),System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton3.Text = "Eliminar"
+        Me.ToolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton4
+        '
+        Me.ToolStripButton4.AutoSize = false
+        Me.ToolStripButton4.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton4.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"),System.Drawing.Image)
+        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        Me.ToolStripButton4.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton4.Text = "Ver"
+        Me.ToolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         '
         'FrmMantePlan
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(633, 677)
-        Me.Controls.Add(Me.dgvActividades)
-        Me.Controls.Add(Me.btActividades)
-        Me.Controls.Add(Me.dgvEquipos)
-        Me.Controls.Add(Me.btEquipos)
-        Me.Controls.Add(Me.dgvmantep)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btSalir)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.KeyPreview = True
+        Me.KeyPreview = true
         Me.Name = "FrmMantePlan"
         Me.Text = "Planes de Mantenimiento"
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        CType(Me.dgvmantep, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvEquipos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvActividades, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(false)
+        Me.ToolStrip1.PerformLayout
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox1.PerformLayout
+        Me.TabControl1.ResumeLayout(false)
+        Me.TabPage1.ResumeLayout(false)
+        Me.TabPage1.PerformLayout
+        Me.TabPage2.ResumeLayout(false)
+        Me.TabPage2.PerformLayout
+        CType(Me.dgvManteP,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ToolStrip2.ResumeLayout(false)
+        Me.ToolStrip2.PerformLayout
+        Me.TabPage3.ResumeLayout(false)
+        Me.TabPage3.PerformLayout
+        CType(Me.dgvEquipos,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ToolStripIMG.ResumeLayout(false)
+        Me.ToolStripIMG.PerformLayout
+        Me.TabPage4.ResumeLayout(false)
+        Me.TabPage4.PerformLayout
+        CType(Me.dgvActividades,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ToolStrip3.ResumeLayout(false)
+        Me.ToolStrip3.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents tsNew As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsEdit As System.Windows.Forms.ToolStripButton
@@ -408,13 +725,32 @@ Partial Class FrmMantePlan
     Friend WithEvents txt_NOMBRE As System.Windows.Forms.TextBox
     Friend WithEvents txt_ID As System.Windows.Forms.TextBox
     Friend WithEvents btSalir As System.Windows.Forms.Button
-    Friend WithEvents dgvmantep As System.Windows.Forms.DataGridView
-    Friend WithEvents IDPLAN As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btEquipos As System.Windows.Forms.Button
-    Friend WithEvents dgvEquipos As System.Windows.Forms.DataGridView
-    Friend WithEvents btActividades As System.Windows.Forms.Button
-    Friend WithEvents dgvActividades As System.Windows.Forms.DataGridView
     Friend WithEvents txt_IDPLANTILLA As System.Windows.Forms.TextBox
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents txt_Notas As System.Windows.Forms.TextBox
+    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents dgvManteP As System.Windows.Forms.DataGridView
+    Friend WithEvents ToolStrip2 As System.Windows.Forms.ToolStrip
+    Friend WithEvents tsbAgregardoc As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents tsbDeldoc As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+    Friend WithEvents dgvEquipos As System.Windows.Forms.DataGridView
+    Friend WithEvents ToolStripIMG As System.Windows.Forms.ToolStrip
+    Friend WithEvents tsbagreImg As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents tsbdelimg As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents tsbverimg As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
+    Friend WithEvents dgvActividades As System.Windows.Forms.DataGridView
+    Friend WithEvents ToolStrip3 As System.Windows.Forms.ToolStrip
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
 End Class

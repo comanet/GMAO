@@ -37,12 +37,26 @@ Public Class FrmMantePlan
 
     End Sub
 
+    Public Sub limpiaDataGrid()
+
+        dgvManteP.DataSource = Nothing
+        dgvManteP.Rows.Clear()
+        dgvEquipos.DataSource = Nothing
+        dgvEquipos.Rows.Clear()
+        dgvActividades.DataSource = Nothing
+        dgvActividades.Rows.Clear()
+        'Recarga formulario
+        'FrmMantePlan_Load(Me, New System.EventArgs)
+
+    End Sub
+
     Private Sub FrmMantePlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        dgvmantep.DataSource = Nothing
-        ClasMantePlan.ConsultaMantePlan("SELECT * FROM MANTEPLAN ORDER BY IDPLAN ASC")
-        dgvmantep.DataSource = ClasMantePlan.bsMantePlan
-        dgvmantep.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        limpiaDataGrid()
+
+        ClasMantePlan.ConsultaMantePlan("SELECT DISTINCT * FROM MANTEPLAN")
+        dgvManteP.DataSource = ClasMantePlan.bsMantePlan
+        dgvManteP.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
@@ -60,29 +74,27 @@ Public Class FrmMantePlan
     Private Sub Enlacebin()
 
         Me.txt_ID.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "IDPLAN")
-        'Me.txt_IDPLANTILLA.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "IDPLANTILLA")
         Me.txt_NOMBRE.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "NOMBRE")
         Me.txt_DESCRIPCION.DataBindings.Add("text", ClasMantePlan.bsMantePlan, "DESCRIPCION")
-
-        Me.txt_ID.Text = Trim(Me.txt_ID.Text)
-        Me.txt_NOMBRE.Text = Trim(Me.txt_NOMBRE.Text)
-        Me.txt_DESCRIPCION.Text = Trim(Me.txt_DESCRIPCION.Text)
+        strIdPlan = txt_ID.Text
 
     End Sub
 
     Public Sub Actualizar(Optional ByVal bCargar As Boolean = True) ' Se utiliza para limpiar el datagridview y refrescar los datos modificados.
 
         '*** Actualizar y guardar cambios
-        'Me.txt_ID.Text = Trim(Me.txt_ID.Text)
-        'Me.txt_IDPLANTILLA.Text = Trim(Me.txt_IDPLANTILLA.Text)
-        'Me.txt_NOMBRE.Text = Trim(Me.txt_NOMBRE.Text)
-        'Me.txt_DESCRIPCION.Text = Trim(Me.txt_DESCRIPCION.Text)
 
-        If Not ClasMantePlan.bsMantePlan Is Nothing Then
+        If Not (ClasMantePlan.bsMantePlan Is Nothing) And (ClasMantePlan.bsActiv Is Nothing) And (ClasMantePlan.bsActiv Is Nothing) Then
             ClasMantePlan.daMantePlan.Update(CType(ClasMantePlan.bsMantePlan.DataSource, DataTable))
+            ClasMantePlan.daEquipos.Update(CType(ClasMantePlan.bsEquipos.DataSource, DataTable))
+            ClasMantePlan.daActiv.Update(CType(ClasMantePlan.bsActiv.DataSource, DataTable))
             If bCargar Then
-                dgvmantep.Refresh()
+                dgvManteP.Refresh()
                 ClasMantePlan.dsMantePlan.Tables.Clear()
+                dgvEquipos.Refresh()
+                ClasMantePlan.dsEquipos.Tables.Clear()
+                dgvActividades.Refresh()
+                ClasMantePlan.dsActiv.Tables.Clear()
                 FrmMantePlan_Load(Me, New System.EventArgs)
             End If
         End If
@@ -95,7 +107,7 @@ Public Class FrmMantePlan
 
         If MessageBox.Show("¿Esta seguro de que desea Eliminar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
             Try
-                valor = txt_ID.Text
+                valor = Trim(txt_ID.Text)
                 Limpiabinding()
                 ClasMantePlan.Eliminar("MANTEPLAN", "IDPLAN LIKE " & "'" & valor & "%'")
                 Actualizar()
@@ -121,7 +133,7 @@ Public Class FrmMantePlan
         Me.txt_DESCRIPCION.Text = ""
         Me.txt_NOMBRE.Text = ""
 
-        Me.txt_ID.ReadOnly = False
+        'Me.txt_ID.ReadOnly = False
         Me.txt_DESCRIPCION.ReadOnly = False
         Me.txt_NOMBRE.ReadOnly = False
 
@@ -135,9 +147,6 @@ Public Class FrmMantePlan
     Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
 
         Dim query As String
-
-        btEquipos.Enabled = False
-        btActividades.Enabled = False
 
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             'ANTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
@@ -178,9 +187,9 @@ Public Class FrmMantePlan
             End If
         Else
             If tipoOperacion = "M" Then
-                'If ClasMantePlan.actualizar("MANTEPLAN", "IDPLAN = " + "'" + txt_ID.Text + "'" + "," + "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION = " + "'" + txt_DESCRIPCION.Text + "'", " IDPLAN= " + "'" + txt_ID.Text + "'") Then
-
-                Actualizar()
+                query = "IDPLAN = " + "'" + txt_ID.Text + "'" + "," + "NOMBRE = " + "'" + txt_NOMBRE.Text + "'" + "," + "DESCRIPCION = " + "'" + txt_DESCRIPCION.Text + "'"
+                'MessageBox.Show(query)
+                If ClasMantePlan.actualizar("MANTEPLAN", query, " IDPLAN LIKE " + "'" + Trim(txt_ID.Text) + "%'") Then Actualizar()
                 Me.txt_ID.ReadOnly = True
                 Me.txt_DESCRIPCION.ReadOnly = True
                 Me.txt_NOMBRE.ReadOnly = True
@@ -200,16 +209,13 @@ Public Class FrmMantePlan
             errorConn = ex.Message.ToString
         End Try
 
-        btEquipos.Enabled = True
-        btActividades.Enabled = True
-
     End Sub
 
     Private Sub tsEdit_Click(sender As Object, e As EventArgs) Handles tsEdit.Click
 
         Limpiabinding()
 
-        Me.txt_ID.ReadOnly = False
+        'Me.txt_ID.ReadOnly = False
         Me.txt_DESCRIPCION.ReadOnly = False
         Me.txt_NOMBRE.ReadOnly = False
 
@@ -222,19 +228,20 @@ Public Class FrmMantePlan
 
     Private Sub txt_ID_TextChanged(sender As Object, e As EventArgs) Handles txt_ID.TextChanged
 
-        Dim consulta As String
-        Dim numLineas As String
-        Dim datos As DataTable
+        cargaGrids()
 
-        strIdPlan = txt_ID.Text
+    End Sub
+
+    Private Sub cargaGrids()
+
+        Dim consulta As String
+
+        strIdPlan = Trim(txt_ID.Text)
 
         dgvEquipos.DataSource = Nothing
+        dgvEquipos.Rows.Clear()
         dgvActividades.DataSource = Nothing
-
-        btEquipos.Text = "Añadir &Equipo a la Plantilla " & Trim(strIdPlan)
-        btEquipos.TextAlign = ContentAlignment.MiddleCenter
-        btActividades.Text = "Añadir &Actividad a la Plantilla " & Trim(strIdPlan)
-        btActividades.TextAlign = ContentAlignment.MiddleCenter
+        dgvActividades.Rows.Clear()
 
         consulta = "SELECT DISTINCT EQUIPOS.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo  " _
             & "FROM EQUIPOS INNER JOIN PLANTILLAS " _
@@ -243,16 +250,13 @@ Public Class FrmMantePlan
             & "ORDER BY NombreEquipo ASC"
 
         dgvEquipos.AutoGenerateColumns = True
-        datos = ClasMantePlan.consultaAux(consulta, "EQUIPOS_PLAN")
-        dgvEquipos.DataSource = datos
+        dgvEquipos.DataSource = ClasMantePlan.consultaAux(consulta, "EQUIPOS_PLAN")
         dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
-        numLineas = datos.Rows.Count
-        'MessageBox.Show(numLineas.ToString)
+        IdEquipo = dgvEquipos.SelectedCells.ToString
+        'MessageBox.Show(IdEquipo)
 
-        If (numLineas > 0) Then
-            IdEquipo = dgvEquipos.CurrentCell.Value.ToString
-            consulta = "SELECT ACTIVIDADES.NOMBRE AS NombreActividad " _
+        consulta = "SELECT ACTIVIDADES.NOMBRE AS NombreActividad " _
                 & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " _
                 & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
                 & "INNER JOIN EQUIPOS " _
@@ -261,26 +265,15 @@ Public Class FrmMantePlan
                 & "AND EQUIPOS.IDEQUIPO LIKE '" & Trim(IdEquipo) & "%' " _
                 & "ORDER BY IDPLAN ASC"
 
-            'MessageBox.Show(dgvEquipos.CurrentCell.Value.ToString)
-            dgvActividades.AutoGenerateColumns = True
-            dgvActividades.DataSource = ClasMantePlan.consultaAux(consulta, "ACTIVIDADES_PLAN")
-            dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-        End If
+        dgvActividades.AutoGenerateColumns = True
+        dgvActividades.DataSource = ClasMantePlan.consultaAux(consulta, "ACTIVIDADES_PLAN")
+        dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
     End Sub
 
-    Private Sub btEquipos_Click(sender As Object, e As EventArgs) Handles btEquipos.Click
+    Private Sub btEquipos_Click(sender As Object, e As EventArgs)
 
-        If (dgvmantep.RowCount > 0) Then
-            enviadoPlan = True
 
-            If (FAddEquipo Is Nothing) Then
-                FAddEquipo = New FrmAddEquipo()
-                FAddEquipo.ShowDialog()
-            End If
-        Else
-            MessageBox.Show("Primero debe crear una plantilla.")
-        End If
 
     End Sub
 
@@ -288,6 +281,38 @@ Public Class FrmMantePlan
 
         txt_ID.SelectionStart = 0
         txt_ID.SelectionLength = 0
+
+    End Sub
+
+    Private Sub tsbagreImg_Click(sender As Object, e As EventArgs) Handles tsbagreImg.Click
+
+        strIdPlan = txt_ID.Text
+        recarga = True
+
+        If (dgvManteP.RowCount > 0) Then
+            If (FAddEquipo Is Nothing) Then
+                FAddEquipo = New FrmAddEquipo()
+                FAddEquipo.ShowDialog()
+            End If
+        Else
+            MessageBox.Show("Primero debe crear una plantilla para agregarle un equipo.")
+        End If
+
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+
+        strIdPlan = txt_ID.Text
+        recarga = True
+
+        If (dgvManteP.RowCount > 0) Then
+            If (FAddActividad Is Nothing) Then
+                FAddActividad = New FrmAddActividad()
+                FAddActividad.ShowDialog()
+            End If
+        Else
+            MessageBox.Show("Primero debe crear una plantilla para agregarle una actividad.")
+        End If
 
     End Sub
 End Class
