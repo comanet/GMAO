@@ -5,7 +5,6 @@ Public Class FrmMantePlan
     Public ClasMantePlan As New clMantePlan
 
     Dim tipoOperacion As String
-    Dim noMod As Boolean = False
 
     Private Sub FrmMantePlan_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
 
@@ -225,6 +224,7 @@ Public Class FrmMantePlan
         tsNew.Enabled = False
         tsDel.Enabled = False
         tipoOperacion = "M"
+        noMod = True
 
     End Sub
 
@@ -232,7 +232,7 @@ Public Class FrmMantePlan
 
         Dim sql As String
 
-        If noMod Then
+        If Not noMod Then
             sql = ""
             cargaGrids()
             TabControl1.SelectTab(TabEquipos)
@@ -258,7 +258,8 @@ Public Class FrmMantePlan
             & "WHERE IDPLAN LIKE '" & Trim(txt_ID.Text) & "%' "
 
         If dgvEquipos.RowCount > 1 Then
-            IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
+            IdEquipo = dgvEquipos.Rows(0).Cells(0).Value.ToString
             sql = sql & "AND IDEQUIPO LIKE '" & IdEquipo & "%' "
         Else
             IdEquipo = ""
@@ -266,7 +267,8 @@ Public Class FrmMantePlan
         End If
 
         If dgvActividades.RowCount > 1 Then
-            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            IdActividad = dgvActividades.Rows(0).Cells(0).Value.ToString
             sql = sql & "AND IDACTIVIDAD LIKE '" & IdActividad & "%' "
         Else
             IdActividad = ""
@@ -304,6 +306,7 @@ Public Class FrmMantePlan
         dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         If dgvEquipos.RowCount > 1 Then
+            'IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
             IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
             'MessageBox.Show(IdEquipo)
         Else
@@ -327,11 +330,13 @@ Public Class FrmMantePlan
         dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         If dgvActividades.RowCount > 1 Then
-            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(dgvActividades.CurrentCell.ColumnIndex).Value.ToString
+            'IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(dgvActividades.CurrentCell.ColumnIndex).Value.ToString
+            IdActividad = dgvActividades.Rows(0).Cells(0).Value.ToString
             'MessageBox.Show(IdActividad)
         Else
             IdActividad = ""
         End If
+        'MessageBox.Show("Numero de actividades a mostrar: " & ClasMantePlan.consultaAux(consulta, "ACTIVIDADES_PLAN").Rows.Count.ToString)
 
     End Sub
 
@@ -341,6 +346,7 @@ Public Class FrmMantePlan
         Dim consulta As String
 
         If dgvEquipos.RowCount > 1 Then
+            'IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
             IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
             'MessageBox.Show(IdActividad)
         Else
@@ -366,7 +372,8 @@ Public Class FrmMantePlan
 
         If dgvActividades.RowCount > 1 Then
             'IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(dgvActividades.CurrentCell.ColumnIndex).Value.ToString
-            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            IdActividad = dgvActividades.Rows(0).Cells(0).Value.ToString
             'MessageBox.Show(IdActividad)
         Else
             IdActividad = Nothing
@@ -381,7 +388,8 @@ Public Class FrmMantePlan
         Dim consulta As String
 
         If dgvActividades.RowCount > 1 Then
-            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            IdActividad = dgvActividades.Rows(0).Cells(0).Value.ToString
             'MessageBox.Show(IdActividad)
         Else
             IdActividad = ""
@@ -412,7 +420,10 @@ Public Class FrmMantePlan
     Private Sub tsbagreImg_Click(sender As Object, e As EventArgs) Handles tsbAgreImg.Click
 
         strIdPlan = txt_ID.Text
+        'IdEquipo = dgvEquipos.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+        IdEquipo = dgvEquipos.Rows(0).Cells(0).Value.ToString
         recarga = True
+        noMod = True
 
         If (dgvManteP.RowCount > 0) Then
             If (FAddEquipo Is Nothing) Then
@@ -428,7 +439,9 @@ Public Class FrmMantePlan
     Private Sub tsbAgrTar_Click(sender As Object, e As EventArgs) Handles tsbAgrTar.Click
 
         strIdPlan = txt_ID.Text
+        IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
         recarga = True
+        noMod = True
 
         If (dgvManteP.RowCount > 0) Then
             If (FAddActividad Is Nothing) Then
@@ -450,6 +463,24 @@ Public Class FrmMantePlan
     Private Sub tsbVerImg_Click(sender As Object, e As EventArgs) Handles tsbVerImg.Click
 
         cargaIdPlantilla()
+
+    End Sub
+
+    Private Sub dgvEquipos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEquipos.CellContentClick
+
+        ' Actualiza contenido de dgvActividades
+        'IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
+        'MessageBox.Show("El equipo seleccionado es: " & IdEquipo)
+
+        cargaTareas()
+
+    End Sub
+
+    Private Sub dgvActividades_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvActividades.CellContentClick
+
+        ' Actualiza contenido de idActividad
+        IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+        'MessageBox.Show("La Actividad seleccionada es: " & IdActividad)
 
     End Sub
 End Class

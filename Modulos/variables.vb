@@ -30,6 +30,7 @@ Module variables
     Public ProxReg As Integer = 0
     Public errorConn As String = ""
     Public recarga As Boolean
+    Public noMod As Boolean = False
 
     Public Sub Main()
         Application.EnableVisualStyles()

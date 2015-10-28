@@ -69,6 +69,7 @@ Public Class FrmAddEquipo
 
         FAddEquipo = Nothing
         recarga = True
+        noMod = False
 
         Try
             If cnn.State = ConnectionState.Open Then

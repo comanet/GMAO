@@ -207,6 +207,7 @@ Public Class FrmProveedores
     Private Sub FrmProveedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         fillCombo()
+
         ClasProveedores.ConsultaProveedores("SELECT * FROM PROVEEDORES")
         dgvProv.DataSource = ClasProveedores.bsProveedores
         dgvProv.AutoGenerateColumns = True
