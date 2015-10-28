@@ -26,6 +26,7 @@ Module variables
     Public NSerie As String = ""
     Public strIdPlan As String
     Public IdPlantilla As Integer = 0
+    Public IdActividad As String = ""
     Public ProxReg As Integer = 0
     Public errorConn As String = ""
     Public recarga As Boolean

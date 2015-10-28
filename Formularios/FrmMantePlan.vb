@@ -5,6 +5,7 @@ Public Class FrmMantePlan
     Public ClasMantePlan As New clMantePlan
 
     Dim tipoOperacion As String
+    Dim noMod As Boolean = False
 
     Private Sub FrmMantePlan_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
 
@@ -45,8 +46,6 @@ Public Class FrmMantePlan
         dgvEquipos.Rows.Clear()
         dgvActividades.DataSource = Nothing
         dgvActividades.Rows.Clear()
-        'Recarga formulario
-        'FrmMantePlan_Load(Me, New System.EventArgs)
 
     End Sub
 
@@ -141,6 +140,7 @@ Public Class FrmMantePlan
         tsDel.Enabled = False
         tsSave.Enabled = True
         tipoOperacion = "A"
+        noMod = True
 
     End Sub
 
@@ -209,6 +209,8 @@ Public Class FrmMantePlan
             errorConn = ex.Message.ToString
         End Try
 
+        noMod = False
+
     End Sub
 
     Private Sub tsEdit_Click(sender As Object, e As EventArgs) Handles tsEdit.Click
@@ -228,12 +230,59 @@ Public Class FrmMantePlan
 
     Private Sub txt_ID_TextChanged(sender As Object, e As EventArgs) Handles txt_ID.TextChanged
 
-        cargaGrids()
+        Dim sql As String
+
+        If noMod Then
+            sql = ""
+            cargaGrids()
+            TabControl1.SelectTab(TabEquipos)
+
+            'Mostramos PLANTILLAS.IDPLANTILLA EN txt_IDPLANTILLA.Text
+
+            cargaIdPlantilla()
+
+            'strIndex = ClasMantePlan.consultaAux(sql, "IDPLANTILLA").Rows(0).Item(0).ToString
+        End If
+
+    End Sub
+
+    Public Sub cargaIdPlantilla()
+
+        ' Muestra el IdPlantilla según los datos mostrado en el FORM
+        Dim sql As String
+
+        'Mostramos PLANTILLAS.IDPLANTILLA EN txt_IDPLANTILLA.Text
+
+        sql = "SELECT IDPLANTILLA " _
+            & "FROM PLANTILLAS " _
+            & "WHERE IDPLAN LIKE '" & Trim(txt_ID.Text) & "%' "
+
+        If dgvEquipos.RowCount > 1 Then
+            IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
+            sql = sql & "AND IDEQUIPO LIKE '" & IdEquipo & "%' "
+        Else
+            IdEquipo = ""
+            sql = sql & "AND IDEQUIPO IS NULL "
+        End If
+
+        If dgvActividades.RowCount > 1 Then
+            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            sql = sql & "AND IDACTIVIDAD LIKE '" & IdActividad & "%' "
+        Else
+            IdActividad = ""
+            sql = sql & "AND IDACTIVIDAD IS NULL "
+        End If
+
+        sql = sql & "ORDER BY IDPLANTILLA DESC"
+
+        'Clipboard.SetText(sql)
+        'MessageBox.Show(sql)
 
     End Sub
 
     Private Sub cargaGrids()
 
+        ' Actualiza los dataGridView dgvEquipos y dgvActividades según IdPlantilla
         Dim consulta As String
 
         strIdPlan = Trim(txt_ID.Text)
@@ -243,6 +292,7 @@ Public Class FrmMantePlan
         dgvActividades.DataSource = Nothing
         dgvActividades.Rows.Clear()
 
+        ' EQUIPOS
         consulta = "SELECT DISTINCT EQUIPOS.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo  " _
             & "FROM EQUIPOS INNER JOIN PLANTILLAS " _
             & "ON EQUIPOS.IDEQUIPO=PLANTILLAS.IDEQUIPO " _
@@ -253,10 +303,15 @@ Public Class FrmMantePlan
         dgvEquipos.DataSource = ClasMantePlan.consultaAux(consulta, "EQUIPOS_PLAN")
         dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
-        IdEquipo = dgvEquipos.SelectedCells.ToString
-        'MessageBox.Show(IdEquipo)
+        If dgvEquipos.RowCount > 1 Then
+            IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'MessageBox.Show(IdEquipo)
+        Else
+            IdEquipo = ""
+        End If
 
-        consulta = "SELECT ACTIVIDADES.NOMBRE AS NombreActividad " _
+        ' ACTIVIDADES
+        consulta = "SELECT ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad " _
                 & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " _
                 & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
                 & "INNER JOIN EQUIPOS " _
@@ -265,15 +320,85 @@ Public Class FrmMantePlan
                 & "AND EQUIPOS.IDEQUIPO LIKE '" & Trim(IdEquipo) & "%' " _
                 & "ORDER BY IDPLAN ASC"
 
+        'Clipboard.SetText(consulta)
+        'MessageBox.Show(consulta)
         dgvActividades.AutoGenerateColumns = True
         dgvActividades.DataSource = ClasMantePlan.consultaAux(consulta, "ACTIVIDADES_PLAN")
         dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
+        If dgvActividades.RowCount > 1 Then
+            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(dgvActividades.CurrentCell.ColumnIndex).Value.ToString
+            'MessageBox.Show(IdActividad)
+        Else
+            IdActividad = ""
+        End If
+
     End Sub
 
-    Private Sub btEquipos_Click(sender As Object, e As EventArgs)
+    Public Sub cargaTareas()
 
+        ' Carga listado de las tareas de IdPlantilla e IdEquipo en el dataGridView dgvActividades
+        Dim consulta As String
 
+        If dgvEquipos.RowCount > 1 Then
+            IdEquipo = dgvEquipos.Rows(dgvEquipos.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'MessageBox.Show(IdActividad)
+        Else
+            IdEquipo = ""
+        End If
+        strIdPlan = Trim(txt_ID.Text)
+
+        ' ACTIVIDADES
+        consulta = "SELECT ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad " _
+                & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " _
+                & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
+                & "INNER JOIN EQUIPOS " _
+                & "ON EQUIPOS.IDEQUIPO=PLANTILLAS.IDEQUIPO " _
+                & "WHERE PLANTILLAS.IDPLAN LIKE '" & Trim(strIdPlan) & "%' " _
+                & "AND EQUIPOS.IDEQUIPO LIKE '" & Trim(IdEquipo) & "%' " _
+                & "ORDER BY IDPLAN ASC"
+
+        'Clipboard.SetText(consulta)
+        'MessageBox.Show(consulta)
+        dgvActividades.AutoGenerateColumns = True
+        dgvActividades.DataSource = ClasMantePlan.consultaAux(consulta, "ACTIVIDADES_PLAN")
+        dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+        If dgvActividades.RowCount > 1 Then
+            'IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(dgvActividades.CurrentCell.ColumnIndex).Value.ToString
+            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'MessageBox.Show(IdActividad)
+        Else
+            IdActividad = Nothing
+        End If
+
+    End Sub
+
+    Public Sub cargaEquipos()
+
+        ' Carga listado de los Equipos al cambiar IdPlantilla y IdActividad en el dataGridView dgvEquipos
+        ' ¡OJO! No se utiliza
+        Dim consulta As String
+
+        If dgvActividades.RowCount > 1 Then
+            IdActividad = dgvActividades.Rows(dgvActividades.CurrentCell.RowIndex).Cells(0).Value.ToString
+            'MessageBox.Show(IdActividad)
+        Else
+            IdActividad = ""
+        End If
+        strIdPlan = Trim(txt_ID.Text)
+
+        ' EQUIPOS
+        consulta = "SELECT DISTINCT EQUIPOS.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo  " _
+            & "FROM EQUIPOS INNER JOIN PLANTILLAS " _
+            & "ON EQUIPOS.IDEQUIPO=PLANTILLAS.IDEQUIPO " _
+            & "WHERE PLANTILLAS.IDPLAN LIKE '" & Trim(strIdPlan) & "%' " _
+            & "AND PLANTILLAS.IDACTIVIDAD LIKE '" & Trim(IdActividad.ToString) & "%' " _
+            & "ORDER BY NombreEquipo ASC"
+
+        dgvEquipos.AutoGenerateColumns = True
+        dgvEquipos.DataSource = ClasMantePlan.consultaAux(consulta, "EQUIPOS_PLAN")
+        dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
     End Sub
 
@@ -284,7 +409,7 @@ Public Class FrmMantePlan
 
     End Sub
 
-    Private Sub tsbagreImg_Click(sender As Object, e As EventArgs) Handles tsbagreImg.Click
+    Private Sub tsbagreImg_Click(sender As Object, e As EventArgs) Handles tsbAgreImg.Click
 
         strIdPlan = txt_ID.Text
         recarga = True
@@ -300,7 +425,7 @@ Public Class FrmMantePlan
 
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+    Private Sub tsbAgrTar_Click(sender As Object, e As EventArgs) Handles tsbAgrTar.Click
 
         strIdPlan = txt_ID.Text
         recarga = True
@@ -313,6 +438,18 @@ Public Class FrmMantePlan
         Else
             MessageBox.Show("Primero debe crear una plantilla para agregarle una actividad.")
         End If
+
+    End Sub
+
+    Private Sub dgvEquipos_RowLeave(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEquipos.RowLeave
+
+        cargaTareas()
+
+    End Sub
+
+    Private Sub tsbVerImg_Click(sender As Object, e As EventArgs) Handles tsbVerImg.Click
+
+        cargaIdPlantilla()
 
     End Sub
 End Class

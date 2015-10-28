@@ -61,7 +61,7 @@ Public Class FrmAddEquipo
         sql = "SELECT MAX(IDPLANTILLA) FROM PLANTILLAS"
         dt = ClasAddEquipo.consultaAux(sql, "PLANTILLAS")
         IdPlantilla = dt.Rows(0).Item(0).ToString
-        MessageBox.Show(IdPlantilla)
+        'MessageBox.Show(IdPlantilla)
 
     End Sub
 
