@@ -78,15 +78,44 @@ Public Class FrmEquipos
         Me.dgvDoc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvimages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvTareas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
     End Sub
 
     Private Sub FrmEquipos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Dim sql As String = ""
+
         NombreEquipo = ""
         ClasEquipos.ConsultaEquipos("SELECT * FROM EQUIPOS")
 
+        'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
+
+        ' Muestra datos de TAREAS en dgvTareas
+        sql = "SELECT DISTINCT PLANTILLAS.IDACTIVIDAD, ACTIVIDADES.NOMBRE " _
+            & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " _
+            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
+            & "INNER JOIN EQUIPOS " _
+            & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " _
+            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
+        ClasEquipos.ConsultaTareas(sql)
+        dgvTareas.DataSource = ClasEquipos.bsTareas
+        dgvTareas.AutoGenerateColumns = True
+        dgvTareas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+        ' Muestra datos de PLANES en dgvPlanes
+        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, MANTEPLAN.NOMBRE " _
+            & "FROM MANTEPLAN INNER JOIN PLANTILLAS " _
+            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLAN " _
+            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
+        Clipboard.SetText(sql)
+        'MessageBox.Show(sql)
+        'ClasEquipos.ConsultaPlanes(sql)
+        'dgvPlanes.DataSource = ClasEquipos.bsPlanes
+        dgvPlanes.DataSource = ClasEquipos.consultaAux(sql, "PLANES")
+        dgvPlanes.AutoGenerateColumns = True
+        dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
     End Sub
 
@@ -478,34 +507,18 @@ Public Class FrmEquipos
         ' Siempre que cambie el valor del ID del Equipo, se pasa al tabcontrol1 
         ' para así que se muestren las notas y se actualizen los tab de imagenes y de documentos.
         '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        Dim sql As String
         Me.TabControl1.SelectedTab = TabPage1
 
-        ' cargamos dgvPlanes
-
-        Dim sql As String
-
-        Dim dsPlanes As New DataSet
-        Dim daPlanes As New System.Data.SqlClient.SqlDataAdapter
-        Dim daP As New System.Data.SqlClient.SqlDataAdapter
-        Dim bsPlanes As New BindingSource
-
-        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, PLANESGMAO.FechaInicio, ACTIVIDADES.NOMBRE " _
-            & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
-            & "ON PLANESGMAO.IDPLAN=PLANTILLAS.IDPLAN " _
-            & "INNER JOIN ACTIVIDADES " _
-            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
-            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" + txt_ID.Text + "%' "
-
-        Clipboard.SetText(sql)
-        cnn.Open()
-
-        daPlanes = New System.Data.SqlClient.SqlDataAdapter(sql, cnn)
-        daPlanes.Fill(dsPlanes, "PLANES")
-        bsPlanes.DataSource = dsPlanes.Tables("PLANES")
-
-        cnn.Close()
-
-        dgvPlanes.DataSource = bsPlanes
+        ' Muestra datos de PLANES en dgvPlanes
+        Sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, MANTEPLAN.NOMBRE " _
+            & "FROM MANTEPLAN INNER JOIN PLANTILLAS " _
+            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLAN " _
+            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
+        Clipboard.SetText(Sql)
+        dgvPlanes.DataSource = ClasEquipos.consultaAux(sql, "PLANES")
+        dgvPlanes.AutoGenerateColumns = True
+        dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
     End Sub
 
@@ -534,6 +547,28 @@ Public Class FrmEquipos
         If (FAddPlan Is Nothing) Then
             FAddPlan = New FrmAddPlan()
             FAddPlan.ShowDialog(Me)
+        End If
+
+    End Sub
+
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+
+        ' Cargamos las variable globales NombreEquipo, Seccion, NSerie e IdEquipo
+        NombreEquipo = txt_Nombre.Text
+        If Not (cbseccion.Text = "") Then
+            Seccion = cbseccion.Text
+        End If
+        If Not (txt_Nserie.Text = "") Then
+            NSerie = txt_Nserie.Text
+        End If
+        If Not (txt_ID.Text = "") Then
+            IdEquipo = txt_ID.Text
+        End If
+
+        ' Llamamos al FrmAddTareaEq con ShowDialog (modal), no nos interesa que se vaya a otro form
+        If (FAddTareaEq Is Nothing) Then
+            FAddTareaEq = New FrmAddTareaEq()
+            FAddTareaEq.ShowDialog(Me)
         End If
 
     End Sub

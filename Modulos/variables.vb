@@ -19,6 +19,7 @@ Module variables
     Public FProveedores As FrmProveedores = Nothing
     Public FAddEquipo As FrmAddEquipo = Nothing
     Public FAddActividad As FrmAddActividad = Nothing
+    Public FAddTareaEq As FrmAddTareaEq = Nothing
 
     Public IdEquipo As String = ""
     Public NombreEquipo As String = ""

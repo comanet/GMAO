@@ -1,68 +1,34 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class clEquipos
+Public Class clAddTareaEq
 
-    Public dsEquipos As New DataSet
-    Public daEquipos As New SqlDataAdapter
+    Public dsAddTareaEq As New DataSet
+    Public daAddTareaEq As New SqlDataAdapter
     Public da As New SqlDataAdapter
-    Public bsEquipos As New BindingSource
-
-    Public dsPlanes As New DataSet
-    Public daPlanes As New SqlDataAdapter
-    Public daP As New SqlDataAdapter
-    Public bsPlanes As New BindingSource
-
-    Public dsTareas As New DataSet
-    Public daTareas As New SqlDataAdapter
-    Public daT As New SqlDataAdapter
-    Public bsTareas As New BindingSource
+    Public bsAddTareaEq As New BindingSource
 
     Private comando As SqlCommand
 
-    Public Sub ConsultaPlanes(ByVal sql As String)
+    Public Sub ConsultaTareaEq(ByVal sql As String)
 
         cnn.Open()
 
-        daPlanes = New SqlDataAdapter(sql, cnn)
-        daPlanes.Fill(dsTareas, "PLANES")
-        bsPlanes.DataSource = dsPlanes.Tables("PLANES")
+        daAddTareaEq = New SqlDataAdapter(sql, cnn)
+        daAddTareaEq.Fill(dsAddTareaEq, "TAREASEQUIPOS")
+        bsAddTareaEq.DataSource = dsAddTareaEq.Tables("TAREASEQUIPOS")
 
         cnn.Close()
 
     End Sub
 
-    Public Sub ConsultaTareas(ByVal sql As String)
-
-        cnn.Open()
-
-        daTareas = New SqlDataAdapter(sql, cnn)
-        daTareas.Fill(dsTareas, "TAREAS")
-        bsTareas.DataSource = dsTareas.Tables("TAREAS")
-
-        cnn.Close()
-
-    End Sub
-
-    Public Sub ConsultaEquipos(ByVal sql As String)
-
-        cnn.Open()
-
-        daEquipos = New SqlDataAdapter(sql, cnn)
-        daEquipos.Fill(dsEquipos, "EQUIPOS")
-        bsEquipos.DataSource = dsEquipos.Tables("EQUIPOS")
-
-        cnn.Close()
-
-    End Sub
-
-    Public Function buscaID(ByVal valor As String)
+    Public Function buscaID(ByVal valor As String) As Boolean
 
         Dim i As Integer
 
         cnn.Open()
 
         Dim query As String
-        query = "SELECT COUNT(*) FROM EQUIPOS WHERE IDEQUIPO =" & "'" & valor & "'"
+        query = "SELECT COUNT(*) FROM EQUIPOS WHERE IDPLAN LIKE " & "'" & valor & "%'"
         comando = New SqlCommand(query, cnn)
         i = Convert.ToInt32(comando.ExecuteScalar())
 
@@ -73,20 +39,6 @@ Public Class clEquipos
         Else
             Return False
         End If
-
-    End Function
-
-    Public Function CargaDoc_Equip(ByVal sql As String, ByVal tabla As String) As DataTable
-
-        Dim daequipos As SqlDataAdapter
-        Dim dts As New DataSet
-        Dim dt As New DataTable
-
-        daequipos = New SqlDataAdapter(sql, cnn)
-        daequipos.Fill(dts, tabla)
-        dt = dts.Tables(tabla)
-
-        Return dt
 
     End Function
 
@@ -101,6 +53,7 @@ Public Class clEquipos
         query = "Update " & tabla & " Set " & campos & " Where " & condicion
         comando = New SqlCommand(query, cnn)
         i = comando.ExecuteNonQuery()
+        Clipboard.SetText(query)
 
         cnn.Close()
 
@@ -112,7 +65,7 @@ Public Class clEquipos
 
     End Function
 
-    Public Function InsertaEquipo(ByVal query As String) As Boolean
+    Public Function InsertaTareaEq(ByVal query As String) As Boolean
 
         Dim i As Integer
 
@@ -150,7 +103,6 @@ Public Class clEquipos
         Else
             Return False
         End If
-        ' cnn.Close()
 
     End Function
 

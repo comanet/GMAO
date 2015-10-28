@@ -7,132 +7,75 @@ Public Class FrmGMAO
     Dim dtEquipos As DataTable
     Dim dtActividades As DataTable
     Dim dtPlanes As DataTable
-    Dim dtProxReg As DataTable
     Dim tipoOperacion As String
-
-    Public Sub CargaCombos()
-
-        ' Carga los combos con los datos de cada lista
-        cbEquipo.Enabled = True
-        cbActiv.Enabled = True
-        cbPlan.Enabled = True
-
-        ' Borramos TODOS los datos de los combos
-        cbEquipo.Items.Clear()
-        cbActiv.Items.Clear()
-        cbPlan.Items.Clear()
-
-        ' Cargamos combo con EQUIPOS
-        dtEquipos = ClasGMAO.consultaAux("SELECT IDEQUIPO, (IDEQUIPO + ' ' + NOMBRE) AS NEQUIPO FROM EQUIPOS ORDER BY IDEQUIPO, NOMBRE", "tbl_EQUIPOS")
-
-        For Each row As DataRow In dtEquipos.Rows
-            cbEquipo.Items.Add(CStr(row("NEQUIPO")))
-        Next
-
-        ' Cargamos combo con ACTIVIDADES
-        dtActividades = ClasGMAO.consultaAux("SELECT IDACTIVIDAD, (CAST(IDACTIVIDAD AS varchar(10)) + ' ' + NOMBRE) AS NACTIVIDAD FROM ACTIVIDADES ORDER BY IDACTIVIDAD, NOMBRE", "tbl_ACTIVIDADES")
-
-        For Each row As DataRow In dtActividades.Rows
-            cbActiv.Items.Add(CStr(row("NACTIVIDAD")))
-        Next
-
-        ' Cargamos combo con PLANES
-        dtPlanes = ClasGMAO.consultaAux("SELECT IDPLAN FROM MANTEPLAN ORDER BY IDPLAN", "tbl_PLANES")
-
-        For Each row As DataRow In dtPlanes.Rows
-            cbPlan.Items.Add(CStr(row("IDPLAN")))
-        Next
-
-        cbEquipo.Enabled = False
-        cbActiv.Enabled = False
-        cbPlan.Enabled = False
-
-    End Sub
-
-    Public Sub verProxReg()
-
-        'Dim sql As String = ""
-
-        '' carga en txt_NumPlantilla el valor que tomará el campo PLANESGMAO.NUMPLANTILLA
-        'sql = "SELECT DISTINCT TOP 1 NUMPLANTILLA FROM PLANTILLAS ORDER BY NUMPLANTILLA"
-
-        'dtProxReg = ClasGMAO.consultaAux(sql, "NUMPLANTILLA")
-
-    End Sub
 
     Private Sub Enlacebin()
 
-        CargaCombos()
-
-        Me.txt_ID.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDPLAN")
-        Me.txt_IDPM.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDPM")
-
-        Me.txt_IDACTIV.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDACTIVIDAD")
-        Me.txt_IDEQUIPO.DataBindings.Add("text", ClasGMAO.bsGMAO, "IdenEquipo")
-        Me.txt_FIni.DataBindings.Add("text", ClasGMAO.bsGMAO, "FechaInicio")
-        If IsDate(txt_FIni.Text) Then
-            Me.calFInicio.SetDate(txt_FIni.Text)
-        Else
-            Me.calFInicio.SetDate(Now)
-        End If
-
-        Me.txt_NumPlantilla.DataBindings.Add("text", ClasGMAO.bsProx, "NUMPLANTILLA")
-        If IsNumeric(txt_NumPlantilla.Text) Then
-            ProxReg = txt_NumPlantilla.Text + 1
-        End If
-        MessageBox.Show(ProxReg)
+        Me.txt_PLAN.DataBindings.Add("text", ClasGMAO.bsGMAO, "IDPLAN")
+        Me.txt_EQUIPO.DataBindings.Add("text", ClasGMAO.bsGMAO, "NombreEquipo")
+        Me.txt_ACTIVIDAD.DataBindings.Add("text", ClasGMAO.bsGMAO, "NombreActividad")
 
     End Sub
 
     Private Sub FrmGMAO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Dim sql As String = ""
+        Dim sql, mensaje As String
 
-        txt_ID.Text = ""
-        txt_IDPM.Text = ""
-        txt_IDACTIV.Text = ""
-        txt_IDEQUIPO.Text = ""
-        txt_FIni.Text = ""
+        mensaje = "¡ATENCIÓN! Para crear órdenes de trabajo (OT) se deben seleccionar al menos " _
+                & "un EQUIPO y una TAREA de las tablas situadas en la parte inferior. El PLAN " _
+                & "se puede dejar vacío, pero si se escoge uno se asignará la dupla EQUIPO/TAREA" _
+                & "a la plantilla seleccionada." & vbCrLf & vbCrLf & "La escritura de la Base de Datos todavía no está disponible."
+        MessageBox.Show(mensaje, "Asignación de tareas a GMAO", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        ' Rellenamos el dataGridView con TODAS las lineas - dgvSecc
-        sql = "SELECT PLANESGMAO.IDPM, PLANTILLAS.IDPLAN, PLANTILLAS.IDEQUIPO AS IdenEquipo, EQUIPOS.NOMBRE AS NombreEquipo, " _
-            & "ACTIVIDADES.NOMBRE AS NombreActividad, ACTIVIDADES.IDACTIVIDAD, PLANESGMAO.FechaInicio " _
-            & "FROM PLANESGMAO INNER JOIN PLANTILLAS " _
-            & "ON PLANESGMAO.NUMPLANTILLA=PLANTILLAS.NUMPLANTILLA " _
-            & "INNER JOIN EQUIPOS " _
-            & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " _
-            & "INNER JOIN ACTIVIDADES " _
-            & "ON PLANTILLAS.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD"
+        txt_PLAN.Text = ""
+        txt_ACTIVIDAD.Text = ""
+        txt_EQUIPO.Text = ""
+
+        ' Rellenamos el dataGridView de ACTIVIDADES
+        sql = "SELECT DISTINCT IDACTIVIDAD, NOMBRE " _
+            & "FROM ACTIVIDADES " _
+            & "ORDER BY NOMBRE"
+
+        'Clipboard.SetText(sql)
+        ClasGMAO.ConsultaActiv(sql)
+        dgvActiv.DataSource = ClasGMAO.bsActiv
+        dgvActiv.AutoGenerateColumns = True
+        dgvActiv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+        ' Rellenamos el dataGridView de EQUIPOS
+        sql = "SELECT DISTINCT IDEQUIPO, NOMBRE " _
+            & "FROM EQUIPOS " _
+            & "ORDER BY NOMBRE"
+
         Clipboard.SetText(sql)
-        ClasGMAO.ConsultaGMAO(sql)
-        dgvSecc.DataSource = ClasGMAO.bsGMAO
-        dgvSecc.AutoGenerateColumns = True
-        
-        dgvSecc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-        'dgvActiv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-        'dgvEquip.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        ClasGMAO.ConsultaEquip(sql)
+        dgvEquip.DataSource = ClasGMAO.bsEquip
+        dgvEquip.AutoGenerateColumns = True
+        dgvEquip.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
-        ' Los otros dos grids (dgvActiv y dgvEquip) se rellenan cuando se rellene el primero y se pueblen los combos
+        ' Rellenamos el dataGridView de PLANES
+        sql = "SELECT DISTINCT IDPLAN, NOMBRE " _
+            & "FROM MANTEPLAN " _
+            & "ORDER BY NOMBRE"
 
-        ' carga en txt_NumPlantilla el valor que tomará el campo PLANESGMAO.NUMPLANTILLA
-        ClasGMAO.ConsultaProx("SELECT DISTINCT TOP 1 NUMPLANTILLA FROM PLANTILLAS ORDER BY NUMPLANTILLA")
+        Clipboard.SetText(sql)
+        ClasGMAO.ConsultaPlanes(sql)
+        dgvPlanes.DataSource = ClasGMAO.bsPlanes
+        dgvPlanes.AutoGenerateColumns = True
+        dgvPlanes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         'Asociar los Textbox con el Bindingsource para que muestre los datos.
         Enlacebin()
+
+        calFInicio.SelectionStart = Now
 
     End Sub
 
     Private Sub Limpiabinding()
 
-        Me.txt_ID.DataBindings.Clear()
-        Me.txt_IDPM.DataBindings.Clear()
-        Me.txt_IDACTIV.DataBindings.Clear()
-        Me.txt_IDEQUIPO.DataBindings.Clear()
-        Me.txt_FIni.DataBindings.Clear()
-
-        Me.cbEquipo.DataBindings.Clear()
-        Me.cbActiv.DataBindings.Clear()
-        Me.cbPlan.DataBindings.Clear()
+        Me.txt_PLAN.DataBindings.Clear()
+        Me.txt_ACTIVIDAD.DataBindings.Clear()
+        Me.txt_EQUIPO.DataBindings.Clear()
 
         Me.calFInicio.DataBindings.Clear()
 
@@ -143,12 +86,24 @@ Public Class FrmGMAO
     Public Sub Actualizar(Optional ByVal bCargar As Boolean = True) ' Se utiliza para limpiar el datagridview y refrescar los datos modificados.
 
         '*** Actualizar y guardar cambios   
-        If Not ClasGMAO.bsGMAO Is Nothing Then
-            ClasGMAO.daGMAO.Update(CType(ClasGMAO.bsGMAO.DataSource, DataTable))
-            If bCargar Then
-                dgvSecc.Refresh()
-                ClasGMAO.dsGMAO.Tables.Clear()
-                FrmGMAO_Load(Me, New System.EventArgs)
+        If Not ClasGMAO.bsActiv Is Nothing Then
+            ClasGMAO.daActiv.Update(CType(ClasGMAO.bsActiv.DataSource, DataTable))
+            If Not ClasGMAO.bsEquip Is Nothing Then
+                ClasGMAO.daEquip.Update(CType(ClasGMAO.bsEquip.DataSource, DataTable))
+                If Not ClasGMAO.bsPlanes Is Nothing Then
+                    ClasGMAO.daPlanes.Update(CType(ClasGMAO.bsPlanes.DataSource, DataTable))
+
+                    If bCargar Then
+                        dgvActiv.Refresh()
+                        dgvEquip.Refresh()
+                        dgvPlanes.Refresh()
+                        ClasGMAO.dsActiv.Tables.Clear()
+                        ClasGMAO.dsEquip.Tables.Clear()
+                        ClasGMAO.dsPlanes.Tables.Clear()
+                        FrmGMAO_Load(Me, New System.EventArgs)
+                    End If
+
+                End If
             End If
         End If
 
@@ -193,13 +148,16 @@ Public Class FrmGMAO
 
     Private Sub tsDel_Click(sender As Object, e As EventArgs) Handles tsDel.Click
 
-        Dim valor As Integer
+        Dim valor As String
 
         If MessageBox.Show("¿Esta seguro de que desea Eliminar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
             Try
-                valor = txt_IDPM.Text
+                valor = "IDPLAN='" & txt_PLAN.Text & "' " _
+                    & "IDEQUIPO='" & txt_EQUIPO.Text & "' " _
+                    & "IDACTIVIDAD='" & txt_ACTIVIDAD.Text & "' "
+
                 Limpiabinding()
-                ClasGMAO.Eliminar("PLANESGMAO", "IDPM = " & valor)
+                ClasGMAO.Eliminar("PLANESGMAO", valor)
                 Actualizar()
             Catch ex As Exception
                 MessageBox.Show("Error " & ex.Message)
@@ -208,70 +166,52 @@ Public Class FrmGMAO
 
     End Sub
 
-    Private Sub calFInicio_DateChanged(sender As Object, e As DateRangeEventArgs) Handles calFInicio.DateChanged
+    'Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
 
-        txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
+    '    If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
+    '        If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+    '            Try
+    '                If (txt_FIni.Text = "") Then
+    '                    txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
+    '                End If
+    '                ProxReg = ProxReg + 1
+    '                If ClasGMAO.InsertaGMAO("Insert Into PLANTILLAS(IDPLAN, IDACTIVIDAD, IDEQUIPO, NUMPLANTILLA)" & _
+    '                                               "values(" & "'" & Me.txt_ID.Text & "', '" & txt_IDACTIV.Text & "', '" & txt_IDEQUIPO.Text & "', '" & ProxReg.ToString & "')") = True Then
+    '                    Actualizar()
+    '                End If
+    '            Catch ex As Exception
+    '                MessageBox.Show("Error tsSave_Click" & vbCrLf & ex.Message.ToString)
+    '                ProxReg = ProxReg - 1
+    '            End Try
 
-    End Sub
+    '            Me.txt_ID.ReadOnly = True
+    '            Me.txt_EQUIPO.ReadOnly = True
+    '            Me.txt_ACTIVIDAD.ReadOnly = True
 
-    Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
+    '            tsSave.Enabled = False
+    '            tsEdit.Enabled = True
+    '            tsNew.Enabled = True
+    '            tsDel.Enabled = True
+    '        End If
+    '    ElseIf tipoOperacion = "M" Then
 
-        If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
-            If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
-                Try
-                    If (txt_FIni.Text = "") Then
-                        txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
-                    End If
-                    ProxReg = ProxReg + 1
-                    If ClasGMAO.InsertaGMAO("Insert Into PLANTILLAS(IDPLAN, IDACTIVIDAD, IDEQUIPO, NUMPLANTILLA)" & _
-                                                   "values(" & "'" & Me.txt_ID.Text & "', '" & txt_IDACTIV.Text & "', '" & txt_IDEQUIPO.Text & "', '" & ProxReg.ToString & "')") = True Then
-                        'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
-                        ' Para actualizar los valores nuevos insertados y que se muestren en el dvgrid
-                        Actualizar()
-                    End If
-                Catch ex As Exception
-                    MessageBox.Show("Error tsSave_Click" & vbCrLf & ex.Message.ToString)
-                    ProxReg = ProxReg - 1
-                End Try
+    '        If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + Trim(txt_ID.Text) + "'" + "," + "FechaInicio= " + "'" + Trim(txt_FIni.Text) + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
 
-                Me.txt_ID.ReadOnly = True
-                Me.txt_FIni.ReadOnly = True
-                Me.txt_IDEQUIPO.ReadOnly = True
-                Me.txt_IDACTIV.ReadOnly = True
-                Me.cbEquipo.Enabled = False
-                Me.cbActiv.Enabled = False
-                Me.cbPlan.Enabled = False
+    '            Actualizar()
+    '            Me.txt_ID.ReadOnly = True
+    '            Me.txt_EQUIPO.ReadOnly = True
+    '            Me.txt_ACTIVIDAD.ReadOnly = True
 
-                tsSave.Enabled = False
-                tsEdit.Enabled = True
-                tsNew.Enabled = True
-                tsDel.Enabled = True
-            End If
-        ElseIf tipoOperacion = "M" Then
+    '            tsSave.Enabled = False
+    '            tsEdit.Enabled = True
+    '            tsNew.Enabled = True
+    '            tsDel.Enabled = True
+    '        End If
+    '    End If
 
-            If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + Trim(txt_ID.Text) + "'" + "," + "FechaInicio= " + "'" + Trim(txt_FIni.Text) + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
+    '    btSalir.Enabled = True
 
-                Actualizar()
-                Me.txt_ID.ReadOnly = True
-                Me.txt_FIni.ReadOnly = True
-                Me.txt_IDEQUIPO.ReadOnly = True
-                Me.txt_IDACTIV.ReadOnly = True
-                Me.cbEquipo.Enabled = False
-                Me.cbActiv.Enabled = False
-                Me.cbPlan.Enabled = False
-
-                tsSave.Enabled = False
-                tsEdit.Enabled = True
-                tsNew.Enabled = True
-                tsDel.Enabled = True
-
-                'MsgBox("Registro Modificado Con Exito", MsgBoxStyle.Information)
-            End If
-        End If
-
-        btSalir.Enabled = True
-
-    End Sub
+    'End Sub
 
     Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
 
@@ -284,18 +224,13 @@ Public Class FrmGMAO
         'Añadir Nuevo Registro
         Limpiabinding()
 
-        Me.txt_FIni.Text = " "
-        Me.txt_IDEQUIPO.Text = " "
-        Me.txt_IDACTIV.Text = " "
+        Me.txt_PLAN.Text = ""
+        Me.txt_EQUIPO.Text = " "
+        Me.txt_ACTIVIDAD.Text = " "
 
-        'Me.txt_ID.ReadOnly = False
-        Me.txt_FIni.ReadOnly = False
-        Me.txt_IDEQUIPO.ReadOnly = False
-        Me.txt_IDACTIV.ReadOnly = False
-
-        Me.cbEquipo.Enabled = True
-        Me.cbActiv.Enabled = True
-        Me.cbPlan.Enabled = True
+        Me.txt_PLAN.ReadOnly = False
+        Me.txt_EQUIPO.ReadOnly = False
+        Me.txt_ACTIVIDAD.ReadOnly = False
 
         tsEdit.Enabled = False
         tsDel.Enabled = False
@@ -310,13 +245,9 @@ Public Class FrmGMAO
 
         btSalir.Enabled = False
 
-        Me.txt_FIni.ReadOnly = False
-        Me.txt_IDEQUIPO.ReadOnly = False
-        Me.txt_IDACTIV.ReadOnly = False
-
-        Me.cbEquipo.Enabled = True
-        Me.cbActiv.Enabled = True
-        Me.cbPlan.Enabled = True
+        Me.txt_PLAN.ReadOnly = False
+        Me.txt_EQUIPO.ReadOnly = False
+        Me.txt_ACTIVIDAD.ReadOnly = False
 
         tsSave.Enabled = True
         tsNew.Enabled = False
@@ -325,105 +256,52 @@ Public Class FrmGMAO
 
     End Sub
 
-    Private Sub cbEquipo_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbEquipo.SelectedValueChanged
+    Private Sub dgvActiv_Click(sender As Object, e As EventArgs) Handles dgvActiv.Click
 
-        Dim codigo As String = ""
+        Dim str As String
 
-        codigo = cbEquipo.Text.Substring(0, 2)
-        txt_IDEQUIPO.Text = codigo
+        str = dgvActiv.Rows(dgvActiv.CurrentCell.RowIndex).Cells(1).Value.ToString
+        txt_ACTIVIDAD.Text = str
+        'MessageBox.Show(str)
 
     End Sub
 
-    Private Sub cbActiv_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbActiv.SelectedValueChanged
+    Private Sub dgvEquip_Click(sender As Object, e As EventArgs) Handles dgvEquip.Click
 
-        Dim codigo As String = ""
+        Dim str As String
 
-        codigo = Trim(cbActiv.Text)
-        codigo = codigo.Substring(0, 2)
-        codigo = Trim(codigo)
-        'MessageBox.Show("El índice de la Actividad es: " + codigo)
-        If IsNumeric(codigo) Then
-            txt_IDACTIV.Text = codigo
+        str = dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(1).Value.ToString
+        txt_EQUIPO.Text = str
+
+    End Sub
+
+    Private Sub dgvPlanes_Click(sender As Object, e As EventArgs) Handles dgvPlanes.Click
+
+        Dim str As String
+
+        str = dgvPlanes.Rows(dgvPlanes.CurrentCell.RowIndex).Cells(1).Value.ToString
+        txt_PLAN.Text = str
+
+    End Sub
+
+    Private Sub btOT_Click(sender As Object, e As EventArgs) Handles btOT.Click
+
+        Dim str As String = ""
+
+        str = "Se crea la OT para el equipo " & dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(0).Value.ToString & " - " & dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(1).Value.ToString
+        str = str & "," & vbCrLf & "Tarea: " & dgvActiv.Rows(dgvActiv.CurrentCell.RowIndex).Cells(1).Value.ToString
+        If Not (txt_PLAN.Text = "") Then
+            str = str & "," & vbCrLf & "Asignado al plan: " & dgvPlanes.Rows(dgvPlanes.CurrentCell.RowIndex).Cells(1).Value.ToString
         End If
+        str = str & "," & vbCrLf & "Fecha de Inicio: " & calFInicio.SelectionStart.ToString
+
+        MessageBox.Show(str)
 
     End Sub
 
-    Private Sub cbPlan_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbPlan.SelectedValueChanged
+    Private Sub btBorrar_Click(sender As Object, e As EventArgs) Handles btBorrar.Click
 
-        Dim codigo As String = ""
-        Dim i As Integer = 0
-
-        codigo = Trim(cbPlan.Text)
-
-        txt_ID.Text = codigo
-
-        ' Rellenamos el grid de ACTIVIDADES - dgvActiv
-        ClasGMAO.dsActiv.Clear()
-
-        ClasGMAO.ConsultaActiv("SELECT EQUIPOS.IDEQUIPO, EQUIPOS.NOMBRE AS NombreEquipo, " _
-                               & "ACTIVIDADES.IDACTIVIDAD, ACTIVIDADES.NOMBRE AS NombreActividad, PLANESGMAO.FechaInicio, PLANTILLAS.NUMPLANTILLA " _
-                               & "FROM PLANTILLAS INNER JOIN EQUIPOS " _
-                               & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " _
-                               & "INNER JOIN ACTIVIDADES " _
-                               & "ON PLANTILLAS.IDACTIVIDAD=ACTIVIDADES.IDACTIVIDAD " _
-                               & "INNER JOIN PLANESGMAO " _
-                               & "ON PLANTILLAS.NUMPLANTILLA=PLANESGMAO.NUMPLANTILLA " _
-                               & "WHERE PLANTILLAS.IDPLAN LIKE '" & Trim(txt_ID.Text) & "%' ")
-
-        dgvActiv.DataSource = ClasGMAO.bsActiv
-        dgvActiv.AutoGenerateColumns = True
-        dgvActiv.Columns("IDEQUIPO").Visible = False
-        dgvActiv.Columns("NombreEquipo").Visible = False
-        dgvActiv.Columns("FechaInicio").Visible = False
-        dgvActiv.Columns("NUMPLANTILLA").Visible = False
-        dgvActiv.Update()
-
-        ' Rellenamos el grid de EQUIPOS - dgvEquip
-        dgvEquip.DataSource = ClasGMAO.bsActiv
-        dgvEquip.AutoGenerateColumns = True
-        dgvEquip.Columns("IDACTIVIDAD").Visible = False
-        dgvEquip.Columns("NombreActividad").Visible = False
-        dgvEquip.Columns("FechaInicio").Visible = False
-        dgvEquip.Columns("NUMPLANTILLA").Visible = False
-
-    End Sub
-
-    Private Sub txt_IDEQUIPO_TextChanged(sender As Object, e As EventArgs) Handles txt_IDEQUIPO.TextChanged
-
-        Dim i As Integer = cbEquipo.FindString(txt_IDEQUIPO.Text)
-        'MessageBox.Show("El índice de Equipo es " + i.ToString)
-
-        If i >= 0 Then
-            cbEquipo.SelectedIndex = i
-        End If
-
-    End Sub
-
-    Private Sub txt_IDACTIV_TextChanged(sender As Object, e As EventArgs) Handles txt_IDACTIV.TextChanged
-
-        Dim i As Integer = cbActiv.FindString(txt_IDACTIV.Text)
-        'MessageBox.Show("El índice de Actividad es " + i.ToString)
-
-        If i >= 0 Then
-            cbActiv.SelectedIndex = i
-        End If
-
-    End Sub
-
-    Private Sub txt_FIni_TextChanged(sender As Object, e As EventArgs) Handles txt_FIni.TextChanged
-
-        Dim fInicio As Date
-
-        If IsDate(txt_FIni.Text) Then
-            fInicio = txt_FIni.Text
-            calFInicio.SetDate(fInicio)
-        End If
-
-    End Sub
-
-    Private Sub txt_ID_TextChanged(sender As Object, e As EventArgs) Handles txt_ID.TextChanged
-
-        cbPlan.Text = txt_ID.Text
+        txt_PLAN.Text = ""
 
     End Sub
 End Class

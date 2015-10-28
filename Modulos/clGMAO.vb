@@ -9,20 +9,20 @@ Public Class clGMAO
     Public bsGMAO As New BindingSource
     Private comando As SqlCommand
 
-    ' Elementos para las ACTIVIDADES de un Plan - dgvActiv
+    ' Elementos para las ACTIVIDADES - dgvActiv
     Public dsActiv As New DataSet
     Public daActiv As New SqlDataAdapter
     Public bsActiv As New BindingSource
 
-    ' Elementos para los EQUIPOS de un Plan - dgvEquip
+    ' Elementos para los EQUIPOS - dgvEquip
     Public dsEquip As New DataSet
     Public daEquip As New SqlDataAdapter
     Public bsEquip As New BindingSource
 
-    ' Elementos para el siguiente registro
-    Public dsProx As New DataSet
-    Public daProx As New SqlDataAdapter
-    Public bsProx As New BindingSource
+    ' Elementos para los planes - dgvpLANES
+    Public dsPlanes As New DataSet
+    Public daPlanes As New SqlDataAdapter
+    Public bsPlanes As New BindingSource
 
     Public Sub ConsultaGMAO(ByVal sql As String)
 
@@ -36,25 +36,37 @@ Public Class clGMAO
 
     End Sub
 
-    Public Sub ConsultaProx(ByVal sql As String)
-
-        cnn.Open()
-
-        daProx = New SqlDataAdapter(sql, cnn)
-        daProx.Fill(dsProx, "PROXREG")
-        bsProx.DataSource = dsProx.Tables("PROXREG")
-
-        cnn.Close()
-
-    End Sub
-
     Public Sub ConsultaActiv(ByVal sql As String)
 
         cnn.Open()
 
         daActiv = New SqlDataAdapter(sql, cnn)
-        daActiv.Fill(dsActiv, "ActivxPlan")
-        bsActiv.DataSource = dsActiv.Tables("ActivxPlan")
+        daActiv.Fill(dsActiv, "ACTIVIDADES")
+        bsActiv.DataSource = dsActiv.Tables("ACTIVIDADES")
+
+        cnn.Close()
+
+    End Sub
+
+    Public Sub ConsultaEquip(ByVal sql As String)
+
+        cnn.Open()
+
+        daEquip = New SqlDataAdapter(sql, cnn)
+        daEquip.Fill(dsEquip, "EQUIPOS")
+        bsEquip.DataSource = dsEquip.Tables("EQUIPOS")
+
+        cnn.Close()
+
+    End Sub
+
+    Public Sub ConsultaPlanes(ByVal sql As String)
+
+        cnn.Open()
+
+        daPlanes = New SqlDataAdapter(sql, cnn)
+        daPlanes.Fill(dsPlanes, "PLANES")
+        bsPlanes.DataSource = dsPlanes.Tables("PLANES")
 
         cnn.Close()
 

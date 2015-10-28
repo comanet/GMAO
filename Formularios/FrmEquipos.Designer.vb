@@ -35,16 +35,18 @@ Partial Class FrmEquipos
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim DESCRIPCIONLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEquipos))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CBEstado = New System.Windows.Forms.ComboBox()
         Me.cbseccion = New System.Windows.Forms.ComboBox()
@@ -59,9 +61,9 @@ Partial Class FrmEquipos
         Me.txt_ID = New System.Windows.Forms.TextBox()
         Me.txt_Nombre = New System.Windows.Forms.TextBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.tsDel = New System.Windows.Forms.ToolStripButton()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
+        Me.tsDel = New System.Windows.Forms.ToolStripButton()
         Me.tsSave = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbtnFiltro = New System.Windows.Forms.ToolStripButton()
@@ -89,8 +91,15 @@ Partial Class FrmEquipos
         Me.tsbdelimg = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbverimg = New System.Windows.Forms.ToolStripButton()
+        Me.TabPageTareas = New System.Windows.Forms.TabPage()
+        Me.dgvTareas = New System.Windows.Forms.DataGridView()
+        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.dgvPlanes = New System.Windows.Forms.DataGridView()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
@@ -99,6 +108,7 @@ Partial Class FrmEquipos
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.dgvPlanes = New System.Windows.Forms.DataGridView()
         Label1 = New System.Windows.Forms.Label()
         TIPOEQUIPOLabel = New System.Windows.Forms.Label()
         IDESTADOLabel = New System.Windows.Forms.Label()
@@ -121,9 +131,12 @@ Partial Class FrmEquipos
         Me.TabPage3.SuspendLayout()
         CType(Me.dgvimages, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStripIMG.SuspendLayout()
+        Me.TabPageTareas.SuspendLayout()
+        CType(Me.dgvTareas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip4.SuspendLayout()
         Me.TabPage4.SuspendLayout()
-        CType(Me.dgvPlanes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip3.SuspendLayout()
+        CType(Me.dgvPlanes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -404,17 +417,6 @@ Partial Class FrmEquipos
         Me.ToolStrip1.TabIndex = 8
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'tsDel
-        '
-        Me.tsDel.AutoSize = False
-        Me.tsDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsDel.Image = CType(resources.GetObject("tsDel.Image"), System.Drawing.Image)
-        Me.tsDel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsDel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsDel.Name = "tsDel"
-        Me.tsDel.Size = New System.Drawing.Size(53, 45)
-        Me.tsDel.Text = "Eliminar"
-        '
         'tsNew
         '
         Me.tsNew.AutoSize = False
@@ -438,6 +440,17 @@ Partial Class FrmEquipos
         Me.tsEdit.Name = "tsEdit"
         Me.tsEdit.Size = New System.Drawing.Size(53, 45)
         Me.tsEdit.Text = "Editar Registros"
+        '
+        'tsDel
+        '
+        Me.tsDel.AutoSize = False
+        Me.tsDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsDel.Image = CType(resources.GetObject("tsDel.Image"), System.Drawing.Image)
+        Me.tsDel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsDel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsDel.Name = "tsDel"
+        Me.tsDel.Size = New System.Drawing.Size(53, 45)
+        Me.tsDel.Text = "Eliminar"
         '
         'tsSave
         '
@@ -486,6 +499,7 @@ Partial Class FrmEquipos
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPageTareas)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(4, 230)
         Me.TabControl1.Name = "TabControl1"
@@ -534,25 +548,25 @@ Partial Class FrmEquipos
         Me.dgvDoc.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvDoc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvDoc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.DimGray
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvDoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Me.dgvDoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDoc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NOMBRE, Me.TIPO})
         Me.dgvDoc.Cursor = System.Windows.Forms.Cursors.IBeam
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvDoc.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvDoc.DefaultCellStyle = DataGridViewCellStyle20
         Me.dgvDoc.EnableHeadersVisualStyles = False
         Me.dgvDoc.GridColor = System.Drawing.Color.White
         Me.dgvDoc.Location = New System.Drawing.Point(10, 31)
@@ -570,8 +584,8 @@ Partial Class FrmEquipos
         '
         Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.NOMBRE.DataPropertyName = "NOMBRE"
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.NOMBRE.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.NOMBRE.DefaultCellStyle = DataGridViewCellStyle18
         Me.NOMBRE.HeaderText = "NOMBRE DEL ARCHIVO"
         Me.NOMBRE.Name = "NOMBRE"
         Me.NOMBRE.ReadOnly = True
@@ -579,8 +593,8 @@ Partial Class FrmEquipos
         'TIPO
         '
         Me.TIPO.DataPropertyName = "TIPO"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TIPO.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TIPO.DefaultCellStyle = DataGridViewCellStyle19
         Me.TIPO.HeaderText = "TIPO DOC"
         Me.TIPO.Name = "TIPO"
         Me.TIPO.ReadOnly = True
@@ -666,25 +680,25 @@ Partial Class FrmEquipos
         Me.dgvimages.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvimages.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvimages.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.DimGray
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvimages.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvimages.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle21
         Me.dgvimages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvimages.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
         Me.dgvimages.Cursor = System.Windows.Forms.Cursors.IBeam
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvimages.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvimages.DefaultCellStyle = DataGridViewCellStyle24
         Me.dgvimages.EnableHeadersVisualStyles = False
         Me.dgvimages.GridColor = System.Drawing.Color.White
         Me.dgvimages.Location = New System.Drawing.Point(8, 25)
@@ -702,8 +716,8 @@ Partial Class FrmEquipos
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "NOMBRE"
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle22
         Me.DataGridViewTextBoxColumn1.HeaderText = "NOMBRE DEL ARCHIVO"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -711,8 +725,8 @@ Partial Class FrmEquipos
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.DataPropertyName = "TIPO"
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle23
         Me.DataGridViewTextBoxColumn2.HeaderText = "TIPO DOC"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
@@ -780,6 +794,122 @@ Partial Class FrmEquipos
         Me.tsbverimg.Text = "Ver"
         Me.tsbverimg.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         '
+        'TabPageTareas
+        '
+        Me.TabPageTareas.Controls.Add(Me.dgvTareas)
+        Me.TabPageTareas.Controls.Add(Me.ToolStrip4)
+        Me.TabPageTareas.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageTareas.Name = "TabPageTareas"
+        Me.TabPageTareas.Size = New System.Drawing.Size(979, 150)
+        Me.TabPageTareas.TabIndex = 4
+        Me.TabPageTareas.Text = "Tareas asignadas"
+        Me.TabPageTareas.UseVisualStyleBackColor = True
+        '
+        'dgvTareas
+        '
+        Me.dgvTareas.AllowUserToAddRows = False
+        Me.dgvTareas.AllowUserToDeleteRows = False
+        Me.dgvTareas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvTareas.BackgroundColor = System.Drawing.Color.White
+        Me.dgvTareas.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvTareas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.dgvTareas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvTareas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
+        Me.dgvTareas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTareas.Cursor = System.Windows.Forms.Cursors.IBeam
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvTareas.DefaultCellStyle = DataGridViewCellStyle14
+        Me.dgvTareas.EnableHeadersVisualStyles = False
+        Me.dgvTareas.GridColor = System.Drawing.Color.White
+        Me.dgvTareas.Location = New System.Drawing.Point(4, 24)
+        Me.dgvTareas.MultiSelect = False
+        Me.dgvTareas.Name = "dgvTareas"
+        Me.dgvTareas.ReadOnly = True
+        Me.dgvTareas.RowHeadersVisible = False
+        Me.dgvTareas.RowHeadersWidth = 40
+        Me.dgvTareas.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.dgvTareas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvTareas.Size = New System.Drawing.Size(968, 123)
+        Me.dgvTareas.TabIndex = 4
+        '
+        'ToolStrip4
+        '
+        Me.ToolStrip4.BackColor = System.Drawing.Color.White
+        Me.ToolStrip4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton5, Me.ToolStripSeparator8, Me.ToolStripButton6, Me.ToolStripSeparator9, Me.ToolStripButton7})
+        Me.ToolStrip4.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip4.Name = "ToolStrip4"
+        Me.ToolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ToolStrip4.Size = New System.Drawing.Size(979, 25)
+        Me.ToolStrip4.TabIndex = 3
+        Me.ToolStrip4.Text = "ToolStrip4"
+        '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.AutoSize = False
+        Me.ToolStripButton5.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton5.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton5.Text = "Agregar"
+        Me.ToolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton6
+        '
+        Me.ToolStripButton6.AutoSize = False
+        Me.ToolStripButton6.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton6.Enabled = False
+        Me.ToolStripButton6.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton6.Text = "Eliminar"
+        Me.ToolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton7
+        '
+        Me.ToolStripButton7.AutoSize = False
+        Me.ToolStripButton7.BackColor = System.Drawing.Color.DimGray
+        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton7.Enabled = False
+        Me.ToolStripButton7.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
+        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton7.Name = "ToolStripButton7"
+        Me.ToolStripButton7.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripButton7.Text = "Ver"
+        Me.ToolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.dgvPlanes)
@@ -790,45 +920,6 @@ Partial Class FrmEquipos
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Plan Mantenimiento"
         Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'dgvPlanes
-        '
-        Me.dgvPlanes.AllowUserToAddRows = False
-        Me.dgvPlanes.AllowUserToDeleteRows = False
-        Me.dgvPlanes.BackgroundColor = System.Drawing.Color.White
-        Me.dgvPlanes.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.dgvPlanes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        Me.dgvPlanes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.DimGray
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvPlanes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
-        Me.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPlanes.Cursor = System.Windows.Forms.Cursors.IBeam
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.LightGray
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvPlanes.DefaultCellStyle = DataGridViewCellStyle10
-        Me.dgvPlanes.EnableHeadersVisualStyles = False
-        Me.dgvPlanes.GridColor = System.Drawing.Color.White
-        Me.dgvPlanes.Location = New System.Drawing.Point(8, 24)
-        Me.dgvPlanes.MultiSelect = False
-        Me.dgvPlanes.Name = "dgvPlanes"
-        Me.dgvPlanes.ReadOnly = True
-        Me.dgvPlanes.RowHeadersVisible = False
-        Me.dgvPlanes.RowHeadersWidth = 40
-        Me.dgvPlanes.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPlanes.Size = New System.Drawing.Size(963, 102)
-        Me.dgvPlanes.TabIndex = 3
         '
         'ToolStrip3
         '
@@ -884,6 +975,7 @@ Partial Class FrmEquipos
         Me.ToolStripButton4.AutoSize = False
         Me.ToolStripButton4.BackColor = System.Drawing.Color.DimGray
         Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton4.Enabled = False
         Me.ToolStripButton4.ForeColor = System.Drawing.Color.White
         Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
         Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -909,6 +1001,48 @@ Partial Class FrmEquipos
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'dgvPlanes
+        '
+        Me.dgvPlanes.AllowUserToAddRows = False
+        Me.dgvPlanes.AllowUserToDeleteRows = False
+        Me.dgvPlanes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvPlanes.BackgroundColor = System.Drawing.Color.White
+        Me.dgvPlanes.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvPlanes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.dgvPlanes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.DimGray
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPlanes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle15
+        Me.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPlanes.Cursor = System.Windows.Forms.Cursors.IBeam
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPlanes.DefaultCellStyle = DataGridViewCellStyle16
+        Me.dgvPlanes.EnableHeadersVisualStyles = False
+        Me.dgvPlanes.GridColor = System.Drawing.Color.White
+        Me.dgvPlanes.Location = New System.Drawing.Point(3, 28)
+        Me.dgvPlanes.MultiSelect = False
+        Me.dgvPlanes.Name = "dgvPlanes"
+        Me.dgvPlanes.ReadOnly = True
+        Me.dgvPlanes.RowHeadersVisible = False
+        Me.dgvPlanes.RowHeadersWidth = 40
+        Me.dgvPlanes.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvPlanes.Size = New System.Drawing.Size(866, 119)
+        Me.dgvPlanes.TabIndex = 5
         '
         'FrmEquipos
         '
@@ -942,11 +1076,16 @@ Partial Class FrmEquipos
         CType(Me.dgvimages, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStripIMG.ResumeLayout(False)
         Me.ToolStripIMG.PerformLayout()
+        Me.TabPageTareas.ResumeLayout(False)
+        Me.TabPageTareas.PerformLayout()
+        CType(Me.dgvTareas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip4.ResumeLayout(False)
+        Me.ToolStrip4.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
-        CType(Me.dgvPlanes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
+        CType(Me.dgvPlanes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -998,11 +1137,19 @@ Partial Class FrmEquipos
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents dgvPlanes As System.Windows.Forms.DataGridView
     Friend WithEvents ToolStrip3 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TabPageTareas As System.Windows.Forms.TabPage
+    Friend WithEvents dgvTareas As System.Windows.Forms.DataGridView
+    Friend WithEvents ToolStrip4 As System.Windows.Forms.ToolStrip
+    Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator9 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton7 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents dgvPlanes As System.Windows.Forms.DataGridView
 End Class

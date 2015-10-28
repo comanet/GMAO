@@ -131,6 +131,12 @@
     <Compile Include="Formularios\FrmAddPlan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FrmAddTareaEq.Designer.vb">
+      <DependentUpon>FrmAddTareaEq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmAddTareaEq.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\FrmAlmacen.Designer.vb">
       <DependentUpon>FrmAlmacen.vb</DependentUpon>
     </Compile>
@@ -230,6 +236,7 @@
     <Compile Include="Modulos\clAddActividad.vb" />
     <Compile Include="Modulos\clAddEquipo.vb" />
     <Compile Include="Modulos\clAddPlan.vb" />
+    <Compile Include="Modulos\clAddTareaEq.vb" />
     <Compile Include="Modulos\clEspecialidades.vb" />
     <Compile Include="Modulos\clFrecuencias.vb" />
     <Compile Include="Modulos\clGMAO.vb" />
@@ -277,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmAddPlan.resx">
       <DependentUpon>FrmAddPlan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmAddTareaEq.resx">
+      <DependentUpon>FrmAddTareaEq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmAlmacen.resx">
       <DependentUpon>FrmAlmacen.vb</DependentUpon>
