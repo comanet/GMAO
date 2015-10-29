@@ -26,7 +26,7 @@ Partial Class FrmActividades
         Dim IdAtividadLabel As System.Windows.Forms.Label
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmActividades))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -47,9 +47,6 @@ Partial Class FrmActividades
         Me.txt_ID = New System.Windows.Forms.TextBox()
         Me.dgvActividades = New System.Windows.Forms.DataGridView()
         Me.btSalir = New System.Windows.Forms.Button()
-        Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ESPECIALIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DESCRIPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         DESRIPCIONLabel = New System.Windows.Forms.Label()
         IdAtividadLabel = New System.Windows.Forms.Label()
         NOMBRELabel = New System.Windows.Forms.Label()
@@ -235,6 +232,7 @@ Partial Class FrmActividades
         '
         'txt_DESCRIPCION
         '
+        Me.txt_DESCRIPCION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_DESCRIPCION.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_DESCRIPCION.Location = New System.Drawing.Point(104, 127)
         Me.txt_DESCRIPCION.MaxLength = 255
@@ -266,6 +264,7 @@ Partial Class FrmActividades
         '
         'txt_NOMBRE
         '
+        Me.txt_NOMBRE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_NOMBRE.Location = New System.Drawing.Point(107, 55)
         Me.txt_NOMBRE.MaxLength = 50
@@ -276,6 +275,7 @@ Partial Class FrmActividades
         '
         'txt_ID
         '
+        Me.txt_ID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_ID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_ID.Location = New System.Drawing.Point(107, 21)
         Me.txt_ID.MaxLength = 8
@@ -288,14 +288,13 @@ Partial Class FrmActividades
         '
         Me.dgvActividades.AllowUserToAddRows = False
         Me.dgvActividades.AllowUserToDeleteRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige
-        Me.dgvActividades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
+        Me.dgvActividades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvActividades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvActividades.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvActividades.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NOMBRE, Me.ESPECIALIDAD, Me.DESCRIPCION})
         Me.dgvActividades.Location = New System.Drawing.Point(0, 267)
         Me.dgvActividades.Name = "dgvActividades"
         Me.dgvActividades.ReadOnly = True
@@ -316,33 +315,6 @@ Partial Class FrmActividades
         Me.btSalir.TabIndex = 7
         Me.btSalir.Text = "&Salir"
         Me.btSalir.UseVisualStyleBackColor = False
-        '
-        'NOMBRE
-        '
-        Me.NOMBRE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.NOMBRE.DataPropertyName = "NOMBRE"
-        Me.NOMBRE.HeaderText = "NOMBRE"
-        Me.NOMBRE.Name = "NOMBRE"
-        Me.NOMBRE.ReadOnly = True
-        Me.NOMBRE.Width = 79
-        '
-        'ESPECIALIDAD
-        '
-        Me.ESPECIALIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.ESPECIALIDAD.DataPropertyName = "IDESPECIALIDAD"
-        Me.ESPECIALIDAD.HeaderText = "ESPECIALIDAD"
-        Me.ESPECIALIDAD.Name = "ESPECIALIDAD"
-        Me.ESPECIALIDAD.ReadOnly = True
-        Me.ESPECIALIDAD.Width = 109
-        '
-        'DESCRIPCION
-        '
-        Me.DESCRIPCION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DESCRIPCION.DataPropertyName = "DESCRIPCION"
-        Me.DESCRIPCION.HeaderText = "DESCRIPCION"
-        Me.DESCRIPCION.Name = "DESCRIPCION"
-        Me.DESCRIPCION.ReadOnly = True
-        Me.DESCRIPCION.Width = 105
         '
         'FrmActividades
         '
@@ -387,7 +359,4 @@ Partial Class FrmActividades
     Friend WithEvents TIPMANTLabel As System.Windows.Forms.Label
     Friend WithEvents dgvActividades As System.Windows.Forms.DataGridView
     Friend WithEvents btSalir As System.Windows.Forms.Button
-    Friend WithEvents NOMBRE As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ESPECIALIDAD As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DESCRIPCION As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

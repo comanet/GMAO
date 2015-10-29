@@ -27,9 +27,9 @@ Partial Class FrmGMAO
         Dim ACTIVIDADLabel As System.Windows.Forms.Label
         Dim Label1 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmGMAO))
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
@@ -40,6 +40,7 @@ Partial Class FrmGMAO
         Me.tsbtnFiltro = New System.Windows.Forms.ToolStripButton()
         Me.TsbtnPrint = New System.Windows.Forms.ToolStripButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btBorrar = New System.Windows.Forms.Button()
         Me.btOT = New System.Windows.Forms.Button()
         Me.btAddPlan = New System.Windows.Forms.Button()
         Me.txt_ACTIVIDAD = New System.Windows.Forms.TextBox()
@@ -48,12 +49,11 @@ Partial Class FrmGMAO
         Me.txt_PLAN = New System.Windows.Forms.TextBox()
         Me.dgvPlanes = New System.Windows.Forms.DataGridView()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPageAct = New System.Windows.Forms.TabPage()
-        Me.dgvActiv = New System.Windows.Forms.DataGridView()
         Me.TabPageEquipos = New System.Windows.Forms.TabPage()
         Me.dgvEquip = New System.Windows.Forms.DataGridView()
+        Me.TabPageAct = New System.Windows.Forms.TabPage()
+        Me.dgvActiv = New System.Windows.Forms.DataGridView()
         Me.TabPagePlanes = New System.Windows.Forms.TabPage()
-        Me.btBorrar = New System.Windows.Forms.Button()
         EQUIPOLabel = New System.Windows.Forms.Label()
         IDPLANLabel = New System.Windows.Forms.Label()
         ACTIVIDADLabel = New System.Windows.Forms.Label()
@@ -62,10 +62,10 @@ Partial Class FrmGMAO
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvPlanes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
-        Me.TabPageAct.SuspendLayout()
-        CType(Me.dgvActiv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageEquipos.SuspendLayout()
         CType(Me.dgvEquip, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPageAct.SuspendLayout()
+        CType(Me.dgvActiv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPagePlanes.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -224,6 +224,19 @@ Partial Class FrmGMAO
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Detalle Planes GMAO"
         '
+        'btBorrar
+        '
+        Me.btBorrar.BackColor = System.Drawing.Color.DimGray
+        Me.btBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btBorrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btBorrar.ForeColor = System.Drawing.Color.White
+        Me.btBorrar.Location = New System.Drawing.Point(80, 170)
+        Me.btBorrar.Name = "btBorrar"
+        Me.btBorrar.Size = New System.Drawing.Size(111, 36)
+        Me.btBorrar.TabIndex = 31
+        Me.btBorrar.Text = "&Borrar Plan"
+        Me.btBorrar.UseVisualStyleBackColor = False
+        '
         'btOT
         '
         Me.btOT.BackColor = System.Drawing.Color.DimGray
@@ -291,8 +304,8 @@ Partial Class FrmGMAO
         '
         Me.dgvPlanes.AllowUserToAddRows = False
         Me.dgvPlanes.AllowUserToDeleteRows = False
-        DataGridViewCellStyle13.BackColor = System.Drawing.Color.LightGray
-        Me.dgvPlanes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray
+        Me.dgvPlanes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvPlanes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -319,35 +332,6 @@ Partial Class FrmGMAO
         Me.TabControl1.Size = New System.Drawing.Size(701, 265)
         Me.TabControl1.TabIndex = 36
         '
-        'TabPageAct
-        '
-        Me.TabPageAct.Controls.Add(Me.dgvActiv)
-        Me.TabPageAct.Location = New System.Drawing.Point(4, 22)
-        Me.TabPageAct.Name = "TabPageAct"
-        Me.TabPageAct.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageAct.Size = New System.Drawing.Size(693, 239)
-        Me.TabPageAct.TabIndex = 0
-        Me.TabPageAct.Text = "Actividades"
-        Me.TabPageAct.UseVisualStyleBackColor = True
-        '
-        'dgvActiv
-        '
-        Me.dgvActiv.AllowUserToAddRows = False
-        Me.dgvActiv.AllowUserToDeleteRows = False
-        DataGridViewCellStyle14.BackColor = System.Drawing.Color.LightGray
-        Me.dgvActiv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle14
-        Me.dgvActiv.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvActiv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvActiv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvActiv.Location = New System.Drawing.Point(3, 3)
-        Me.dgvActiv.Name = "dgvActiv"
-        Me.dgvActiv.ReadOnly = True
-        Me.dgvActiv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvActiv.Size = New System.Drawing.Size(687, 230)
-        Me.dgvActiv.TabIndex = 16
-        '
         'TabPageEquipos
         '
         Me.TabPageEquipos.Controls.Add(Me.dgvEquip)
@@ -363,8 +347,8 @@ Partial Class FrmGMAO
         '
         Me.dgvEquip.AllowUserToAddRows = False
         Me.dgvEquip.AllowUserToDeleteRows = False
-        DataGridViewCellStyle15.BackColor = System.Drawing.Color.LightGray
-        Me.dgvEquip.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray
+        Me.dgvEquip.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvEquip.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -377,6 +361,35 @@ Partial Class FrmGMAO
         Me.dgvEquip.Size = New System.Drawing.Size(687, 230)
         Me.dgvEquip.TabIndex = 17
         '
+        'TabPageAct
+        '
+        Me.TabPageAct.Controls.Add(Me.dgvActiv)
+        Me.TabPageAct.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageAct.Name = "TabPageAct"
+        Me.TabPageAct.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageAct.Size = New System.Drawing.Size(693, 239)
+        Me.TabPageAct.TabIndex = 0
+        Me.TabPageAct.Text = "Actividades"
+        Me.TabPageAct.UseVisualStyleBackColor = True
+        '
+        'dgvActiv
+        '
+        Me.dgvActiv.AllowUserToAddRows = False
+        Me.dgvActiv.AllowUserToDeleteRows = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray
+        Me.dgvActiv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvActiv.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvActiv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvActiv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvActiv.Location = New System.Drawing.Point(3, 3)
+        Me.dgvActiv.Name = "dgvActiv"
+        Me.dgvActiv.ReadOnly = True
+        Me.dgvActiv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvActiv.Size = New System.Drawing.Size(687, 230)
+        Me.dgvActiv.TabIndex = 16
+        '
         'TabPagePlanes
         '
         Me.TabPagePlanes.Controls.Add(Me.dgvPlanes)
@@ -386,19 +399,6 @@ Partial Class FrmGMAO
         Me.TabPagePlanes.TabIndex = 2
         Me.TabPagePlanes.Text = "Planes"
         Me.TabPagePlanes.UseVisualStyleBackColor = True
-        '
-        'btBorrar
-        '
-        Me.btBorrar.BackColor = System.Drawing.Color.DimGray
-        Me.btBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btBorrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btBorrar.ForeColor = System.Drawing.Color.White
-        Me.btBorrar.Location = New System.Drawing.Point(80, 170)
-        Me.btBorrar.Name = "btBorrar"
-        Me.btBorrar.Size = New System.Drawing.Size(111, 36)
-        Me.btBorrar.TabIndex = 31
-        Me.btBorrar.Text = "&Borrar Plan"
-        Me.btBorrar.UseVisualStyleBackColor = False
         '
         'FrmGMAO
         '
@@ -419,10 +419,10 @@ Partial Class FrmGMAO
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvPlanes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
-        Me.TabPageAct.ResumeLayout(False)
-        CType(Me.dgvActiv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageEquipos.ResumeLayout(False)
         CType(Me.dgvEquip, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPageAct.ResumeLayout(False)
+        CType(Me.dgvActiv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPagePlanes.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

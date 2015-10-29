@@ -79,22 +79,28 @@ Public Class FrmActividades
 
         Try
             cbEspe.Items.Clear()
-            dtEspecialidades = ClasActividades.consultaAux("SELECT NOMBRE FROM ESPECIALIDADES", "tbl_ESPECIALIDADES")
+            dtEspecialidades = ClasActividades.consultaAux("SELECT NOMBRE FROM ESPECIALIDADES ORDER BY NOMBRE", "tbl_ESPECIALIDADES")
             For Each row As DataRow In dtEspecialidades.Rows
                 cbEspe.Items.Add(CStr(row("NOMBRE")))
             Next
+            
+            'cbEspe.DataSource = dtEspecialidades
+            'cbEspe.ValueMember = "NOMBRE"
+            'cbEspe.DisplayMember = "NOMBRE"
 
             cbTMant.Items.Clear()
-            dtTiposMantenimiento = ClasActividades.consultaAux("SELECT Descripcion FROM TIPOTS", "tbl_TIPOTS")
+            dtTiposMantenimiento = ClasActividades.consultaAux("SELECT Descripcion FROM TIPOTS ORDER BY Descripcion", "tbl_TIPOTS")
             For Each row As DataRow In dtTiposMantenimiento.Rows
                 cbTMant.Items.Add(CStr(row("Descripcion")))
             Next
 
             cbFrec.Items.Clear()
-            dtFrecuencias = ClasActividades.consultaAux("SELECT DESCRIPCION FROM FRECUENCIAS", "tbl_FRECUENCIAS")
+            dtFrecuencias = ClasActividades.consultaAux("SELECT DESCRIPCION, DIAS FROM FRECUENCIAS ORDER BY DIAS ASC", "tbl_FRECUENCIAS")
             For Each row As DataRow In dtFrecuencias.Rows
                 cbFrec.Items.Add(CStr(row("DESCRIPCION")))
             Next
+            cbFrec.DisplayMember = "DESCRIPCION"
+            cbFrec.ValueMember = "DESCRIPCION"
         Catch
             MessageBox.Show("Error al cargar los combos de Actividades")
         End Try
@@ -107,7 +113,7 @@ Public Class FrmActividades
 
         ClasActividades.ConsultaActividades("SELECT * FROM ACTIVIDADES")
         dgvActividades.DataSource = ClasActividades.bsActividades
-        dgvActividades.AutoGenerateColumns = False
+        dgvActividades.AutoGenerateColumns = True
         dgvActividades.Columns("IDACTIVIDAD").Visible = False
         dgvActividades.Columns("idTipOt").Visible = False
         dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
@@ -140,6 +146,8 @@ Public Class FrmActividades
 
     Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
 
+        Dim sql As String
+
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             'aNTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
             '  MsgBox(ClasEquipos.buscaID(Me.txt_ID.Text))
@@ -151,11 +159,18 @@ Public Class FrmActividades
                 Exit Sub  ' Si el ID existe, se vuelve al Textbox para modificar valor.
             End If
 
+            sql = "INSERT INTO ACTIVIDADES(NOMBRE, DESCRIPCION, IdTipOT, IDFRECUENCIA, IDESPECIALIDAD) " & _
+                                                   "VALUES('" & Trim(Me.txt_NOMBRE.Text) & "', '" & Trim(Me.txt_DESCRIPCION.Text) & "', '" & Me.cbTMant.Text &
+                                                   "', '" & Me.cbFrec.Text & "', '" & Me.cbEspe.Text & "'" & ")"
+            'Clipboard.SetText(sql)
+            'MessageBox.Show("Comprobar INSERT en tabla ACTIVIDADES:" & vbCrLf & sql)
+
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasActividades.InsertaActividades("Insert Into ACTIVIDADES(NOMBRE,DESCRIPCION,IdTipOT,IDFRECUENCIA,IDESPECIALIDAD)" & _
-                                                   "values(" & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.cbEspe.ValueMember.ToString &
-                                                   "'" & "," & "'" & Me.cbFrec.ValueMember.ToString & "'" & "," & "'" & Me.cbTMant.ValueMember.ToString & "'" & ")") = True Then
+                    'If ClasActividades.InsertaActividades("INSERT INTO ACTIVIDADES(NOMBRE,DESCRIPCION,IdTipOT,IDFRECUENCIA,IDESPECIALIDAD) " & _
+                    '                           "VALUES(" & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.cbEspe.ValueMember.ToString &
+                    '                           "'" & "," & "'" & Me.cbFrec.ValueMember.ToString & "'" & "," & "'" & Me.cbTMant.ValueMember.ToString & "'" & ")") = True Then
+                    If ClasActividades.InsertaActividades(sql) = True Then
 
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 

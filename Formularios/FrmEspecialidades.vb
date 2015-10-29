@@ -135,15 +135,15 @@ Public Class FrmEspecialidades
 
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasEspecialidades.InsertaEspecialidades("Insert Into ESPECIALIDADES(NOMBRE)" & _
-                                                   "values(" & "'" & Me.txt_NOMBRE.Text & "'" & ")") Then
+                    If ClasEspecialidades.InsertaEspecialidades("Insert Into ESPECIALIDADES(NOMBRE) " & _
+                                                   "VALUES (" & "'" & Trim(Me.txt_NOMBRE.Text) & "'" & ")") Then
 
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                         Actualizar()
                     End If
                 Catch ex As Exception
-                    MessageBox.Show("Error " & ex.Message)
+                    MessageBox.Show("Error al insertar en la BD: " & vbCrLf & ex.Message.ToString)
                 End Try
 
                 'Me.txt_ID.ReadOnly = True

@@ -25,7 +25,7 @@ Partial Class FrmEspecialidades
         Dim NOMBRELabel As System.Windows.Forms.Label
         Dim IDESPECIALIDADLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEspecialidades))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -53,18 +53,18 @@ Partial Class FrmEspecialidades
         NOMBRELabel.AutoSize = True
         NOMBRELabel.Location = New System.Drawing.Point(12, 66)
         NOMBRELabel.Name = "NOMBRELabel"
-        NOMBRELabel.Size = New System.Drawing.Size(83, 13)
+        NOMBRELabel.Size = New System.Drawing.Size(57, 13)
         NOMBRELabel.TabIndex = 26
-        NOMBRELabel.Text = "DESCRIPCIÓN:"
+        NOMBRELabel.Text = "NOMBRE:"
         '
         'IDESPECIALIDADLabel
         '
         IDESPECIALIDADLabel.AutoSize = True
         IDESPECIALIDADLabel.Location = New System.Drawing.Point(12, 29)
         IDESPECIALIDADLabel.Name = "IDESPECIALIDADLabel"
-        IDESPECIALIDADLabel.Size = New System.Drawing.Size(89, 13)
+        IDESPECIALIDADLabel.Size = New System.Drawing.Size(98, 13)
         IDESPECIALIDADLabel.TabIndex = 23
-        IDESPECIALIDADLabel.Text = "IDFRECUENCIA:"
+        IDESPECIALIDADLabel.Text = "IDESPECIALIDAD:"
         '
         'ToolStrip1
         '
@@ -179,6 +179,7 @@ Partial Class FrmEspecialidades
         '
         'txt_NOMBRE
         '
+        Me.txt_NOMBRE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txt_NOMBRE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_NOMBRE.Location = New System.Drawing.Point(107, 58)
         Me.txt_NOMBRE.MaxLength = 255
@@ -201,8 +202,8 @@ Partial Class FrmEspecialidades
         '
         Me.dgvSecc.AllowUserToAddRows = False
         Me.dgvSecc.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige
-        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige
+        Me.dgvSecc.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvSecc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
