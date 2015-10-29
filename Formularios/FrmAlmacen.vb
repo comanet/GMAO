@@ -135,7 +135,7 @@
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasAlma.InsertaAlma("Insert Into ALMACEN(IDALMACEN,DESCRIPCION,UBICACION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & "," & "'" & Me.txt_Ubi.Text & "'" & ")") = True Then
+                    If ClasAlma.InsertaAlma("Insert Into ALMACEN(IDALMACEN,DESCRIPCION,UBICACION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & "," & "'" & Me.txt_Ubi.Text & "'" & ")") Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)

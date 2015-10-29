@@ -27,9 +27,9 @@ Partial Class FrmGMAO
         Dim ACTIVIDADLabel As System.Windows.Forms.Label
         Dim Label1 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmGMAO))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btSalir = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
@@ -132,6 +132,7 @@ Partial Class FrmGMAO
         '
         Me.tsNew.AutoSize = False
         Me.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsNew.Enabled = False
         Me.tsNew.Image = CType(resources.GetObject("tsNew.Image"), System.Drawing.Image)
         Me.tsNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -145,6 +146,7 @@ Partial Class FrmGMAO
         '
         Me.tsEdit.AutoSize = False
         Me.tsEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsEdit.Enabled = False
         Me.tsEdit.Image = CType(resources.GetObject("tsEdit.Image"), System.Drawing.Image)
         Me.tsEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsEdit.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -156,6 +158,7 @@ Partial Class FrmGMAO
         '
         Me.tsDel.AutoSize = False
         Me.tsDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsDel.Enabled = False
         Me.tsDel.Image = CType(resources.GetObject("tsDel.Image"), System.Drawing.Image)
         Me.tsDel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsDel.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -234,7 +237,7 @@ Partial Class FrmGMAO
         Me.btBorrar.Name = "btBorrar"
         Me.btBorrar.Size = New System.Drawing.Size(111, 36)
         Me.btBorrar.TabIndex = 31
-        Me.btBorrar.Text = "&Borrar Plan"
+        Me.btBorrar.Text = "&Borrar Formulario"
         Me.btBorrar.UseVisualStyleBackColor = False
         '
         'btOT
@@ -304,8 +307,8 @@ Partial Class FrmGMAO
         '
         Me.dgvPlanes.AllowUserToAddRows = False
         Me.dgvPlanes.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray
-        Me.dgvPlanes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray
+        Me.dgvPlanes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvPlanes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -347,8 +350,8 @@ Partial Class FrmGMAO
         '
         Me.dgvEquip.AllowUserToAddRows = False
         Me.dgvEquip.AllowUserToDeleteRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray
-        Me.dgvEquip.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray
+        Me.dgvEquip.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvEquip.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -376,8 +379,8 @@ Partial Class FrmGMAO
         '
         Me.dgvActiv.AllowUserToAddRows = False
         Me.dgvActiv.AllowUserToDeleteRows = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray
-        Me.dgvActiv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.LightGray
+        Me.dgvActiv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgvActiv.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)

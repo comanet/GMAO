@@ -185,6 +185,12 @@
     <Compile Include="Formularios\FrmMantePlan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FrmOT.Designer.vb">
+      <DependentUpon>FrmOT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmOT.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\FrmPersonal.Designer.vb">
       <DependentUpon>FrmPersonal.vb</DependentUpon>
     </Compile>
@@ -241,6 +247,7 @@
     <Compile Include="Modulos\clFrecuencias.vb" />
     <Compile Include="Modulos\clGMAO.vb" />
     <Compile Include="Modulos\clMantePlan.vb" />
+    <Compile Include="Modulos\clOT.vb" />
     <Compile Include="Modulos\clProveedores.vb" />
     <Compile Include="Modulos\clRepuesto.vb" />
     <Compile Include="Modulos\clEquipos.vb" />
@@ -311,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmMantePlan.resx">
       <DependentUpon>FrmMantePlan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmOT.resx">
+      <DependentUpon>FrmOT.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmPersonal.resx">
       <DependentUpon>FrmPersonal.vb</DependentUpon>

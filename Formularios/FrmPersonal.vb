@@ -207,7 +207,7 @@
                                                    "'" & "," & "'" & Me.txt_tlf2.Text & "'" & "," & "'" & Me.txt_tlf3.Text &
                                                    "'" & "," & (Replace(Me.txt_Hora.Text, ",", ".")) & "," & (Replace(Me.txt_HoraE.Text, ",", ".")) &
                                                    "," & "'" & Me.cbCat.Text & "'" & "," & "'" & Me.cbEspe.Text &
-                                                   "'" & "," & "'" & Me.txt_email.Text & "'" & ")") = True Then
+                                                   "'" & "," & "'" & Me.txt_email.Text & "'" & ")") Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)

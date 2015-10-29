@@ -189,7 +189,7 @@ Public Class FrmUser
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
                     If ClasUser.InsertaUser("Insert Into USUARIOS(USUARIO,NOMBRE,PASSWD,ACT,PERFIL,EMAIL) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Nom.Text & "'" & "," &
-                                            "'" & passmd5 & "'" & "," & "'" & Me.cbox1.Checked.ToString & "'" & "," & "'" & Me.cbPerfil.Text & "'" & "," & "'" & Me.txt_email.Text & "'" & ")") = True Then
+                                            "'" & passmd5 & "'" & "," & "'" & Me.cbox1.Checked.ToString & "'" & "," & "'" & Me.cbPerfil.Text & "'" & "," & "'" & Me.txt_email.Text & "'" & ")") Then
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
                         ' Para actualizar los valores nuevos insertados y que se muestren en el dvgrid
                         Actualizar()

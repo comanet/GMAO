@@ -152,7 +152,7 @@ Public Class FrmActividades
             'aNTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
             '  MsgBox(ClasEquipos.buscaID(Me.txt_ID.Text))
 
-            If ClasActividades.buscaID(Me.txt_ID.Text) = True Then
+            If ClasActividades.buscaID(Me.txt_ID.Text) Then
                 MsgBox("Atención, el IdActividad ya está siendo utilizado en el Sistema.", MsgBoxStyle.Exclamation)
                 ActiveControl = Me.txt_ID
                 Me.txt_ID.Text = ""
@@ -169,8 +169,8 @@ Public Class FrmActividades
                 Try
                     'If ClasActividades.InsertaActividades("INSERT INTO ACTIVIDADES(NOMBRE,DESCRIPCION,IdTipOT,IDFRECUENCIA,IDESPECIALIDAD) " & _
                     '                           "VALUES(" & "'" & Me.txt_NOMBRE.Text & "'" & "," & "'" & Me.txt_DESCRIPCION.Text & "'" & "," & "'" & Me.cbEspe.ValueMember.ToString &
-                    '                           "'" & "," & "'" & Me.cbFrec.ValueMember.ToString & "'" & "," & "'" & Me.cbTMant.ValueMember.ToString & "'" & ")") = True Then
-                    If ClasActividades.InsertaActividades(sql) = True Then
+                    '                           "'" & "," & "'" & Me.cbFrec.ValueMember.ToString & "'" & "," & "'" & Me.cbTMant.ValueMember.ToString & "'" & ")") Then
+                    If ClasActividades.InsertaActividades(sql) Then
 
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 

@@ -20,6 +20,7 @@ Module variables
     Public FAddEquipo As FrmAddEquipo = Nothing
     Public FAddActividad As FrmAddActividad = Nothing
     Public FAddTareaEq As FrmAddTareaEq = Nothing
+    Public FOT As FrmOT = Nothing
 
     Public IdEquipo As String = ""
     Public NombreEquipo As String = ""

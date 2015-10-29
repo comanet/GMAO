@@ -189,7 +189,7 @@ Public Class FrmEquipos
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             'ANTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
             
-            If ClasEquipos.buscaID(Me.txt_ID.Text) = True Then
+            If ClasEquipos.buscaID(Me.txt_ID.Text) Then
                 MsgBox("Atención, el IDEQUIPO ya está siendo utilizado en el Sistema.", MsgBoxStyle.Exclamation)
                 ActiveControl = Me.txt_ID
                 Me.txt_ID.Text = ""
@@ -205,7 +205,7 @@ Public Class FrmEquipos
                                                    "'" & "," & "'" & Me.cbseccion.Text & "'" & "," & "'" & Me.CBtipoEquipo.Text &
                                                    "'" & "," & "'" & Me.txt_Pro.Text & "'" & "," & "'" & Me.dtFcompra.Text &
                                                    "'" & "," & "'" & Me.dtFGarantia.Text & "'" & "," & "'" & Me.CBEstado.Text &
-                                                   "'" & "," & "'" & Me.txt_Notas.Text & "'" & ")") = True Then
+                                                   "'" & "," & "'" & Me.txt_Notas.Text & "'" & ")") Then
 
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
@@ -367,7 +367,7 @@ Public Class FrmEquipos
 
             Try
                 'Grabar en tabla equip_doc datos documento.
-                If ClasEquipos.InsertaEquipo("Insert Into EQUIP_DOC(IDEQUIPO,NOMBRE,TIPO) VALUES(" + "'" + Me.txt_ID.Text + "'" + "," + "'" + nombrefile + "'" + "," + "'" + tipofile + "'" + ")") = True Then
+                If ClasEquipos.InsertaEquipo("Insert Into EQUIP_DOC(IDEQUIPO,NOMBRE,TIPO) VALUES(" + "'" + Me.txt_ID.Text + "'" + "," + "'" + nombrefile + "'" + "," + "'" + tipofile + "'" + ")") Then
                     'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                     'Copiar el Archivo a la Carpeta \res\doc
@@ -454,7 +454,7 @@ Public Class FrmEquipos
 
             Try
                 'Grabar en tabla equip_doc datos documento.
-                If ClasEquipos.InsertaEquipo("Insert Into EQUIP_DOC(IDEQUIPO,NOMBRE,TIPO) VALUES(" + "'" + Me.txt_ID.Text + "'" + "," + "'" + nombrefile + "'" + "," + "'" + tipofile + "'" + ")") = True Then
+                If ClasEquipos.InsertaEquipo("Insert Into EQUIP_DOC(IDEQUIPO,NOMBRE,TIPO) VALUES(" + "'" + Me.txt_ID.Text + "'" + "," + "'" + nombrefile + "'" + "," + "'" + tipofile + "'" + ")") Then
                     'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 
                     'Copiar el Archivo a la Carpeta \res\doc

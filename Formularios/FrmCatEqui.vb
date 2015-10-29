@@ -99,7 +99,7 @@
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Try
-                    If ClasTipEqui.InsertaSeccion("Insert Into TIP_EQUIP(IDTIPO,NOMBRE,DESCRIPCION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Nom.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & ")") = True Then
+                    If ClasTipEqui.InsertaSeccion("Insert Into TIP_EQUIP(IDTIPO,NOMBRE,DESCRIPCION) values(" & "'" & Me.txt_ID.Text & "'" & "," & "'" & Me.txt_Nom.Text & "'" & "," & "'" & Me.txt_Des.Text & "'" & ")") Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)

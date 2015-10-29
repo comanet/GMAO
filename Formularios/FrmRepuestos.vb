@@ -188,7 +188,7 @@
                                                    "'" & "," & "'" & Me.txt_Marc.Text & "'" & "," & "'" & Me.txt_Mod.Text &
                                                    "'" & "," & "'" & Me.txt_Notas.Text & "'" & "," & "'" & Me.txt_Prov.Text &
                                                    "'" & "," & "'" & Me.txt_StcMax.Text & "'" & "," & "'" & Me.txt_StcMin.Text &
-                                                   "'" & "," & "'" & Me.cbUM.Text & "'" & "," & (Replace(Me.txt_Precio.Text, ",", ".")) & ")") = True Then
+                                                   "'" & "," & "'" & Me.cbUM.Text & "'" & "," & (Replace(Me.txt_Precio.Text, ",", ".")) & ")") Then
                         'prueba = ("Insert Into Secciones(" + txt_ID.Text + ",'" + txt_Nom.Text + "','" + txt_Des.Text + "')")
                         'MsgBox(prueba)
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)

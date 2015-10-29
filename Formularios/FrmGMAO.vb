@@ -25,7 +25,7 @@ Public Class FrmGMAO
                 & "un EQUIPO y una TAREA de las tablas situadas en la parte inferior. El PLAN " _
                 & "se puede dejar vacío, pero si se escoge uno se asignará la dupla EQUIPO/TAREA" _
                 & "a la plantilla seleccionada." & vbCrLf & vbCrLf & "La escritura de la Base de Datos todavía no está disponible."
-        MessageBox.Show(mensaje, "Asignación de tareas a GMAO", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'MessageBox.Show(mensaje, "Asignación de tareas a GMAO", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         txt_PLAN.Text = ""
         txt_ACTIVIDAD.Text = ""
@@ -166,52 +166,70 @@ Public Class FrmGMAO
 
     End Sub
 
-    'Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
+    Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
 
-    '    If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
-    '        If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
-    '            Try
-    '                If (txt_FIni.Text = "") Then
-    '                    txt_FIni.Text = calFInicio.SelectionRange.Start.ToString
-    '                End If
-    '                ProxReg = ProxReg + 1
-    '                If ClasGMAO.InsertaGMAO("Insert Into PLANTILLAS(IDPLAN, IDACTIVIDAD, IDEQUIPO, NUMPLANTILLA)" & _
-    '                                               "values(" & "'" & Me.txt_ID.Text & "', '" & txt_IDACTIV.Text & "', '" & txt_IDEQUIPO.Text & "', '" & ProxReg.ToString & "')") = True Then
-    '                    Actualizar()
-    '                End If
-    '            Catch ex As Exception
-    '                MessageBox.Show("Error tsSave_Click" & vbCrLf & ex.Message.ToString)
-    '                ProxReg = ProxReg - 1
-    '            End Try
+        Dim sql As String = ""
+        Dim IdPlan, IdActividad, IdEquipo As String
 
-    '            Me.txt_ID.ReadOnly = True
-    '            Me.txt_EQUIPO.ReadOnly = True
-    '            Me.txt_ACTIVIDAD.ReadOnly = True
+        If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
+            If MessageBox.Show("¿Esta seguro de que desea Guardar el Registro Seleccionado?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                Try
+                    IdPlan = dgvPlanes.Rows(dgvPlanes.CurrentCell.RowIndex).Cells(0).Value.ToString
+                    IdActividad = dgvActiv.Rows(dgvActiv.CurrentCell.RowIndex).Cells(0).Value.ToString
+                    IdEquipo = dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(0).Value.ToString
+                    sql = "INSERT INTO PLANTILLAS(IDPLAN, IDACTIVIDAD, IDEQUIPO) " & vbCrLf _
+                        & "VALUES('" & IdPlan & "', '" & IdActividad & "', '" & IdEquipo & "')"
+                    Clipboard.SetText(sql)
+                    MessageBox.Show(sql)
+                    'If ClasGMAO.InsertaGMAO(sql) Then
+                    '    Actualizar()
+                    'End If
+                Catch ex As Exception
+                    MessageBox.Show("Error tsSave_Click" & vbCrLf & ex.Message.ToString)
+                End Try
 
-    '            tsSave.Enabled = False
-    '            tsEdit.Enabled = True
-    '            tsNew.Enabled = True
-    '            tsDel.Enabled = True
-    '        End If
-    '    ElseIf tipoOperacion = "M" Then
+                Me.txt_PLAN.ReadOnly = True
+                Me.txt_EQUIPO.ReadOnly = True
+                Me.txt_ACTIVIDAD.ReadOnly = True
 
-    '        If ClasGMAO.actualizar("PLANESGMAO", "IDPLAN = " + "'" + Trim(txt_ID.Text) + "'" + "," + "FechaInicio= " + "'" + Trim(txt_FIni.Text) + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
+                'tsSave.Enabled = False
+                'tsEdit.Enabled = True
+                'tsNew.Enabled = True
+                'tsDel.Enabled = True
+            End If
+        Else
+            If tipoOperacion = "M" Then
+                ' ¡OJO! Revisar y CORREGIR
+                ' ¿Realmente vamos a tener que actualizar AQUÍ? 
+                ' Echar una pensada ;-)
 
-    '            Actualizar()
-    '            Me.txt_ID.ReadOnly = True
-    '            Me.txt_EQUIPO.ReadOnly = True
-    '            Me.txt_ACTIVIDAD.ReadOnly = True
+                IdPlan = dgvPlanes.Rows(dgvPlanes.CurrentCell.RowIndex).Cells(0).Value.ToString
+                IdActividad = dgvActiv.Rows(dgvActiv.CurrentCell.RowIndex).Cells(0).Value.ToString
+                IdEquipo = dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(0).Value.ToString
 
-    '            tsSave.Enabled = False
-    '            tsEdit.Enabled = True
-    '            tsNew.Enabled = True
-    '            tsDel.Enabled = True
-    '        End If
-    '    End If
+                MessageBox.Show("Modificamos el registro de tabla PLANTILLAS. Parámetros:" & vbCrLf _
+                                & "    - Plan: " & IdPlan & vbCrLf _
+                                & "    - Equipo: " & IdEquipo & vbCrLf _
+                                & "    - Tarea: " & IdActividad & vbCrLf, "Modificación PLANTILLAS - GMSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-    '    btSalir.Enabled = True
+                'If ClasGMAO.actualizar("PLANTILLAS", "IDPLAN = " + "'" + IdPlan + "', " + "FechaInicio='" + calFInicio.SelectionStart.ToString + "'", "IDPM= " + Trim(txt_IDPM.Text)) Then
 
-    'End Sub
+                'Actualizar()
+                Me.txt_PLAN.ReadOnly = True
+                Me.txt_EQUIPO.ReadOnly = True
+                Me.txt_ACTIVIDAD.ReadOnly = True
+
+                'tsSave.Enabled = False
+                'tsEdit.Enabled = True
+                'tsNew.Enabled = True
+                'tsDel.Enabled = True
+                'End If
+            End If
+        End If
+
+        btSalir.Enabled = True
+
+    End Sub
 
     Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
 
@@ -286,22 +304,130 @@ Public Class FrmGMAO
 
     Private Sub btOT_Click(sender As Object, e As EventArgs) Handles btOT.Click
 
-        Dim str As String = ""
+        ' ¡OJO! La ORDEN DE TRABAJO se crea como un registro en la tabla PLANESGMAO,
+        ' en la que se guarda FechaInicio (obligatorio), Actividad (obligatorio),
+        ' Equipo (opcional) y Plan (opcional).
+        ' Se entiende que puede haber Tareas/Actividades no asignadas a ningún Equipo o Plan, 
+        ' pero que deben de ser ejecutadas.
 
-        str = "Se crea la OT para el equipo " & dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(0).Value.ToString & " - " & dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(1).Value.ToString
-        str = str & "," & vbCrLf & "Tarea: " & dgvActiv.Rows(dgvActiv.CurrentCell.RowIndex).Cells(1).Value.ToString
-        If Not (txt_PLAN.Text = "") Then
-            str = str & "," & vbCrLf & "Asignado al plan: " & dgvPlanes.Rows(dgvPlanes.CurrentCell.RowIndex).Cells(1).Value.ToString
+        Dim str, mensaje As String
+        Dim IdPlan, IdEquipo, IdActividad As String
+        Dim FInicio As Date
+
+        IdPlan = ""
+        IdEquipo = ""
+        IdActividad = ""
+        FInicio = calFInicio.SelectionStart
+
+        mensaje = ""
+        If txt_ACTIVIDAD.Text = "" Then
+            MessageBox.Show("Se debe seleccionar una ACTIVIDAD para guardar la Orden de Trabajo.", "Seleccionar ACTIVIDAD", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            TabControl1.SelectTab(1)
+            Exit Sub
+        Else
+            IdActividad = dgvActiv.Rows(dgvActiv.CurrentCell.RowIndex).Cells(0).Value.ToString
+            mensaje = "Se crea OT"
+
+            If Not (txt_EQUIPO.Text = "") Then
+                IdEquipo = dgvEquip.Rows(dgvEquip.CurrentCell.RowIndex).Cells(0).Value.ToString
+                mensaje = mensaje & vbCrLf & " Equipo: " & IdEquipo & " - " & Trim(txt_EQUIPO.Text)
+            End If
+
+            mensaje = mensaje & "," & vbCrLf & "Tarea: " & Trim(txt_ACTIVIDAD.Text)
+
+            If Not (txt_PLAN.Text = "") Then
+                IdPlan = dgvPlanes.Rows(dgvPlanes.CurrentCell.RowIndex).Cells(0).Value.ToString
+                mensaje = mensaje & "," & vbCrLf & "Asignado al plan: " & Trim(txt_PLAN.Text)
+            End If
+
+            mensaje = mensaje & "," & vbCrLf & "Fecha de Inicio: " & calFInicio.SelectionStart.ToString
+
+            ' Guardar a BD
+            str = ""
+
+            Try
+                If (IdEquipo = "") And (IdPlan = "") Then
+                    str = "INSERT INTO PLANESGMAO(FechaInicio, IDACTIVIDAD) " & vbCrLf _
+                        & "VALUES('" & FInicio.ToString & "', '" & IdActividad & "')"
+                End If
+
+                If Not (IdEquipo = "") And (IdPlan = "") Then
+                    str = "INSERT INTO PLANESGMAO(FechaInicio, IDACTIVIDAD, IDEQUIPO) " & vbCrLf _
+                        & "VALUES('" & FInicio.ToString & "', '" & IdActividad & "', '" & IdEquipo & "')"
+                End If
+
+                If (IdEquipo = "") And Not (IdPlan = "") Then
+                    str = "INSERT INTO PLANESGMAO(FechaInicio, IDACTIVIDAD, IDPLAN) " & vbCrLf _
+                        & "VALUES('" & FInicio.ToString & "', '" & IdActividad & "', '" & IdPlan & "')"
+                End If
+
+                If Not (IdEquipo = "") And Not (IdPlan = "") Then
+                    str = "INSERT INTO PLANESGMAO(FechaInicio, IDEQUIPO, IDACTIVIDAD, IDPLAN) " & vbCrLf _
+                        & "VALUES('" & FInicio.ToString & "', '" & IdEquipo & "', '" & IdActividad & "', '" & IdPlan & "')"
+                End If
+
+                If (str = "") Then
+                    MessageBox.Show("ERROR - No se ha asignado una consulta válida en el INSERT a la tabla PLANESGMAO")
+                Else
+                    MessageBox.Show(str)
+                    Clipboard.SetText(str)
+                    txt_PLAN.Text = ""
+                    txt_EQUIPO.Text = ""
+                    txt_ACTIVIDAD.Text = ""
+
+                    If ClasGMAO.InsertaGMAO(str) Then
+                        MessageBox.Show(mensaje, "OT creada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        'Actualizar()
+                        Exit Sub
+                    End If
+                End If
+            Catch ex As Exception
+                MessageBox.Show("¡¡¡JODERRR!!!")
+                errorConn = ex.Message.ToString
+            Finally
+                If cnn.State = ConnectionState.Open Then
+                    cnn.Close()
+                End If
+            End Try
         End If
-        str = str & "," & vbCrLf & "Fecha de Inicio: " & calFInicio.SelectionStart.ToString
-
-        MessageBox.Show(str)
 
     End Sub
 
     Private Sub btBorrar_Click(sender As Object, e As EventArgs) Handles btBorrar.Click
 
         txt_PLAN.Text = ""
+        txt_EQUIPO.Text = ""
+        txt_ACTIVIDAD.Text = ""
+
+    End Sub
+
+    Private Sub btAddPlan_Click(sender As Object, e As EventArgs) Handles btAddPlan.Click
+
+        If txt_EQUIPO.Text = "" Then
+            If MessageBox.Show("Se debe seleccionar un EQUIPO para guardar la plantilla.", "Seleccionar EQUIPO", MessageBoxButtons.OK, MessageBoxIcon.Stop) Then
+                TabControl1.SelectTab(0)
+                Exit Sub
+            End If
+        End If
+
+        If txt_ACTIVIDAD.Text = "" Then
+            If MessageBox.Show("Se debe seleccionar una ACTIVIDAD para guardar la plantilla.", "Seleccionar ACTIVIDAD", MessageBoxButtons.OK, MessageBoxIcon.Stop) Then
+                TabControl1.SelectTab(1)
+                Exit Sub
+            End If
+        End If
+
+        If txt_PLAN.Text = "" Then
+            If MessageBox.Show("Se debe seleccionar un PLAN para guardar la plantilla.", "Seleccionar PLAN", MessageBoxButtons.OK, MessageBoxIcon.Stop) Then
+                TabControl1.SelectTab(2)
+                Exit Sub
+            End If
+        End If
+
+        ' Insertar en GMSQL
+        ' Se inserta registro en la tabla PLANTILLAS
+        tipoOperacion = "A"
+        tsSave_Click(Me, New System.EventArgs)
 
     End Sub
 End Class

@@ -294,7 +294,7 @@ Public Class FrmProveedores
         If tipoOperacion = "A" Then ' Comprueba si es Alta nueva "A" o modificacion "M"
             'ANTES DE GUARDAR COMPROBAR SI REGISTRO YA EXISTE EN BBDD.
 
-            If ClasProveedores.buscaID(Me.txt_ID.Text) = True Then
+            If ClasProveedores.buscaID(Me.txt_ID.Text) Then
                 MsgBox("Atención, el IDPROVEEDOR ya está siendo utilizado en el Sistema.", MsgBoxStyle.Exclamation)
                 ActiveControl = Me.txt_ID
                 Me.txt_ID.Text = ""
@@ -308,7 +308,7 @@ Public Class FrmProveedores
                                                    "'" & "," & "'" & Me.txt_Direccion.Text & "'" & "," & "'" & Me.txt_Poblacion.Text &
                                                    "'" & "," & "'" & Me.cbProvincia.Text & "'" & "," & "'" & Me.cbPais.Text &
                                                    "'" & "," & "'" & Me.txt_Telefono.Text & "'" & "," & "'" & Me.txt_web.Text &
-                                                   "'" & "," & "'" & Me.txt_Email.Text & "'" & "," & "'" & Me.txt_CP.Text & "'" & ")") = True Then
+                                                   "'" & "," & "'" & Me.txt_Email.Text & "'" & "," & "'" & Me.txt_CP.Text & "'" & ")") Then
 
                         'MsgBox("Registro Agregado Con Exito", MsgBoxStyle.Information)
 

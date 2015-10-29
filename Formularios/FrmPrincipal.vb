@@ -92,6 +92,8 @@ Public Class FrmPrincipal
                 Mibinding = FGMAO.ClasGMAO.bsGMAO
             ElseIf ActiveControl.Name = "FrmProveedores" Then
                 Mibinding = FProveedores.ClasProveedores.bsProveedores
+            ElseIf ActiveControl.Name = "FrmOT" Then
+                Mibinding = FOT.ClasOT.bsOT
             ElseIf ActiveControl.Name = "frmPrintView" Or ActiveControl.Name = " " Then
                 'MsgBox("aqui")
                 Mibinding = Nothing
@@ -341,6 +343,16 @@ Public Class FrmPrincipal
         Catch ex As Exception
             errorConn = ex.Message.ToString
         End Try
+
+    End Sub
+
+    Private Sub MantenimientoOTToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoOTToolStripMenuItem.Click
+
+        If (FOT Is Nothing) Then
+            FOT = New FrmOT()
+            FOT.MdiParent = Me
+            FOT.Show()
+        End If
 
     End Sub
 End Class
