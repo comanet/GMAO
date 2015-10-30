@@ -6,6 +6,8 @@ Public Class FrmPrincipal
 
     Private Sub FrmPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        'MessageBox.Show(PERFIL)
+
         'Me.ToolStripStatusLabel.Text = Me.ToolStripStatusLabel.Text & "INDUSTRIAS JOVIR"
         Me.ToolStripStatusLabel2.Text = Format(Date.Today)
         Me.ActiveControl = Nothing
@@ -177,27 +179,31 @@ Public Class FrmPrincipal
 
     Private Sub MantenimientoSeccionesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoSeccionesToolStripMenuItem.Click
 
-        If (FSecciones Is Nothing) Then
-            '    ' Creamos una nueva instancia del formulario
-            FSecciones = New FrmSeccion()
-
-            ' Mostramos el formulario
-            ' ToolStrip1.Enabled = True
-            FSecciones.MdiParent = Me
-            FSecciones.Show()
+        If (PERFIL = "Administrador") Then
+            If (FSecciones Is Nothing) Then
+                FSecciones = New FrmSeccion()
+                FSecciones.MdiParent = Me
+                FSecciones.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub CambioClaveAccesoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CambioClaveAccesoToolStripMenuItem.Click
 
-        If (FPersonal Is Nothing) Then
-            ' Creamos una nueva instancia del formulario
-            FPersonal = New FrmPersonal()
-            ' Mostramos el formulario
-            ' ToolStrip1.Enabled = True
-            FPersonal.MdiParent = Me
-            FPersonal.Show()
+        If (PERFIL = "Administrador") Then
+            If (FPersonal Is Nothing) Then
+                ' Creamos una nueva instancia del formulario
+                FPersonal = New FrmPersonal()
+                ' Mostramos el formulario
+                ' ToolStrip1.Enabled = True
+                FPersonal.MdiParent = Me
+                FPersonal.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
@@ -211,51 +217,71 @@ Public Class FrmPrincipal
 
     Private Sub TiposDeElementosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TiposDeElementosToolStripMenuItem.Click
 
-        If (FCatEqui Is Nothing) Then
-            '    ' Creamos una nueva instancia del formulario
-            FCatEqui = New FrmCatEqui()
-            FCatEqui.MdiParent = Me
-            FCatEqui.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FCatEqui Is Nothing) Then
+                '    ' Creamos una nueva instancia del formulario
+                FCatEqui = New FrmCatEqui()
+                FCatEqui.MdiParent = Me
+                FCatEqui.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub MantenimientoUsuariosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoUsuariosToolStripMenuItem.Click
 
-        If (FUser Is Nothing) Then
-            FUser = New FrmUser()
-            FUser.MdiParent = Me
-            FUser.Show()
+        If (PERFIL = "Administrador") Then
+            If (FUser Is Nothing) Then
+                FUser = New FrmUser()
+                FUser.MdiParent = Me
+                FUser.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub MantenimientoEquiposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoEquiposToolStripMenuItem.Click
 
-        If (FEquipos Is Nothing) Then
-            FEquipos = New FrmEquipos()
-            FEquipos.MdiParent = Me
-            FEquipos.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FEquipos Is Nothing) Then
+                FEquipos = New FrmEquipos()
+                FEquipos.MdiParent = Me
+                FEquipos.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub GeneralAdminisiónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GeneralAdminisiónToolStripMenuItem.Click
 
-        If (FAlmacen Is Nothing) Then
-            FAlmacen = New FrmAlmacen()
-            FAlmacen.MdiParent = Me
-            FAlmacen.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FAlmacen Is Nothing) Then
+                FAlmacen = New FrmAlmacen()
+                FAlmacen.MdiParent = Me
+                FAlmacen.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub RepuestosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RepuestosToolStripMenuItem.Click
 
-        If (FRepuestos Is Nothing) Then
-            FRepuestos = New FrmRepuestos()
-            FRepuestos.MdiParent = Me
-            FRepuestos.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FRepuestos Is Nothing) Then
+                FRepuestos = New FrmRepuestos()
+                FRepuestos.MdiParent = Me
+                FRepuestos.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
@@ -274,62 +300,86 @@ Public Class FrmPrincipal
 
     Private Sub MantenimientoDeFrecuenciasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoDeFrecuenciasToolStripMenuItem.Click
 
-        ' Manejo de la tabla FRECUENCIAS
-        If (FFrecuencias Is Nothing) Then
-            FFrecuencias = New FrmFrecuencias()
-            FFrecuencias.MdiParent = Me
-            FFrecuencias.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            ' Manejo de la tabla FRECUENCIAS
+            If (FFrecuencias Is Nothing) Then
+                FFrecuencias = New FrmFrecuencias()
+                FFrecuencias.MdiParent = Me
+                FFrecuencias.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub EspecialidadesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EspecialidadesToolStripMenuItem.Click
 
-        ' Manejo de la tabla ESPECIALIDADES
-        If (FEspecialidades Is Nothing) Then
-            FEspecialidades = New FrmEspecialidades()
-            FEspecialidades.MdiParent = Me
-            FEspecialidades.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            ' Manejo de la tabla ESPECIALIDADES
+            If (FEspecialidades Is Nothing) Then
+                FEspecialidades = New FrmEspecialidades()
+                FEspecialidades.MdiParent = Me
+                FEspecialidades.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub PlanesDeMantenimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlanesDeMantenimientoToolStripMenuItem.Click
 
-        If (FMantePlan Is Nothing) Then
-            FMantePlan = New FrmMantePlan()
-            FMantePlan.MdiParent = Me
-            FMantePlan.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FMantePlan Is Nothing) Then
+                FMantePlan = New FrmMantePlan()
+                FMantePlan.MdiParent = Me
+                FMantePlan.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub TareasDeMantenimientoPreventivoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TareasDeMantenimientoPreventivoToolStripMenuItem.Click
 
-        If (FActividades Is Nothing) Then
-            FActividades = New FrmActividades()
-            FActividades.MdiParent = Me
-            FActividades.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FActividades Is Nothing) Then
+                FActividades = New FrmActividades()
+                FActividades.MdiParent = Me
+                FActividades.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub GMAOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GMAOToolStripMenuItem.Click
 
-        If (FGMAO Is Nothing) Then
-            FGMAO = New FrmGMAO()
-            FGMAO.MdiParent = Me
-            FGMAO.Show()
+        If Not (PERFIL = "OPERADOR") Then
+            If (FGMAO Is Nothing) Then
+                FGMAO = New FrmGMAO()
+                FGMAO.MdiParent = Me
+                FGMAO.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub
 
     Private Sub MantenimientoDeFabricantesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MantenimientoDeFabricantesToolStripMenuItem.Click
 
-        If (FProveedores Is Nothing) Then
-            FProveedores = New FrmProveedores()
-            FProveedores.MdiParent = Me
-            FProveedores.Show()
+        If (PERFIL = "Administrador") Then
+            If (FProveedores Is Nothing) Then
+                FProveedores = New FrmProveedores()
+                FProveedores.MdiParent = Me
+                FProveedores.Show()
+            End If
+        Else
+            MessageBox.Show("El usuario actual no está autorizado a acceder a esta información.", "PERMISO DENEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
 
     End Sub

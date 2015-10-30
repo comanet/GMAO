@@ -41,12 +41,14 @@ Public Class FrmActividades
     End Sub
 
     Private Sub Limpiabinding()
+
         Me.txt_ID.DataBindings.Clear()
-        Me.txt_Nombre.DataBindings.Clear()
+        Me.txt_NOMBRE.DataBindings.Clear()
         Me.txt_DESCRIPCION.DataBindings.Clear()
         Me.cbEspe.DataBindings.Clear()
         Me.cbTMant.DataBindings.Clear()
         Me.cbFrec.DataBindings.Clear()
+
     End Sub
 
     Public Sub Actualizar(Optional ByVal bCargar As Boolean = True) ' Se utiliza para limpiar el datagridview y refrescar los datos modificados.

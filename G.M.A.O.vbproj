@@ -191,6 +191,12 @@
     <Compile Include="Formularios\FrmOT.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\FrmOTEdit.Designer.vb">
+      <DependentUpon>FrmOTEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmOTEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\FrmPersonal.Designer.vb">
       <DependentUpon>FrmPersonal.vb</DependentUpon>
     </Compile>
@@ -225,12 +231,6 @@
       <DependentUpon>FrmUser.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FrmUser.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmTest.Designer.vb">
-      <DependentUpon>FrmTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FrmTest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GMSQLDataSet.Designer.vb">
@@ -322,6 +322,9 @@
     <EmbeddedResource Include="Formularios\FrmOT.resx">
       <DependentUpon>FrmOT.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmOTEdit.resx">
+      <DependentUpon>FrmOTEdit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmPersonal.resx">
       <DependentUpon>FrmPersonal.vb</DependentUpon>
     </EmbeddedResource>
@@ -339,9 +342,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmUser.resx">
       <DependentUpon>FrmUser.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmTest.resx">
-      <DependentUpon>FrmTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -249,13 +249,13 @@ Partial Class FrmPrincipal
         'MantenimientoOTToolStripMenuItem
         '
         Me.MantenimientoOTToolStripMenuItem.Name = "MantenimientoOTToolStripMenuItem"
-        Me.MantenimientoOTToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MantenimientoOTToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
         Me.MantenimientoOTToolStripMenuItem.Text = "OT pendientes"
         '
         'OTProgramadasToolStripMenuItem
         '
         Me.OTProgramadasToolStripMenuItem.Name = "OTProgramadasToolStripMenuItem"
-        Me.OTProgramadasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OTProgramadasToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
         Me.OTProgramadasToolStripMenuItem.Text = "OT ejecutadas"
         '
         'InformesToolStripMenuItem

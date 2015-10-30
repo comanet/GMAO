@@ -21,6 +21,7 @@ Module variables
     Public FAddActividad As FrmAddActividad = Nothing
     Public FAddTareaEq As FrmAddTareaEq = Nothing
     Public FOT As FrmOT = Nothing
+    Public FOTEdit As FrmOTEdit = Nothing
 
     Public IdEquipo As String = ""
     Public NombreEquipo As String = ""
@@ -33,6 +34,8 @@ Module variables
     Public errorConn As String = ""
     Public recarga As Boolean
     Public noMod As Boolean = False
+
+    Public PERFIL As String
 
     Public Sub Main()
         Application.EnableVisualStyles()
