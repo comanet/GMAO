@@ -21,27 +21,6 @@ Public Class clAddTareaEq
 
     End Sub
 
-    Public Function buscaID(ByVal valor As String) As Boolean
-
-        Dim i As Integer
-
-        cnn.Open()
-
-        Dim query As String
-        query = "SELECT COUNT(*) FROM EQUIPOS WHERE IDPLAN LIKE " & "'" & valor & "%'"
-        comando = New SqlCommand(query, cnn)
-        i = Convert.ToInt32(comando.ExecuteScalar())
-
-        cnn.Close()
-
-        If i > 0 Then
-            Return True
-        Else
-            Return False
-        End If
-
-    End Function
-
     ' Actualizar/Modificar. Registros.
     Public Function actualizar(ByVal tabla As String, ByVal campos As String, ByVal condicion As String) As Boolean
 
@@ -68,6 +47,10 @@ Public Class clAddTareaEq
     Public Function InsertaTareaEq(ByVal query As String) As Boolean
 
         Dim i As Integer
+
+        If cnn.State = ConnectionState.Open Then
+            cnn.Close()
+        End If
 
         cnn.Open()
 

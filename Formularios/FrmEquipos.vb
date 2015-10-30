@@ -62,15 +62,17 @@ Public Class FrmEquipos
 
         Me.txt_ID.DataBindings.Add("text", ClasEquipos.bsEquipos, "IDEQUIPO")
         Me.txt_Nombre.DataBindings.Add("text", ClasEquipos.bsEquipos, "NOMBRE")
+        Me.txtDescrip.DataBindings.Add("text", ClasEquipos.bsEquipos, "DESCRIPCION")
         Me.txt_Marca.DataBindings.Add("text", ClasEquipos.bsEquipos, "MARCA")
         Me.txt_Mod.DataBindings.Add("text", ClasEquipos.bsEquipos, "MODELO")
+
+        Me.cbseccion.DataBindings.Add("text", ClasEquipos.bsEquipos, "SECCION")
+        Me.CBtipoEquipo.DataBindings.Add("text", ClasEquipos.bsEquipos, "TIPOEQUIPO")
+
         Me.txt_Pro.DataBindings.Add("text", ClasEquipos.bsEquipos, "PROVEEDOR")
-        Me.txtDescrip.DataBindings.Add("text", ClasEquipos.bsEquipos, "DESCRIPCION")
         Me.txt_Nserie.DataBindings.Add("text", ClasEquipos.bsEquipos, "NSERIE")
         Me.txt_Notas.DataBindings.Add("text", ClasEquipos.bsEquipos, "NOTAS")
 
-        Me.CBtipoEquipo.DataBindings.Add("text", ClasEquipos.bsEquipos, "TIPOEQUIPO")
-        Me.cbseccion.DataBindings.Add("text", ClasEquipos.bsEquipos, "SECCION")
         Me.CBEstado.DataBindings.Add("text", ClasEquipos.bsEquipos, "ESTADO")
         Me.dtFcompra.DataBindings.Add("text", ClasEquipos.bsEquipos, "FCOMPRA")
         Me.dtFGarantia.DataBindings.Add("text", ClasEquipos.bsEquipos, "FGARANTIA")
@@ -93,22 +95,27 @@ Public Class FrmEquipos
         Enlacebin()
 
         ' Muestra datos de TAREAS en dgvTareas
-        sql = "SELECT DISTINCT PLANTILLAS.IDACTIVIDAD, ACTIVIDADES.NOMBRE " _
-            & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " _
-            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " _
-            & "INNER JOIN EQUIPOS " _
-            & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " _
-            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
+        sql = "SELECT IDACTIVIDAD, NOMBRE " & vbCrLf _
+            & "FROM ACTIVIDADES " & vbCrLf _
+            & "WHERE IDACTIVIDAD IN (" & vbCrLf _
+            & "SELECT DISTINCT PLANESGMAO.IDACTIVIDAD " & vbCrLf _
+            & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " & vbCrLf _
+            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " & vbCrLf _
+            & "RIGHT JOIN PLANESGMAO " & vbCrLf _
+            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " & vbCrLf _
+            & "WHERE PLANESGMAO.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%')"
         ClasEquipos.ConsultaTareas(sql)
         dgvTareas.DataSource = ClasEquipos.bsTareas
         dgvTareas.AutoGenerateColumns = True
         dgvTareas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
 
         ' Muestra datos de PLANES en dgvPlanes
-        sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, MANTEPLAN.NOMBRE " _
+        sql = "SELECT DISTINCT PLANTILLAS.IDPLANTILLA, MANTEPLAN.NOMBRE " _
             & "FROM MANTEPLAN INNER JOIN PLANTILLAS " _
-            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLAN " _
-            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
+            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLANTILLA " _
+            & "INNER JOIN PLANESGMAO " _
+            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " _
+            & "WHERE PLANESGMAO.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
         Clipboard.SetText(sql)
         'MessageBox.Show(sql)
         'ClasEquipos.ConsultaPlanes(sql)
@@ -508,13 +515,16 @@ Public Class FrmEquipos
         ' para así que se muestren las notas y se actualizen los tab de imagenes y de documentos.
         '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         Dim sql As String
+
         Me.TabControl1.SelectedTab = TabPage1
 
         ' Muestra datos de PLANES en dgvPlanes
-        Sql = "SELECT DISTINCT PLANTILLAS.IDPLAN, MANTEPLAN.NOMBRE " _
+        sql = "SELECT DISTINCT PLANTILLAS.IDPLANTILLA, MANTEPLAN.NOMBRE " _
             & "FROM MANTEPLAN INNER JOIN PLANTILLAS " _
-            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLAN " _
-            & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
+            & "ON MANTEPLAN.IDPLAN=PLANTILLAS.IDPLANTILLA " _
+            & "INNER JOIN PLANESGMAO " _
+            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " _
+            & "WHERE PLANESGMAO.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%'"
         Clipboard.SetText(Sql)
         dgvPlanes.DataSource = ClasEquipos.consultaAux(sql, "PLANES")
         dgvPlanes.AutoGenerateColumns = True
@@ -553,7 +563,7 @@ Public Class FrmEquipos
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
 
-        ' Cargamos las variable globales NombreEquipo, Seccion, NSerie e IdEquipo
+       ' Cargamos las variable globales NombreEquipo, Seccion, NSerie e IdEquipo
         NombreEquipo = txt_Nombre.Text
         If Not (cbseccion.Text = "") Then
             Seccion = cbseccion.Text
@@ -570,6 +580,33 @@ Public Class FrmEquipos
             FAddTareaEq = New FrmAddTareaEq()
             FAddTareaEq.ShowDialog(Me)
         End If
+
+    End Sub
+
+    Public Sub cargaTareas()
+
+        Dim sql As String
+
+        ' Muestra datos de TAREAS en dgvTareas
+        sql = "SELECT IDACTIVIDAD, NOMBRE " & vbCrLf _
+            & "FROM ACTIVIDADES " & vbCrLf _
+            & "WHERE IDACTIVIDAD IN (" & vbCrLf _
+            & "SELECT DISTINCT PLANESGMAO.IDACTIVIDAD " & vbCrLf _
+            & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " & vbCrLf _
+            & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " & vbCrLf _
+            & "RIGHT JOIN PLANESGMAO " & vbCrLf _
+            & "ON PLANESGMAO.IDPLANTILLA=PLANTILLAS.IDPLANTILLA " & vbCrLf _
+            & "WHERE PLANESGMAO.IDEQUIPO LIKE '" & Trim(txt_ID.Text) & "%')"
+        ClasEquipos.ConsultaTareas(sql)
+        dgvTareas.DataSource = ClasEquipos.bsTareas
+        dgvTareas.AutoGenerateColumns = True
+        dgvTareas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+    End Sub
+
+    Private Sub dgvTareas_DoubleClick(sender As Object, e As EventArgs) Handles dgvTareas.DoubleClick
+
+        ' EDICIÓN DE TAREAS ASIGNADAS AL EQUIPO
 
     End Sub
 End Class

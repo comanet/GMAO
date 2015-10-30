@@ -44,12 +44,12 @@
         sql = "SELECT IDACTIVIDAD, NOMBRE " & vbCrLf _
             & "FROM ACTIVIDADES " & vbCrLf _
             & "WHERE IDACTIVIDAD NOT IN ( " & vbCrLf _
-                & "SELECT DISTINCT PLANTILLAS.IDACTIVIDAD " & vbCrLf _
-                & "FROM ACTIVIDADES INNER JOIN PLANTILLAS " & vbCrLf _
-                & "ON ACTIVIDADES.IDACTIVIDAD=PLANTILLAS.IDACTIVIDAD " & vbCrLf _
+                & "SELECT DISTINCT PLANESGMAO.IDACTIVIDAD " & vbCrLf _
+                & "FROM ACTIVIDADES INNER JOIN PLANESGMAO " & vbCrLf _
+                & "ON ACTIVIDADES.IDACTIVIDAD=PLANESGMAO.IDACTIVIDAD " & vbCrLf _
                 & "INNER JOIN EQUIPOS " & vbCrLf _
-                & "ON PLANTILLAS.IDEQUIPO=EQUIPOS.IDEQUIPO " & vbCrLf _
-                & "WHERE PLANTILLAS.IDEQUIPO LIKE '" & IdEquipo & "%') " & vbCrLf _
+                & "ON PLANESGMAO.IDEQUIPO=EQUIPOS.IDEQUIPO " & vbCrLf _
+                & "WHERE PLANESGMAO.IDEQUIPO LIKE '" & IdEquipo & "%') " & vbCrLf _
             & "ORDER BY NOMBRE"
 
         'MessageBox.Show(sql)
@@ -100,14 +100,18 @@
         Dim IdTarea, sql As String
 
         IdTarea = lbTareas.SelectedValue.ToString
-        sql = "INSERT INTO PLANTILLAS(IDEQUIPO, IDACTIVIDAD) VALUES('" & IdEquipo & "','" & IdTarea & "')"
+        sql = "INSERT INTO PLANESGMAO(IDEQUIPO, IDACTIVIDAD, FechaInicio) VALUES('" & IdEquipo & "','" & IdTarea & "','" & Now.ToString & "')"
 
         'Clipboard.SetText(sql)
         'MessageBox.Show(sql)
 
         Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+            End If
             If ClasAddtareaEq.InsertaTareaEq(sql) Then
                 'MessageBox.Show("TAREAS: " & sql)
+
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message.ToString)
